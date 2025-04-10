@@ -1,0 +1,133 @@
+<div class="d-flex w-full h-full">
+  <mat-card class="m-auto" style="max-width: 420px">
+    <mat-card-header class="m-b-24">
+      <mat-card-title>
+        {{ 'register_welcome' | translate }},
+        <br />
+        {{ 'register_title' | translate }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (registrationSuccess) {
+        <div class="registration-success">
+          <h3>Registration Successful!</h3>
+          <p>
+            Thank you for registering with Secure Bank. We've sent your account details to your
+            email address.
+          </p>
+          <p>Please check your email for your Customer ID and PIN to log in.</p>
+          <button class="w-full m-y-16" mat-flat-button color="primary" routerLink="/auth/login">
+            Go to Login
+          </button>
+        </div>
+      } @else {
+        <form class="form-field-full" [formGroup]="registerForm" (ngSubmit)="submitRegistration()">
+          <mat-form-field appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="fullName" required />
+            @if (registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched) {
+              <mat-error>
+                @if (registerForm.get('fullName')?.hasError('required')) {
+                  <span>Full name is required</span>
+                } @else if (registerForm.get('fullName')?.hasError('minlength')) {
+                  <span>Full name must be at least 2 characters</span>
+                } @else if (registerForm.get('fullName')?.hasError('maxlength')) {
+                  <span>Full name cannot exceed 100 characters</span>
+                }
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="email" required />
+            @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+              <mat-error>
+                @if (registerForm.get('email')?.hasError('required')) {
+                  <span>Email is required</span>
+                } @else if (registerForm.get('email')?.hasError('email')) {
+                  <span>Please enter a valid email address</span>
+                }
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" required />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            @if (
+              registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched
+            ) {
+              <mat-error>
+                <span>Date of birth is required</span>
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Phone Number (e.g., 712345678)</mat-label>
+            <input matInput formControlName="phoneNumber" required />
+            @if (
+              registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched
+            ) {
+              <mat-error>
+                @if (registerForm.get('phoneNumber')?.hasError('required')) {
+                  <span>Phone number is required</span>
+                } @else if (registerForm.get('phoneNumber')?.hasError('pattern')) {
+                  <span>Please enter a valid Kenyan phone number (e.g., 712345678)</span>
+                }
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <textarea matInput formControlName="address" required rows="3"></textarea>
+            @if (registerForm.get('address')?.invalid && registerForm.get('address')?.touched) {
+              <mat-error>
+                @if (registerForm.get('address')?.hasError('required')) {
+                  <span>Address is required</span>
+                } @else if (registerForm.get('address')?.hasError('minlength')) {
+                  <span>Address must be at least 5 characters</span>
+                }
+              </mat-error>
+            }
+          </mat-form-field>
+
+          <mat-checkbox formControlName="termsAccepted" required>
+            I have read and agree to the Terms and Conditions
+          </mat-checkbox>
+          @if (
+            registerForm.get('termsAccepted')?.invalid && registerForm.get('termsAccepted')?.touched
+          ) {
+            <mat-error class="terms-error">You must accept the terms and conditions</mat-error>
+          }
+
+          <button
+            class="w-full m-y-16"
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="isLoading"
+          >
+            @if (isLoading) {
+              <mat-spinner
+                diameter="20"
+                style="display: inline-block; margin-right: 8px"
+              ></mat-spinner>
+            }
+            {{ 'register' | translate }}
+          </button>
+
+          <div>
+            <span>{{ 'have_an_account' | translate }}?</span>
+            <a routerLink="/auth/login">{{ 'login' | translate }}</a>
+          </div>
+        </form>
+      }
+    </mat-card-content>
+  </mat-card>
+</div>
