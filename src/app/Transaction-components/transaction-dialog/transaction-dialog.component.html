@@ -1,0 +1,200 @@
+<!-- Main Dialog Container with Dark Theme -->
+<div class="transaction-dialog dark-theme">
+  <!-- Header with Title and Back Button -->
+  <div class="dialog-header">
+    <h2 class="dialog-title">{{ getDialogTitle() }}</h2>
+    <button class="back-button" (click)="onCancel()">
+      <span class="back-icon">←</span> Back to Dashboard
+    </button>
+  </div>
+
+  <!-- Main Content -->
+  <div class="dialog-content">
+    <!-- Loading Indicator -->
+    <div class="loading-container" *ngIf="isLoading">
+      <div class="spinner"></div>
+      <p>Processing your request...</p>
+    </div>
+
+    <!-- Account Selection -->
+    <div class="form-section" *ngIf="!isLoading && !showSearchResults">
+      <label class="section-label">Select Account</label>
+      <div class="select-container">
+        <select [formControl]="accountNumberControl" (change)="onAccountChange()">
+          <option *ngFor="let account of accounts" [value]="account.accountNumber">
+            {{ account.accountNumber }} - Balance: Ksh {{ account.balance.toFixed(2) }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Account Details Section -->
+      <div class="account-details" *ngIf="selectedAccount">
+        <div class="detail-row">
+          <span class="detail-label">Available Balance:</span>
+          <span class="detail-value">Ksh {{ selectedAccount.balance.toFixed(2) }}</span>
+        </div>
+        <div class="detail-row" *ngIf="data.type === 'withdraw'">
+          <span class="detail-label">Withdrawal Limit:</span>
+          <span class="detail-value">Ksh {{ selectedAccount.withdrawalLimit.toFixed(2) }}</span>
+        </div>
+        <div class="detail-row" *ngIf="data.type === 'withdraw'">
+          <span class="detail-label">Max Withdrawal:</span>
+          <span class="detail-value">Ksh {{ getMaxWithdrawal().toFixed(2) }}</span>
+        </div>
+        <div class="detail-row" *ngIf="data.type === 'transfer'">
+          <span class="detail-label">Transfer Limit:</span>
+          <span class="detail-value">Ksh {{ selectedAccount.transferLimit.toFixed(2) }}</span>
+        </div>
+      </div>
+
+      <!-- Transaction Amount Input for Deposit/Withdraw/Transfer -->
+      <ng-container *ngIf="data.type !== 'search'">
+        <div class="form-section">
+          <label class="section-label">Amount (Ksh)</label>
+          <input 
+            type="number" 
+            [formControl]="amountControl" 
+            placeholder="Enter amount" 
+            class="amount-input"
+          >
+          <div class="error-message" *ngIf="amountControl.invalid && amountControl.touched">
+            {{ getAmountErrorMessage() }}
+          </div>
+        </div>
+
+        <!-- Destination Account for Transfer -->
+        <div class="form-section" *ngIf="data.type === 'transfer'">
+          <label class="section-label">Destination Account</label>
+          <div class="select-container">
+            <select [formControl]="destinationAccountControl">
+              <option [value]="null" disabled>Select destination account</option>
+              <option *ngFor="let account of getOtherAccounts()" [value]="account.accountNumber">
+                {{ account.accountNumber }} - Balance: Ksh {{ account.balance.toFixed(2) }}
+              </option>
+            </select>
+          </div>
+          <div class="error-message" *ngIf="destinationAccountControl.invalid && destinationAccountControl.touched">
+            Destination account is required
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Search Form Fields -->
+      <ng-container *ngIf="data.type === 'search'">
+        <div class="form-section">
+          <label class="section-label">Transaction Type</label>
+          <div class="select-container">
+            <select [formControl]="transactionTypeControl">
+              <option [value]="null">All Types</option>
+              <option value="Deposit">Deposit</option>
+              <option value="Withdrawal">Withdrawal</option>
+              <option value="Transfer">Transfer</option>
+              <option value="Transfer Received">Transfer Received</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-section date-range">
+          <div class="date-field">
+            <label class="section-label">Start Date</label>
+            <input 
+              type="date" 
+              [formControl]="startDateControl" 
+              class="date-input"
+            >
+          </div>
+          <div class="date-field">
+            <label class="section-label">End Date</label>
+            <input 
+              type="date" 
+              [formControl]="endDateControl" 
+              class="date-input"
+            >
+          </div>
+        </div>
+
+        <div class="form-section amount-range">
+          <div class="amount-field">
+            <label class="section-label">Min Amount</label>
+            <input 
+              type="number" 
+              [formControl]="minAmountControl" 
+              placeholder="0.00" 
+              class="amount-input"
+            >
+          </div>
+          <div class="amount-field">
+            <label class="section-label">Max Amount</label>
+            <input 
+              type="number" 
+              [formControl]="maxAmountControl" 
+              placeholder="0.00" 
+              class="amount-input"
+            >
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Search Results -->
+    <div class="search-results" *ngIf="showSearchResults">
+      <h3 class="results-title">Search Results</h3>
+      
+      <div class="empty-results" *ngIf="searchResults.length === 0">
+        No transactions found matching your search criteria.
+      </div>
+
+      <div class="transaction-table" *ngIf="searchResults.length > 0">
+        <div class="table-header">
+          <div class="table-cell">Transaction ID</div>
+          <div class="table-cell">Type</div>
+          <div class="table-cell">Amount</div>
+          <div class="table-cell">Date/Time</div>
+          <div class="table-cell">Balance</div>
+        </div>
+
+        <div class="table-body">
+          <div class="table-row" *ngFor="let transaction of searchResults">
+            <div class="table-cell">{{ transaction.transactionId }}</div>
+            <div class="table-cell">{{ transaction.type }}</div>
+            <div class="table-cell">{{ formatAmount(transaction.amount) }}</div>
+            <div class="table-cell">{{ formatDate(transaction.transactionDateTime) }}</div>
+            <div class="table-cell">{{ formatAmount(transaction.balanceAfterTransaction) }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Information Box for Withdrawals -->
+  <div class="info-box" *ngIf="data.type === 'withdraw' && !showSearchResults">
+    <h3 class="info-title">Withdrawal Information</h3>
+    <ul class="info-list">
+      <li>Withdrawals are processed immediately.</li>
+      <li>Make sure you have sufficient funds in your account.</li>
+      <li>Daily withdrawal limits may apply.</li>
+    </ul>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="dialog-actions">
+    <ng-container *ngIf="!showSearchResults">
+      <button 
+        class="action-button primary" 
+        (click)="onSubmit()" 
+        [disabled]="isActionDisabled()"
+      >
+        {{ getActionButtonText() }}
+      </button>
+    </ng-container>
+
+    <ng-container *ngIf="showSearchResults">
+      <button class="action-button secondary" (click)="showSearchResults = false">
+        Back to Search
+      </button>
+      <button class="action-button primary" (click)="onCancel()">
+        Close
+      </button>
+    </ng-container>
+  </div>
+</div>

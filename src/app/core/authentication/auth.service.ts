@@ -11,6 +11,7 @@ import {
   share,
   switchMap,
   tap,
+  throwError,
 } from 'rxjs';
 import { environment } from '@env/environment';
 import { filterObject, isEmptyObject } from './helpers';
@@ -34,6 +35,17 @@ export interface RegistrationResponse {
   accountNumber: string;
 }
 
+export interface CustomerProfile {
+  customerId: string;
+  fullName: string;
+  email: string;
+  phoneNumber?: string;
+  address?: string;
+  dateOfBirth?: string;
+  registrationDate: string;
+  lastLogin: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -41,6 +53,7 @@ export class AuthService {
   private readonly loginService = inject(LoginService);
   private readonly tokenService = inject(TokenService);
   private readonly http = inject(HttpClient);
+  private customerProfileUrl = `${environment.apiUrl}/api/customers/profile`;
 
   private user$ = new BehaviorSubject<User>({});
   private change$ = merge(
@@ -71,6 +84,14 @@ export class AuthService {
         this.tokenService.set(token);
       }),
       map(() => this.check())
+    );
+  }
+
+  getCustomerProfile(): Observable<CustomerProfile> {
+    return this.http.get<CustomerProfile>(this.customerProfileUrl).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      })
     );
   }
 

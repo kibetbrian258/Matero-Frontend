@@ -1,1 +1,199 @@
-<p>account-information works!</p>
+<div class="account-info-container">
+  <!-- Loading Indicator -->
+  @if (loading) {
+    <div class="loading-container">
+      <div class="spinner"></div>
+      <p>Loading account information...</p>
+    </div>
+  }
+
+  <!-- Error Message -->
+  @if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  }
+
+  <!-- Success Message -->
+  @if (success) {
+    <div class="alert alert-success">{{ success }}</div>
+  }
+
+  <!-- Content (shown when loaded) -->
+  @if (!loading && !error) {
+    <div class="header">
+      <h2>My Accounts</h2>
+    </div>
+
+    <!-- Account Selection -->
+    <div class="account-selection">
+      <div class="accounts-list">
+        @for (account of accounts; track account.accountNumber) {
+          <div
+            class="account-item"
+            [class.selected]="selectedAccount?.accountNumber === account.accountNumber"
+            (click)="onSelectAccount(account)"
+          >
+            <div class="account-item-details">
+              <div class="account-type">{{ getAccountTypeName(account) }}</div>
+              <div class="account-number">{{ account.accountNumber }}</div>
+            </div>
+            <div class="account-balance">
+              {{ formatCurrency(account.balance) }}
+            </div>
+          </div>
+        }
+
+        <!-- New Account Button -->
+        <button class="new-account-btn" (click)="toggleNewAccountForm()">
+          <mat-icon>add_circle</mat-icon>
+          <span>Open New Account</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- New Account Form -->
+    @if (showNewAccountForm) {
+      <div class="new-account-form">
+        <h3>Open New Account</h3>
+        <form [formGroup]="newAccountForm" (ngSubmit)="onCreateNewAccount()">
+          <div class="form-group">
+            <label for="accountType">Account Type</label>
+            <select formControlName="accountType" id="accountType" class="form-control">
+              <option value="savings">Savings Account</option>
+              <option value="checking">Checking Account</option>
+            </select>
+          </div>
+
+          <div class="account-type-details">
+            <h4>Account Features:</h4>
+            @if (newAccountForm.value.accountType === 'savings') {
+              <ul>
+                <li>2.5% Annual Interest Rate</li>
+                <li>No Monthly Fee</li>
+                <li>Ksh 200 Minimum Balance</li>
+                <li>Daily Withdrawal Limit: Ksh 10,000</li>
+                <li>Daily Transfer Limit: Ksh 10,000</li>
+              </ul>
+            }
+            @if (newAccountForm.value.accountType === 'checking') {
+              <ul>
+                <li>No Interest</li>
+                <li>Ksh 5 Monthly Fee</li>
+                <li>No Minimum Balance</li>
+                <li>Daily Withdrawal Limit: Ksh 10,000</li>
+                <li>Daily Transfer Limit: Ksh 10,000</li>
+              </ul>
+            }
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create Account</button>
+            <button type="button" class="btn btn-secondary" (click)="toggleNewAccountForm()">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    }
+
+    <!-- Selected Account Details -->
+    @if (selectedAccount && !showNewAccountForm) {
+      <div class="account-details">
+        <h3>Account Summary</h3>
+        <div class="account-summary-card">
+          <div class="summary-row">
+            <div class="summary-item">
+              <span class="label">Customer ID:</span>
+              <span class="value">{{ profile?.customerId }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="label">Last Login:</span>
+              <span class="value">{{ formatDate(profile?.lastLogin) }}</span>
+            </div>
+          </div>
+
+          <div class="summary-row">
+            <div class="summary-item">
+              <span class="label">Account No:</span>
+              <span class="value">{{ selectedAccount.accountNumber }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="label">Account Status:</span>
+              <span class="value status-active">{{ selectedAccount.status }}</span>
+            </div>
+          </div>
+
+          <div class="summary-row balance-row">
+            <div class="summary-item">
+              <span class="label">Current Balance:</span>
+              <span class="value balance">{{ formatCurrency(selectedAccount.balance) }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="label">Account Type:</span>
+              <span class="value">{{ getAccountTypeName(selectedAccount) }}</span>
+            </div>
+          </div>
+        </div>
+
+        <h3>Detailed Information</h3>
+        <div class="account-details-card">
+          <div class="details-row">
+            <div class="details-item">
+              <span class="label">Interest Rates:</span>
+              <span class="value">{{ selectedAccount.interestRate }}% p.a</span>
+            </div>
+            <div class="details-item">
+              <span class="label">Branch:</span>
+              <span class="value">{{ selectedAccount.branchName }}</span>
+            </div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-item">
+              <span class="label">Monthly Fee:</span>
+              <span class="value">{{ formatCurrency(selectedAccount.monthlyFee) }}</span>
+            </div>
+            <div class="details-item">
+              <span class="label">Branch Code:</span>
+              <span class="value">{{ selectedAccount.branchCode }}</span>
+            </div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-item">
+              <span class="label">Minimum Balance:</span>
+              <span class="value">{{ formatCurrency(selectedAccount.minimumBalance) }}</span>
+            </div>
+            <div class="details-item">
+              <span class="label">Online Banking:</span>
+              <span class="value feature-enabled">
+                {{ selectedAccount.onlineBanking ? 'Enabled' : 'Disabled' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-item">
+              <span class="label">Withdrawal Limit:</span>
+              <span class="value">
+                {{ formatCurrency(selectedAccount.withdrawalLimit) }} per day
+              </span>
+            </div>
+            <div class="details-item">
+              <span class="label">Mobile Banking:</span>
+              <span class="value feature-enabled">
+                {{ selectedAccount.mobileBanking ? 'Enabled' : 'Disabled' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="details-row">
+            <div class="details-item">
+              <span class="label">Transfer Limit:</span>
+              <span class="value">{{ formatCurrency(selectedAccount.transferLimit) }} per day</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  }
+</div>

@@ -1,1 +1,142 @@
-<p>help-support works!</p>
+<div class="help-support-container">
+  <div class="page-title">
+    <h2>Help & Support</h2>
+    <p class="subtitle">We're here to assist you with any questions or concerns</p>
+  </div>
+
+  <!-- Support Request Card -->
+  <div class="support-card">
+    <div class="card-header">
+      <h3>How can we help you today?</h3>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="supportForm" (ngSubmit)="submitSupportMessage()">
+        <div class="form-group">
+          <textarea
+            formControlName="message"
+            placeholder="Describe your issue or question here..."
+            class="form-control"
+            rows="4"
+          ></textarea>
+          @if (supportForm.get('message')?.invalid && supportForm.get('message')?.touched) {
+            <div class="validation-error">
+              Please provide a detailed description (at least 10 characters).
+            </div>
+          }
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="supportForm.invalid">
+          <mat-icon>send</mat-icon>
+          Send Message
+        </button>
+      </form>
+      @if (messageSent) {
+        <div class="alert alert-success">
+          <mat-icon>check_circle</mat-icon>
+          Your message has been sent! Our support team will respond within 24 hours.
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Contact Information -->
+  <div class="contact-info-section">
+    <h3>Contact Information:</h3>
+    <div class="contact-cards">
+      <div class="contact-card phone">
+        <div class="icon">
+          <mat-icon>phone</mat-icon>
+        </div>
+        <div class="contact-details">
+          <span class="label">Phone Support:</span>
+          <span class="value">+(254)-98-466-352</span>
+        </div>
+      </div>
+
+      <div class="contact-card email">
+        <div class="icon">
+          <mat-icon>email</mat-icon>
+        </div>
+        <div class="contact-details">
+          <span class="label">Email:</span>
+          <span class="value">banking&#64;info.org</span>
+        </div>
+      </div>
+
+      <div class="contact-card address">
+        <div class="icon">
+          <mat-icon>location_on</mat-icon>
+        </div>
+        <div class="contact-details">
+          <span class="label">Main Branch:</span>
+          <span class="value">123 Main Street, Nairobi</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Operating Hours -->
+  <div class="operating-hours">
+    <h3>Operating Hours</h3>
+    <div class="hours-grid">
+      <div class="day">
+        <span class="day-name">Monday - Friday:</span>
+        <span class="hours">8:00 AM - 6:00 PM</span>
+      </div>
+      <div class="day">
+        <span class="day-name">Saturday:</span>
+        <span class="hours">9:00 AM - 3:00 PM</span>
+      </div>
+      <div class="day">
+        <span class="day-name">Sunday & Holidays:</span>
+        <span class="hours">Closed</span>
+      </div>
+    </div>
+    <div class="note">
+      <mat-icon>info</mat-icon>
+      24/7 phone support available for emergencies and lost/stolen cards.
+    </div>
+  </div>
+
+  <!-- FAQ Section -->
+  <div class="faq-section">
+    <h3>Frequently Asked Questions</h3>
+    <div class="faq-list">
+      @for (faq of faqItems; track $index) {
+        <div class="faq-item">
+          <div
+            class="faq-question"
+            (click)="toggleFaq($index)"
+            [class.active]="expandedFaq === $index"
+          >
+            {{ faq.question }}
+            <span class="faq-toggle">
+              <mat-icon>{{ expandedFaq === $index ? 'remove' : 'add' }}</mat-icon>
+            </span>
+          </div>
+          <div class="faq-answer" [class.expanded]="expandedFaq === $index">
+            {{ faq.answer }}
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- Additional Resources -->
+  <div class="resources-section">
+    <h3>Additional Resources</h3>
+    <div class="resources-grid">
+      <a routerLink="/banking-guide" class="resource-card">
+        <mat-icon>menu_book</mat-icon>
+        <span>Banking Guide</span>
+      </a>
+      <a routerLink="/security-tips" class="resource-card">
+        <mat-icon>security</mat-icon>
+        <span>Security Tips</span>
+      </a>
+      <a routerLink="/terms" class="resource-card">
+        <mat-icon>description</mat-icon>
+        <span>Terms & Conditions</span>
+      </a>
+    </div>
+  </div>
+</div>

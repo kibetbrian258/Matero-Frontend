@@ -9,8 +9,14 @@ import { Error500Component } from './routes/sessions/500.component';
 import { LoginComponent } from './routes/sessions/login/login.component';
 import { RegisterComponent } from './routes/sessions/register/register.component';
 import { AccountInformationComponent } from './Transaction-components/account-information/account-information.component';
-import { TransactionManagementComponent } from './Transaction-components/transaction-management/transaction-management.component';
 import { HelpSupportComponent } from './Transaction-components/help-support/help-support.component';
+import { DepositComponent } from './Transaction-components/deposit/deposit.component';
+import { WithdrawComponent } from './Transaction-components/withdraw/withdraw.component';
+import { TransferComponent } from './Transaction-components/transfer/transfer.component';
+import { TransactionHistoryComponent } from './Transaction-components/transaction-history/transaction-history.component';
+import { BankingGuideComponent } from './Transaction-components/banking-guide/banking-guide.component';
+import { TermsConditionsComponent } from './Transaction-components/terms-conditions/terms-conditions.component';
+import { SecurityTipsComponent } from './Transaction-components/security-tips/security-tips.component';
 
 export const routes: Routes = [
   {
@@ -26,18 +32,48 @@ export const routes: Routes = [
         data: { title: 'Dashboard', titleI18n: 'Dashboard' },
       },
       {
+        path: 'deposit',
+        component: DepositComponent,
+        data: { title: 'Dashboard', titleI18n: 'Dashboard' },
+      },
+      {
+        path: 'withdraw',
+        component: WithdrawComponent,
+        data: { title: 'Dashboard', titleI18n: 'Dashboard' },
+      },
+      {
+        path: 'transfer',
+        component: TransferComponent,
+        data: { title: 'Dashboard', titleI18n: 'Dashboard' },
+      },
+      {
         path: 'accounts',
         component: AccountInformationComponent,
         data: { title: 'Account Information', titleI18n: 'Account Information' },
       },
       {
         path: 'transactions',
-        component: TransactionManagementComponent,
+        component: TransactionHistoryComponent,
         data: { title: 'Transaction Management', titleI18n: 'Transaction Management' },
       },
       {
         path: 'support',
         component: HelpSupportComponent,
+        data: { title: 'Help Support', titleI18n: 'Help & Support' },
+      },
+      {
+        path: 'banking-guide',
+        component: BankingGuideComponent,
+        data: { title: 'Help Support', titleI18n: 'Help & Support' },
+      },
+      {
+        path: 'terms',
+        component: TermsConditionsComponent,
+        data: { title: 'Help Support', titleI18n: 'Help & Support' },
+      },
+      {
+        path: 'security-tips',
+        component: SecurityTipsComponent,
         data: { title: 'Help Support', titleI18n: 'Help & Support' },
       },
       {

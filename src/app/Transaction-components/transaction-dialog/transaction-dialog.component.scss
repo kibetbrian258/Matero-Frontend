@@ -1,0 +1,390 @@
+// Dark theme colors
+$bg-dark: #121212;
+$bg-card: #1e1e1e;
+$bg-input: #2c2c2c;
+$text-primary: #ffffff;
+$text-secondary: #b0b0b0;
+$primary-color: #4285f4;
+$error-color: #f44336;
+$success-color: #4caf50;
+$border-color: #333333;
+$hover-color: #2a2a2a;
+
+.transaction-dialog.dark-theme {
+  background-color: $bg-dark;
+  color: $text-primary;
+  font-family: 'Roboto', 'Segoe UI', sans-serif;
+  padding: 0;
+  margin: 0;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  max-width: 600px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  
+  // Dialog Header
+  .dialog-header {
+    background-color: $primary-color;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    .dialog-title {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: white;
+    }
+    
+    .back-button {
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      
+      .back-icon {
+        margin-right: 6px;
+        font-size: 1.1rem;
+      }
+    }
+  }
+  
+  // Dialog Content
+  .dialog-content {
+    padding: 20px;
+    flex: 1;
+    overflow-y: auto;
+    max-height: 60vh;
+  }
+  
+  // Form Sections
+  .form-section {
+    margin-bottom: 20px;
+    
+    .section-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: $text-secondary;
+    }
+    
+    // Select Dropdown
+    .select-container {
+      position: relative;
+      
+      &::after {
+        content: '▼';
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: $text-secondary;
+        pointer-events: none;
+        font-size: 0.8rem;
+      }
+      
+      select {
+        width: 100%;
+        padding: 12px 15px;
+        border-radius: 6px;
+        background-color: $bg-input;
+        border: 1px solid $border-color;
+        color: $text-primary;
+        -webkit-appearance: none;
+        appearance: none;
+        font-size: 1rem;
+        
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        option {
+          background-color: $bg-input;
+        }
+      }
+    }
+    
+    // Inputs
+    .amount-input, .date-input {
+      width: 100%;
+      padding: 12px 15px;
+      border-radius: 6px;
+      background-color: $bg-input;
+      border: 1px solid $border-color;
+      color: $text-primary;
+      font-size: 1rem;
+      
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+      }
+      
+      &::placeholder {
+        color: $text-secondary;
+        opacity: 0.6;
+      }
+    }
+  }
+  
+  // Account Details Section
+  .account-details {
+    background-color: $bg-card;
+    border-radius: 6px;
+    padding: 15px;
+    margin: 15px 0;
+    
+    .detail-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+      
+      .detail-label {
+        color: $text-secondary;
+      }
+      
+      .detail-value {
+        font-weight: 500;
+      }
+    }
+  }
+  
+  // Date and Amount Range
+  .date-range, .amount-range {
+    display: flex;
+    gap: 15px;
+    
+    .date-field, .amount-field {
+      flex: 1;
+    }
+  }
+  
+  // Error Messages
+  .error-message {
+    color: $error-color;
+    font-size: 0.85rem;
+    margin-top: 6px;
+    padding-left: 2px;
+  }
+  
+  // Info Box
+  .info-box {
+    background-color: rgba(66, 133, 244, 0.1);
+    border-left: 4px solid $primary-color;
+    border-radius: 4px;
+    padding: 15px;
+    margin: 0 20px 20px;
+    
+    .info-title {
+      color: $primary-color;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    .info-list {
+      margin: 0;
+      padding-left: 20px;
+      
+      li {
+        margin-bottom: 6px;
+        color: $text-secondary;
+        
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  
+  // Search Results
+  .search-results {
+    .results-title {
+      font-size: 1.2rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: $text-primary;
+    }
+    
+    .empty-results {
+      padding: 30px;
+      text-align: center;
+      background-color: $bg-card;
+      border-radius: 6px;
+      color: $text-secondary;
+    }
+    
+    // Transaction Table
+    .transaction-table {
+      width: 100%;
+      border-radius: 6px;
+      overflow: hidden;
+      
+      .table-header {
+        background-color: $bg-card;
+        
+        .table-cell {
+          font-weight: 500;
+          padding: 12px 15px;
+          color: $text-secondary;
+        }
+      }
+      
+      .table-row {
+        border-bottom: 1px solid $border-color;
+        
+        &:last-child {
+          border-bottom: none;
+        }
+        
+        &:hover {
+          background-color: $hover-color;
+        }
+      }
+      
+      .table-header, .table-row {
+        display: flex;
+      }
+      
+      .table-cell {
+        flex: 1;
+        padding: 12px 15px;
+        
+        &:first-child {
+          flex: 1.2;
+        }
+        
+        &:nth-child(3), &:nth-child(5) {
+          text-align: right;
+        }
+      }
+    }
+  }
+  
+  // Dialog Actions
+  .dialog-actions {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    
+    .action-button {
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+      min-width: 120px;
+      
+      &.primary {
+        background-color: $primary-color;
+        color: white;
+        
+        &:hover:not(:disabled) {
+          background-color: darken($primary-color, 10%);
+        }
+        
+        &:disabled {
+          background-color: rgba($primary-color, 0.5);
+          cursor: not-allowed;
+        }
+      }
+      
+      &.secondary {
+        background-color: transparent;
+        border: 1px solid $border-color;
+        color: $text-primary;
+        
+        &:hover {
+          background-color: $hover-color;
+        }
+      }
+    }
+  }
+  
+  // Loading Container
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid $primary-color;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
+    
+    p {
+      color: $text-secondary;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  }
+}
+
+// Responsive styling
+@media (max-width: 600px) {
+  .transaction-dialog.dark-theme {
+    .date-range, .amount-range {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .dialog-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      
+      .back-button {
+        margin-top: 5px;
+      }
+    }
+    
+    .dialog-actions {
+      flex-direction: column;
+      
+      .action-button {
+        width: 100%;
+      }
+    }
+    
+    .transaction-table {
+      .table-cell {
+        &:nth-child(4) {
+          display: none; // Hide date/time on small screens
+        }
+      }
+    }
+  }
+}

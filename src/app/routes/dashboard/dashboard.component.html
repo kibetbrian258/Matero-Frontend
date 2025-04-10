@@ -1,5 +1,165 @@
 <page-header [title]="pageTitle" />
 
 <div class="dashboard-container">
+  <div class="main-content">
+    <!-- Quick Actions section -->
+    <div class="section">
+      <h2 class="section-title">Quick Actions</h2>
+      <div class="quick-actions">
+        <button
+          class="action-btn deposit"
+          (click)="navigateToDeposit()"
+          [disabled]="!currentAccount"
+        >
+          <mat-icon>add_circle</mat-icon>
+          Deposit
+        </button>
+        <button
+          class="action-btn withdraw"
+          (click)="navigateToWithdraw()"
+          [disabled]="!currentAccount"
+        >
+          <mat-icon>remove_circle</mat-icon>
+          Withdraw
+        </button>
+        <button
+          class="action-btn transfer"
+          (click)="navigateToTransfer()"
+          [disabled]="!currentAccount || accounts.length < 2"
+        >
+          <mat-icon>swap_horiz</mat-icon>
+          Transfer
+        </button>
+        <button
+          class="action-btn search"
+          (click)="navigateToTransactions()"
+          [disabled]="!currentAccount"
+        >
+          <mat-icon>search</mat-icon>
+          Search
+        </button>
+      </div>
+    </div>
 
+    <!-- Account Selection (if multiple accounts) -->
+    @if (accounts.length > 1) {
+      <div class="section">
+        <h2 class="section-title">Select Account</h2>
+        <div class="account-selector">
+          <select (change)="selectAccount($event)">
+            @for (account of accounts; track account.accountNumber) {
+              <option
+                [value]="account.accountNumber"
+                [selected]="currentAccount?.accountNumber === account.accountNumber"
+              >
+                {{ account.accountNumber }} ({{ formatAmount(account.balance) }})
+              </option>
+            }
+          </select>
+        </div>
+      </div>
+    }
+
+    <!-- Account Summary section -->
+    <div class="section">
+      <div class="account-summary">
+        <h2 class="section-title">Account Summary</h2>
+
+        @if (isLoadingProfile || isLoadingAccounts) {
+          <div class="loading-indicator">Loading account information...</div>
+        }
+
+        @if (profileError || accountsError) {
+          <div class="error-message">
+            Failed to load account information. Please try again later.
+          </div>
+        }
+
+        @if (customerProfile && currentAccount) {
+          <div class="summary-content">
+            <div class="summary-row">
+              <div class="summary-item">
+                <span class="item-label">Customer ID:</span>
+                <span class="item-value">{{ customerProfile.customerId }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="item-label">Last Login:</span>
+                <span class="item-value">{{ formatDate(customerProfile.lastLogin) }}</span>
+              </div>
+            </div>
+            <div class="summary-row">
+              <div class="summary-item">
+                <span class="item-label">Account No:</span>
+                <span class="item-value">{{ currentAccount.accountNumber }}</span>
+              </div>
+              <div class="summary-item">
+                <span class="item-label">Account Status:</span>
+                <span
+                  class="item-value"
+                  [ngClass]="{ 'status-active': currentAccount.status === 'Active' }"
+                >
+                  {{ currentAccount.status }}
+                </span>
+              </div>
+            </div>
+            <div class="summary-row balance-row">
+              <div class="summary-item">
+                <span class="item-label">Current Bal:</span>
+                <span class="item-value">{{ formatAmount(currentAccount.balance) }}</span>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Mini-Statement section -->
+    <div class="section">
+      <h2 class="section-title">Mini-Statement</h2>
+
+      @if (isLoadingTransactions) {
+        <div class="loading-indicator">Loading transactions...</div>
+      }
+
+      @if (transactionsError) {
+        <div class="error-message">Failed to load transactions. Please try again later.</div>
+      }
+
+      @if (!isLoadingTransactions && !transactionsError && recentTransactions.length === 0) {
+        <div class="empty-state">No recent transactions found.</div>
+      }
+
+      @if (recentTransactions.length > 0) {
+        <div class="statement-table">
+          <div class="table-header">
+            <div class="table-cell">Transaction ID</div>
+            <div class="table-cell">Type</div>
+            <div class="table-cell">Amount</div>
+            <div class="table-cell">Date/Time</div>
+            <div class="table-cell">Balance</div>
+          </div>
+
+          <div class="table-body">
+            @for (transaction of recentTransactions; track transaction.transactionId) {
+              <div class="table-row">
+                <div class="table-cell">{{ transaction.transactionId }}</div>
+                <div class="table-cell">{{ transaction.type }}</div>
+                <div class="table-cell">{{ formatAmount(transaction.amount) }}</div>
+                <div class="table-cell">{{ formatDate(transaction.transactionDateTime) }}</div>
+                <div class="table-cell">
+                  {{ formatAmount(transaction.balanceAfterTransaction) }}
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+
+        <div class="view-more">
+          <button class="view-more-btn" (click)="viewAllTransactions()">
+            View All Transactions
+          </button>
+        </div>
+      }
+    </div>
+  </div>
 </div>

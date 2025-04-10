@@ -1,0 +1,214 @@
+<div class="transaction-container">
+  <div class="transaction-card">
+    <div class="transaction-header">
+      <h2>Transaction History</h2>
+      <button class="back-btn" (click)="goToDashboard()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Dashboard
+      </button>
+    </div>
+
+    <div class="transaction-body">
+      <!-- Loading Indicator -->
+      @if (loading) {
+        <div class="loading-container">
+          <mat-spinner diameter="40"></mat-spinner>
+          <p>Loading transactions...</p>
+        </div>
+      }
+
+      <!-- Error Message -->
+      @if (error) {
+        <div class="alert alert-danger">{{ error }}</div>
+      }
+
+      <!-- Transaction Content -->
+      @if (!loading && !error) {
+        <!-- Account Details -->
+        @if (account) {
+          <div class="account-summary">
+            <div class="summary-item">
+              <span class="label">Account:</span>
+              <span class="value">{{ account.accountNumber }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="label">Balance:</span>
+              <span class="value">{{ formatCurrency(account.balance) }}</span>
+            </div>
+            <div class="summary-item">
+              <span class="label">Status:</span>
+              <span class="value status-badge" [ngClass]="account.status.toLowerCase()">
+                {{ account.status }}
+              </span>
+            </div>
+          </div>
+        }
+
+        <!-- Simplified Search Form -->
+        <div class="search-section">
+          <h3>Search Transactions</h3>
+          <div class="search-form">
+            <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
+              <div class="search-row">
+                <mat-form-field appearance="fill">
+                  <mat-label>Account Number</mat-label>
+                  <mat-select formControlName="accountNumber" id="accountNumber">
+                    <mat-option value="">All Accounts</mat-option>
+                    @for (acc of accounts; track acc.accountNumber) {
+                      <mat-option [value]="acc.accountNumber">
+                        {{ acc.accountNumber }}
+                      </mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Transaction Type</mat-label>
+                  <mat-select formControlName="type" id="type">
+                    <mat-option value="">All Types</mat-option>
+                    <mat-option value="Deposit">Deposit</mat-option>
+                    <mat-option value="Withdrawal">Withdrawal</mat-option>
+                    <mat-option value="Transfer">Transfer</mat-option>
+                    <mat-option value="Transfer Received">Transfer Received</mat-option>
+                  </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                  <mat-label>Transaction Date</mat-label>
+                  <input matInput [matDatepicker]="picker" formControlName="date" id="date" />
+                  <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+              </div>
+
+              <div class="search-actions">
+                <button type="submit" mat-raised-button color="primary" [disabled]="searching">
+                  @if (searching) {
+                    <mat-spinner diameter="20" class="spinner-inline"></mat-spinner>
+                  }
+                  Search
+                </button>
+                <button
+                  type="button"
+                  mat-stroked-button
+                  color="basic"
+                  (click)="resetSearch()"
+                  [disabled]="searching"
+                >
+                  Reset
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Transaction Results -->
+        <div class="transactions-section">
+          <h3>
+            {{ hasSearchValues() ? 'Search Results' : 'Recent Transactions' }}
+            @if (hasSearchValues() && totalItems > 0) {
+              <span class="result-count">({{ totalItems }} transactions found)</span>
+            }
+          </h3>
+
+          <!-- Searching Indicator -->
+          @if (searching) {
+            <div class="loading-container">
+              <mat-spinner diameter="40"></mat-spinner>
+              <p>Searching transactions...</p>
+            </div>
+          }
+
+          <!-- Transaction Table (only show when not searching) -->
+          @if (!searching) {
+            <div class="transaction-table">
+              @if (transactions.length > 0) {
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Transaction ID</th>
+                      <th>Date/Time</th>
+                      <th>Type</th>
+                      <th>Amount</th>
+                      <th>Balance After</th>
+                      <th>Status</th>
+                      @if (hasSearchValues()) {
+                        <th>Account</th>
+                      }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (transaction of transactions; track transaction.transactionId) {
+                      <tr>
+                        <td>{{ transaction.transactionId }}</td>
+                        <td>{{ transaction.formattedDateTime }}</td>
+                        <td>
+                          {{ transaction.type }}
+                          @if (transaction.destinationAccountNumber) {
+                            <span class="destination-account">
+                              To: {{ transaction.destinationAccountNumber }}
+                            </span>
+                          }
+                        </td>
+                        <td>{{ transaction.formattedAmount }}</td>
+                        <td>{{ transaction.formattedBalance }}</td>
+                        <td>
+                          <span class="status-badge" [ngClass]="transaction.status.toLowerCase()">
+                            {{ transaction.status }}
+                          </span>
+                        </td>
+                        @if (hasSearchValues()) {
+                          <td>
+                            {{ transaction.accountNumber }}
+                          </td>
+                        }
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              }
+
+              <!-- No Transactions Message -->
+              @if (transactions.length === 0) {
+                <div class="no-transactions">
+                  <p>
+                    {{
+                      !hasSearchValues()
+                        ? 'No recent transactions found.'
+                        : 'No transactions match your search criteria.'
+                    }}
+                  </p>
+                </div>
+              }
+
+              <!-- Pagination -->
+              @if (hasSearchValues() && totalPages > 1) {
+                <div class="pagination">
+                  <button
+                    mat-icon-button
+                    [disabled]="currentPage === 0"
+                    (click)="onPageChange(currentPage - 1)"
+                    class="page-btn"
+                  >
+                    <mat-icon>chevron_left</mat-icon>
+                  </button>
+
+                  <span class="page-info">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+
+                  <button
+                    mat-icon-button
+                    [disabled]="currentPage === totalPages - 1"
+                    (click)="onPageChange(currentPage + 1)"
+                    class="page-btn"
+                  >
+                    <mat-icon>chevron_right</mat-icon>
+                  </button>
+                </div>
+              }
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>
