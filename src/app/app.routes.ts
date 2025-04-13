@@ -17,6 +17,8 @@ import { TransactionHistoryComponent } from './Transaction-components/transactio
 import { BankingGuideComponent } from './Transaction-components/banking-guide/banking-guide.component';
 import { TermsConditionsComponent } from './Transaction-components/terms-conditions/terms-conditions.component';
 import { SecurityTipsComponent } from './Transaction-components/security-tips/security-tips.component';
+import { ProfileOverviewComponent } from './routes/profile/profile-overview/profile-overview.component';
+import { ProfileSettingsComponent } from './routes/profile/profile-settings/profile-settings.component';
 
 export const routes: Routes = [
   {
@@ -32,19 +34,35 @@ export const routes: Routes = [
         data: { title: 'Dashboard', titleI18n: 'Dashboard' },
       },
       {
+        path: 'profile',
+        children: [
+          {
+            path: 'overview',
+            component: ProfileOverviewComponent,
+            data: { title: 'Profile Overview', titleI18n: 'profile' },
+          },
+          {
+            path: 'settings',
+            component: ProfileSettingsComponent,
+            data: { title: 'Profile Settings', titleI18n: 'edit_profile' },
+          },
+          { path: '', redirectTo: 'overview', pathMatch: 'full' },
+        ],
+      },
+      {
         path: 'deposit',
         component: DepositComponent,
-        data: { title: 'Dashboard', titleI18n: 'Dashboard' },
+        data: { title: 'Deposit', titleI18n: 'Deposit' },
       },
       {
         path: 'withdraw',
         component: WithdrawComponent,
-        data: { title: 'Dashboard', titleI18n: 'Dashboard' },
+        data: { title: 'Withdraw', titleI18n: 'Withdraw' },
       },
       {
         path: 'transfer',
         component: TransferComponent,
-        data: { title: 'Dashboard', titleI18n: 'Dashboard' },
+        data: { title: 'Transfer', titleI18n: 'Transfer' },
       },
       {
         path: 'accounts',
@@ -59,22 +77,22 @@ export const routes: Routes = [
       {
         path: 'support',
         component: HelpSupportComponent,
-        data: { title: 'Help Support', titleI18n: 'Help & Support' },
+        data: { title: 'Help Support', titleI18n: 'Help Support' },
       },
       {
         path: 'banking-guide',
         component: BankingGuideComponent,
-        data: { title: 'Help Support', titleI18n: 'Help & Support' },
+        data: { title: 'Banking Guide', titleI18n: 'Banking Guide' },
       },
       {
         path: 'terms',
         component: TermsConditionsComponent,
-        data: { title: 'Help Support', titleI18n: 'Help & Support' },
+        data: { title: 'Terms & Conditions', titleI18n: 'Terms & Conditions' },
       },
       {
         path: 'security-tips',
         component: SecurityTipsComponent,
-        data: { title: 'Help Support', titleI18n: 'Help & Support' },
+        data: { title: 'Security Tips', titleI18n: 'Security Tips' },
       },
       {
         path: '403',

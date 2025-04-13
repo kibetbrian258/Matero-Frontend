@@ -1,0 +1,119 @@
+<div class="container">
+    <mat-card class="settings-card">
+      <mat-card-header>
+        <mat-card-title>Edit Profile</mat-card-title>
+        <mat-card-subtitle>Update your personal information</mat-card-subtitle>
+      </mat-card-header>
+      
+      <div *ngIf="loading" class="loading-container">
+        <mat-spinner diameter="50"></mat-spinner>
+      </div>
+      
+      <mat-card-content *ngIf="!loading">
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Full Name</mat-label>
+              <input matInput formControlName="fullName" placeholder="Your full name">
+              <mat-error *ngIf="profileForm.get('fullName')?.hasError('required')">
+                Full name is required
+              </mat-error>
+              <mat-error *ngIf="profileForm.get('fullName')?.hasError('minlength')">
+                Full name must be at least 2 characters
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" placeholder="your.email@example.com" type="email">
+              <mat-error *ngIf="profileForm.get('email')?.hasError('required')">
+                Email is required
+              </mat-error>
+              <mat-error *ngIf="profileForm.get('email')?.hasError('email')">
+                Please enter a valid email address
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Phone Number</mat-label>
+              <input matInput formControlName="phoneNumber" placeholder="712345678">
+              <mat-hint>Kenyan phone number format (e.g., 712345678)</mat-hint>
+              <mat-error *ngIf="profileForm.get('phoneNumber')?.hasError('pattern')">
+                Please enter a valid Kenyan phone number
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Address</mat-label>
+              <textarea matInput formControlName="address" placeholder="Your address" rows="3"></textarea>
+              <mat-error *ngIf="profileForm.get('address')?.hasError('minlength')">
+                Address must be at least 5 characters
+              </mat-error>
+            </mat-form-field>
+          </div>
+          
+          <div class="form-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Date of Birth</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          
+          <div class="non-editable-info">
+            <h3>System Information (Non-editable)</h3>
+            <div class="info-row" *ngIf="currentProfile">
+              <div class="info-label">Customer ID</div>
+              <div class="info-value">{{ currentProfile.customerId }}</div>
+            </div>
+            <div class="info-row" *ngIf="currentProfile">
+              <div class="info-label">Registration Date</div>
+              <div class="info-value">{{ currentProfile.registrationDate | date:'medium' }}</div>
+            </div>
+            <div class="info-row" *ngIf="currentProfile">
+              <div class="info-label">Last Login</div>
+              <div class="info-value">{{ currentProfile.lastLogin | date:'medium' }}</div>
+            </div>
+          </div>
+        </form>
+      </mat-card-content>
+      
+      <mat-card-actions align="end">
+        <button 
+          mat-stroked-button 
+          type="button" 
+          [disabled]="submitting" 
+          (click)="resetForm()"
+        >
+          Reset
+        </button>
+        <button 
+          mat-stroked-button 
+          type="button" 
+          [disabled]="submitting" 
+          routerLink="/profile/overview"
+        >
+          Cancel
+        </button>
+        <button 
+          mat-raised-button 
+          color="primary" 
+          type="submit" 
+          [disabled]="profileForm.invalid || submitting" 
+          (click)="onSubmit()"
+        >
+          <mat-icon *ngIf="submitting">
+            <mat-spinner diameter="20" color="accent"></mat-spinner>
+          </mat-icon>
+          <span *ngIf="!submitting">Save Changes</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

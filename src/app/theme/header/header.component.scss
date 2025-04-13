@@ -6,4 +6,59 @@
   display: block;
   background-color: var(--header-background-color);
   backdrop-filter: blur(8px);
+
+  mat-toolbar {
+    padding: 0 16px;
+    height: 64px;
+
+    button[mat-icon-button] {
+      margin: 0 4px;
+
+      mat-icon {
+        font-size: 24px;
+        height: 24px;
+        width: 24px;
+      }
+    }
+
+    app-github-button,
+    app-translate,
+    app-notification,
+    app-user {
+      margin: 0 6px;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 12px;
+
+      button[mat-icon-button] {
+        margin: 0 2px;
+      }
+
+      app-github-button,
+      app-translate,
+      app-notification,
+      app-user {
+        margin: 0 4px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hide-small {
+        display: none;
+      }
+
+      button[mat-icon-button] {
+        margin: 0 1px;
+      }
+    }
+  }
+
+  app-branding {
+    margin-right: 16px;
+  }
+
+  .flex-fill {
+    flex: 1 1 auto;
+  }
 }

@@ -1,0 +1,179 @@
+<div class="container">
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <mat-card-title>{{ 'profile' | translate }}</mat-card-title>
+      <mat-card-subtitle>{{ 'profile_information' | translate }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <div *ngIf="loading" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
+    <mat-card-content *ngIf="!loading">
+      <div class="profile-info-container">
+        <div class="profile-section">
+          <h3 class="section-title">{{ 'personal_information' | translate }}</h3>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'full_name' | translate }}</div>
+            <div class="info-value">{{ currentProfile?.fullName || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'email' | translate }}</div>
+            <div class="info-value">{{ currentProfile?.email || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'phone_number' | translate }}</div>
+            <div class="info-value">{{ currentProfile?.phoneNumber || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'address' | translate }}</div>
+            <div class="info-value">{{ currentProfile?.address || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'date_of_birth' | translate }}</div>
+            <div class="info-value">
+              <ng-container *ngIf="currentProfile?.dateOfBirth; else noDateOfBirth">
+                {{ currentProfile?.dateOfBirth | date: 'mediumDate' }}
+              </ng-container>
+              <ng-template #noDateOfBirth>N/A</ng-template>
+            </div>
+          </div>
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div class="profile-section">
+          <h3 class="section-title">{{ 'system_information' | translate }}</h3>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'customer_id' | translate }}</div>
+            <div class="info-value">{{ currentProfile?.customerId || 'N/A' }}</div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'registration_date' | translate }}</div>
+            <div class="info-value">
+              <ng-container *ngIf="currentProfile?.registrationDate; else noRegDate">
+                {{ currentProfile?.registrationDate | date: 'medium' }}
+              </ng-container>
+              <ng-template #noRegDate>N/A</ng-template>
+            </div>
+          </div>
+
+          <div class="info-row">
+            <div class="info-label">{{ 'last_login' | translate }}</div>
+            <div class="info-value">
+              <ng-container *ngIf="currentProfile?.lastLogin; else noLoginDate">
+                {{ currentProfile?.lastLogin | date: 'medium' }}
+              </ng-container>
+              <ng-template #noLoginDate>N/A</ng-template>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="(profileData$ | async)?.accounts as accounts" class="profile-section">
+          <h3 class="section-title">{{ 'account_information' | translate }}</h3>
+
+          <div *ngIf="accounts.length > 0; else noAccounts">
+            <div *ngFor="let account of accounts; let isLast = last" class="account-info">
+              <div class="info-row">
+                <div class="info-label">{{ 'account_number' | translate }}</div>
+                <div class="info-value">{{ account.accountNumber }}</div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'branch' | translate }}</div>
+                <div class="info-value">{{ account.branchName }} ({{ account.branchCode }})</div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'balance' | translate }}</div>
+                <div class="info-value">
+                  {{ account.balance | currency: 'KES' : 'symbol' : '1.2-2' }}
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'status' | translate }}</div>
+                <div
+                  class="info-value"
+                  [ngClass]="{ 'active-status': account.status === 'Active' }"
+                >
+                  {{ account.status }}
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'interest_rate' | translate }}</div>
+                <div class="info-value">{{ account.interestRate }}%</div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'monthly_fee' | translate }}</div>
+                <div class="info-value">
+                  {{ account.monthlyFee | currency: 'KES' : 'symbol' : '1.2-2' }}
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'minimum_balance' | translate }}</div>
+                <div class="info-value">
+                  {{ account.minimumBalance | currency: 'KES' : 'symbol' : '1.2-2' }}
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'limits' | translate }}</div>
+                <div class="info-value">
+                  <div>
+                    {{ 'withdrawal' | translate }}:
+                    {{ account.withdrawalLimit | currency: 'KES' : 'symbol' : '1.2-2' }}
+                  </div>
+                  <div>
+                    {{ 'transfer' | translate }}:
+                    {{ account.transferLimit | currency: 'KES' : 'symbol' : '1.2-2' }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-row">
+                <div class="info-label">{{ 'services' | translate }}</div>
+                <div class="info-value">
+                  <div *ngIf="account.onlineBanking" class="service-badge active">
+                    {{ 'online_banking' | translate }}
+                  </div>
+                  <div *ngIf="!account.onlineBanking" class="service-badge inactive">
+                    {{ 'online_banking' | translate }}
+                  </div>
+                  <div *ngIf="account.mobileBanking" class="service-badge active">
+                    {{ 'mobile_banking' | translate }}
+                  </div>
+                  <div *ngIf="!account.mobileBanking" class="service-badge inactive">
+                    {{ 'mobile_banking' | translate }}
+                  </div>
+                </div>
+              </div>
+
+              <mat-divider *ngIf="!isLast"></mat-divider>
+            </div>
+          </div>
+          <ng-template #noAccounts>
+            <div class="empty-state">{{ 'no_accounts_found' | translate }}</div>
+          </ng-template>
+        </div>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" routerLink="/profile/settings">
+        <mat-icon>edit</mat-icon>
+        {{ 'edit_profile' | translate }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
