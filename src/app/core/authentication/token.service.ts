@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy, inject } from '@angular/core';
-import { BehaviorSubject, Subject, Subscription, share, timer } from 'rxjs';
+import { BehaviorSubject, Subscription, share } from 'rxjs';
 
 import { LocalStorageService } from '@shared';
 import { currentTimestamp, filterObject } from './helpers';
@@ -17,9 +17,6 @@ export class TokenService implements OnDestroy {
   private readonly factory = inject(TokenFactory);
 
   private readonly change$ = new BehaviorSubject<BaseToken | undefined>(undefined);
-  private readonly refresh$ = new Subject<BaseToken | undefined>();
-
-  private timer$?: Subscription;
 
   private _token?: BaseToken;
 
@@ -35,15 +32,8 @@ export class TokenService implements OnDestroy {
     return this.change$.pipe(share());
   }
 
-  refresh() {
-    this.buildRefresh();
-
-    return this.refresh$.pipe(share());
-  }
-
   set(token?: Token) {
     this.save(token);
-
     return this;
   }
 
@@ -58,17 +48,21 @@ export class TokenService implements OnDestroy {
   getBearerToken() {
     return this.token?.getBearerToken() ?? '';
   }
-
-  getRefreshToken() {
-    return this.token?.refresh_token;
-  }
   
   getCustomerId() {
     return this.token?.customerId;
   }
 
+  // Added method to get time until token expiration in seconds
+  getExpiresIn(): number | undefined {
+    if (!this.token?.exp) return undefined;
+    
+    const currentTime = Math.floor(Date.now() / 1000);
+    return this.token.exp - currentTime;
+  }
+
   ngOnDestroy(): void {
-    this.clearRefresh();
+    // No refresh timers 
   }
 
   private save(token?: Token) {
@@ -85,22 +79,5 @@ export class TokenService implements OnDestroy {
     }
 
     this.change$.next(this.token);
-    this.buildRefresh();
-  }
-
-  private buildRefresh() {
-    this.clearRefresh();
-
-    if (this.token?.needRefresh()) {
-      this.timer$ = timer(this.token.getRefreshTime() * 1000).subscribe(() => {
-        this.refresh$.next(this.token);
-      });
-    }
-  }
-
-  private clearRefresh() {
-    if (this.timer$ && !this.timer$.closed) {
-      this.timer$.unsubscribe();
-    }
   }
 }

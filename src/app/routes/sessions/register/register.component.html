@@ -1,30 +1,29 @@
-<div class="d-flex w-full h-full">
-  <mat-card class="m-auto" style="max-width: 420px">
-    <mat-card-header class="m-b-24">
-      <mat-card-title>
-        {{ 'register_welcome' | translate }},
-        <br />
-        {{ 'register_title' | translate }}
-      </mat-card-title>
-    </mat-card-header>
+<div class="register-container">
+  <div class="register-card">
+    <div class="register-header">
+      <h1>{{ 'register_welcome' | translate }}</h1>
+      <p class="register-subtitle">{{ 'register_title' | translate }}</p>
+    </div>
 
-    <mat-card-content>
+    <div class="register-content">
       @if (registrationSuccess) {
         <div class="registration-success">
+          <mat-icon class="success-icon">check_circle</mat-icon>
           <h3>Registration Successful!</h3>
           <p>
             Thank you for registering with Secure Bank. We've sent your account details to your
             email address.
           </p>
           <p>Please check your email for your Customer ID and PIN to log in.</p>
-          <button class="w-full m-y-16" mat-flat-button color="primary" routerLink="/auth/login">
+          <button class="register-button" mat-flat-button color="primary" routerLink="/auth/login">
             Go to Login
           </button>
         </div>
       } @else {
-        <form class="form-field-full" [formGroup]="registerForm" (ngSubmit)="submitRegistration()">
-          <mat-form-field appearance="outline">
+        <form class="register-form" [formGroup]="registerForm" (ngSubmit)="submitRegistration()">
+          <mat-form-field appearance="outline" class="form-field">
             <mat-label>Full Name</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
             <input matInput formControlName="fullName" required />
             @if (registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched) {
               <mat-error>
@@ -39,8 +38,9 @@
             }
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="form-field">
             <mat-label>Email</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
             <input matInput type="email" formControlName="email" required />
             @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
               <mat-error>
@@ -53,8 +53,9 @@
             }
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="form-field">
             <mat-label>Date of Birth</mat-label>
+            <mat-icon matPrefix>cake</mat-icon>
             <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" required />
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -67,8 +68,9 @@
             }
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="form-field">
             <mat-label>Phone Number (e.g., 712345678)</mat-label>
+            <mat-icon matPrefix>phone</mat-icon>
             <input matInput formControlName="phoneNumber" required />
             @if (
               registerForm.get('phoneNumber')?.invalid && registerForm.get('phoneNumber')?.touched
@@ -83,8 +85,9 @@
             }
           </mat-form-field>
 
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" class="form-field">
             <mat-label>Address</mat-label>
+            <mat-icon matPrefix>home</mat-icon>
             <textarea matInput formControlName="address" required rows="3"></textarea>
             @if (registerForm.get('address')?.invalid && registerForm.get('address')?.touched) {
               <mat-error>
@@ -97,17 +100,20 @@
             }
           </mat-form-field>
 
-          <mat-checkbox formControlName="termsAccepted" required>
-            I have read and agree to the Terms and Conditions
-          </mat-checkbox>
-          @if (
-            registerForm.get('termsAccepted')?.invalid && registerForm.get('termsAccepted')?.touched
-          ) {
-            <mat-error class="terms-error">You must accept the terms and conditions</mat-error>
-          }
+          <div class="terms-checkbox">
+            <mat-checkbox formControlName="termsAccepted" color="primary" required>
+              I have read and agree to the Terms and Conditions
+            </mat-checkbox>
+            @if (
+              registerForm.get('termsAccepted')?.invalid &&
+              registerForm.get('termsAccepted')?.touched
+            ) {
+              <div class="terms-error">You must accept the terms and conditions</div>
+            }
+          </div>
 
           <button
-            class="w-full m-y-16"
+            class="register-button"
             mat-flat-button
             color="primary"
             type="submit"
@@ -122,12 +128,12 @@
             {{ 'register' | translate }}
           </button>
 
-          <div>
+          <div class="login-link">
             <span>{{ 'have_an_account' | translate }}?</span>
             <a routerLink="/auth/login">{{ 'login' | translate }}</a>
           </div>
         </form>
       }
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
 </div>

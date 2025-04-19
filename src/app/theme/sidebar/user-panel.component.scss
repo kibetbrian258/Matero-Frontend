@@ -1,5 +1,18 @@
 @use '@angular/material' as mat;
 
+// Media query mixins for responsiveness
+@mixin for-small-screen {
+  @media (max-width: 599px) {
+    @content;
+  }
+}
+
+@mixin for-very-small-screen {
+  @media (max-width: 374px) {
+    @content;
+  }
+}
+
 .matero-user-panel {
   display: flex;
   align-items: center;
@@ -10,53 +23,147 @@
   background-color: var(--user-panel-background-color);
   border-radius: 0.75rem;
 
+  @include for-small-screen {
+    padding: 0.625rem;
+  }
+
   &:hover,
   &:focus {
     background-color: var(--user-panel-hover-background-color);
   }
 }
 
-// Set default width and height can avoid flashing before avatar image loaded.
-.matero-user-panel-avatar {
+// Avatar container to properly size and position
+.avatar-container {
+  position: relative;
   width: 3rem;
   height: 3rem;
-  border-radius: 50rem;
-  transform-origin: 0 1.5rem;
-  transition: transform mat.$private-swift-ease-out-duration mat.$private-swift-ease-out-timing-function;
+  flex-shrink: 0; // Prevent shrinking
+  background-color: #ffffff; // White background for the container
+  border-radius: 50%; // Make the container circular
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  [dir='rtl'] & {
-    transform-origin: 3rem 1.5rem;
+  @include for-small-screen {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  @include for-very-small-screen {
+    width: 2rem;
+    height: 2rem;
   }
 }
 
-.matero-user-panel-info {
+// Style for the actual avatar image
+.user-avatar {
+  width: 90%; // Slightly smaller than container to show white background
+  height: 90%; // Slightly smaller than container to show white background
+  border-radius: 50%;
+  object-fit: cover; // Maintain aspect ratio and cover container
+  border: none;
+}
+
+// Badge styling
+.avatar-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #fff;
+  border-radius: 50%;
+  width: 0.875rem;
+  height: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include for-small-screen {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+
+  @include for-very-small-screen {
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+
+  .online-indicator {
+    width: 0.625rem;
+    height: 0.625rem;
+    background-color: #4caf50;
+    border-radius: 50%;
+    display: block;
+
+    @include for-small-screen {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+
+    @include for-very-small-screen {
+      width: 0.375rem;
+      height: 0.375rem;
+    }
+  }
+}
+
+.user-info {
   flex: 1;
-  width: 0;
+  width: calc(100% - 3.75rem); // Account for avatar width + margin
   margin-left: 0.75rem;
-  opacity: 1;
-  transition: opacity mat.$private-swift-ease-out-duration mat.$private-swift-ease-out-timing-function;
+  overflow: hidden; // Prevent text overflow
+
+  @include for-small-screen {
+    width: calc(100% - 3.25rem);
+    margin-left: 0.625rem;
+  }
+
+  @include for-very-small-screen {
+    width: calc(100% - 2.625rem);
+    margin-left: 0.5rem;
+  }
 
   [dir='rtl'] & {
     margin-right: 0.75rem;
     margin-left: 0;
+
+    @include for-small-screen {
+      margin-right: 0.625rem;
+    }
+
+    @include for-very-small-screen {
+      margin-right: 0.5rem;
+    }
   }
 
-  h4,
-  h5 {
-    margin: 0;
+  .user-name {
+    margin: 0 0 0.25rem 0;
+    font-size: 1rem;
+    font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    @include for-small-screen {
+      font-size: 0.875rem;
+      margin-bottom: 0.125rem;
+    }
   }
 
-  h4 {
-    margin-bottom: 4px;
-    font-size: 1rem;
-    font-weight: 500;
-  }
-
-  h5 {
+  .user-email {
+    margin: 0;
     font-size: 0.75rem;
-    font-weight: normal;
+    color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    @include for-small-screen {
+      font-size: 0.7rem;
+    }
+
+    @include for-very-small-screen {
+      font-size: 0.65rem;
+    }
   }
 }

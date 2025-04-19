@@ -4,9 +4,9 @@ import {
   BehaviorSubject,
   Observable,
   catchError,
+  finalize,
   iif,
   map,
-  merge,
   of,
   share,
   switchMap,
@@ -56,16 +56,17 @@ export class AuthService {
   private customerProfileUrl = `${environment.apiUrl}/api/customers/profile`;
 
   private user$ = new BehaviorSubject<User>({});
-  private change$ = merge(
-    this.tokenService.change(),
-    this.tokenService.refresh().pipe(switchMap(() => this.refresh()))
-  ).pipe(
+  private change$ = this.tokenService.change().pipe(
     switchMap(() => this.assignUser()),
     share()
   );
 
   init() {
-    return new Promise<void>(resolve => this.change$.subscribe(() => resolve()));
+    return new Promise<void>(resolve => {
+      this.change$.subscribe(() => {
+        resolve();
+      });
+    });
   }
 
   change() {
@@ -89,26 +90,36 @@ export class AuthService {
 
   getCustomerProfile(): Observable<CustomerProfile> {
     return this.http.get<CustomerProfile>(this.customerProfileUrl).pipe(
-      catchError((error) => {
+      catchError(error => {
         return throwError(() => error);
       })
     );
   }
 
-  refresh() {
-    return this.loginService
-      .refresh(filterObject({ refresh_token: this.tokenService.getRefreshToken() }))
-      .pipe(
-        catchError(() => of(undefined)),
-        tap(token => this.tokenService.set(token)),
-        map(() => this.check())
-      );
-  }
-
   logout() {
-    // For now, just clear the token since the backend doesn't have a logout endpoint
-    this.tokenService.clear();
-    return of(true);
+    // Clear both keys to handle any historical tokens
+    localStorage.removeItem('ng-matero-token');
+    localStorage.removeItem('secure-bank-token');
+    // Call the backend to log out
+    if (this.check()) {
+      return this.http.post(`${environment.apiUrl}/api/auth/logout`, {}).pipe(
+        finalize(() => {
+          // Clear tokens from storage
+          this.tokenService.clear();
+        }),
+        catchError(error => {
+          console.error('Error during logout:', error);
+          // Still clear the local tokens even if backend logout fails
+          this.tokenService.clear();
+          return of(true);
+        }),
+        map(() => true)
+      );
+    } else {
+      // No valid token, just clear local state
+      this.tokenService.clear();
+      return of(true);
+    }
   }
 
   user() {

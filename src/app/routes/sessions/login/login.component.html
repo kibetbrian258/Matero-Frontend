@@ -1,19 +1,20 @@
-<div class="d-flex w-full h-full">
-  <mat-card class="m-auto" style="max-width: 380px">
-    <mat-card-header class="m-b-24">
-      <mat-card-title>👋 {{ 'login_title' | translate }}!</mat-card-title>
-    </mat-card-header>
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>👋 Welcome Back</h1>
+      <p class="login-subtitle">Enter your credentials to access your account</p>
+    </div>
 
-    <mat-card-content>
-      <form class="form-field-full" [formGroup]="loginForm">
-        <mat-form-field appearance="outline">
+    <div class="login-content">
+      <form class="login-form" [formGroup]="loginForm">
+        <mat-form-field appearance="outline" class="form-field">
           <mat-label>Customer ID (e.g., RD4090)</mat-label>
           <input matInput formControlName="customerId" required />
           @if (customerId.invalid) {
             <mat-error>
               @if (customerId.errors?.required) {
                 <span>
-                  {{ 'please_enter' | translate }}
+                  Please enter
                   <strong>Customer ID</strong>
                 </span>
               }
@@ -24,14 +25,14 @@
           }
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="form-field">
           <mat-label>PIN</mat-label>
           <input matInput placeholder="****" type="password" formControlName="pin" required />
           @if (pin.invalid) {
             <mat-error>
               @if (pin.errors?.required) {
                 <span>
-                  {{ 'please_enter' | translate }}
+                  Please enter
                   <strong>PIN</strong>
                 </span>
               }
@@ -42,23 +43,26 @@
           }
         </mat-form-field>
 
-        <mat-checkbox formControlName="rememberMe">{{ 'remember_me' | translate }}</mat-checkbox>
+        <div class="remember-me">
+          <mat-checkbox formControlName="rememberMe">Remember Me</mat-checkbox>
+        </div>
 
         <button
-          class="w-full m-y-16"
+          class="login-button"
           mat-flat-button
+          color="primary"
           [disabled]="loginForm.invalid"
           [loading]="isSubmitting"
           (click)="login()"
         >
-          {{ 'login' | translate }}
+          Login
         </button>
 
-        <div>
-          <span>{{ 'have_no_account' | translate }}?</span>
-          <a routerLink="/auth/register">{{ 'create_one_account' | translate }}</a>
+        <div class="register-link">
+          <span>Don't have an account?</span>
+          <a routerLink="/auth/register">Click here to create one</a>
         </div>
       </form>
-    </mat-card-content>
-  </mat-card>
+    </div>
+  </div>
 </div>

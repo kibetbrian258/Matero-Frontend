@@ -1,4 +1,4 @@
-import { base64, capitalize, currentTimestamp, timeLeft } from './helpers';
+import { base64, capitalize, currentTimestamp } from './helpers';
 import { Token } from './interface';
 
 export abstract class BaseToken {
@@ -8,16 +8,17 @@ export abstract class BaseToken {
     return this.attributes.access_token;
   }
 
-  get refresh_token() {
-    return this.attributes.refresh_token;
-  }
-
   get token_type() {
     return this.attributes.token_type ?? 'bearer';
   }
 
   get exp() {
     return this.attributes.exp;
+  }
+
+  // Added issuedAt accessor for better token lifetime calculations
+  get iat() {
+    return this.attributes.iat;
   }
 
   get customerId() {
@@ -34,14 +35,6 @@ export abstract class BaseToken {
       : '';
   }
 
-  needRefresh() {
-    return this.exp !== undefined && this.exp >= 0;
-  }
-
-  getRefreshTime() {
-    return timeLeft((this.exp ?? 0) - 5);
-  }
-
   private hasAccessToken() {
     return !!this.access_token;
   }
@@ -54,7 +47,7 @@ export abstract class BaseToken {
 export class SimpleToken extends BaseToken {}
 
 export class JwtToken extends SimpleToken {
-  private _payload?: { exp?: number; sub?: string };
+  private _payload?: { exp?: number; iat?: number; sub?: string };
 
   static is(accessToken: string): boolean {
     try {
@@ -67,8 +60,14 @@ export class JwtToken extends SimpleToken {
     }
   }
 
+  // Override exp from payload if available
   get exp() {
-    return this.payload?.exp;
+    return this.payload?.exp ?? this.attributes.exp;
+  }
+
+  // Added issuedAt from JWT payload
+  get iat() {
+    return this.payload?.iat;
   }
 
   // For JWT tokens, the customerId is in the 'sub' claim
@@ -76,7 +75,7 @@ export class JwtToken extends SimpleToken {
     return this.payload?.sub || this.attributes.customerId;
   }
 
-  private get payload(): { exp?: number; sub?: string } {
+  private get payload(): { exp?: number; iat?: number; sub?: string } {
     if (!this.access_token) {
       return {};
     }
@@ -88,7 +87,7 @@ export class JwtToken extends SimpleToken {
     try {
       const [, payload] = this.access_token.split('.');
       if (!payload) return {};
-      
+
       const data = JSON.parse(base64.decode(payload));
       if (!data.exp) {
         data.exp = this.attributes.exp;

@@ -21,15 +21,11 @@ export class LoginService {
         return {
           access_token: response.token,
           token_type: 'Bearer',
-          expires_in: response.expiresIn || 3600,
+          expires_in: response.expiresIn || 86400, // Using 24 hours as default
           customerId: response.customerId,
         };
       })
     );
-  }
-
-  refresh(params: Record<string, any>) {
-    return of({ access_token: '', token_type: 'Bearer' } as Token);
   }
 
   logout() {
@@ -71,7 +67,6 @@ export class LoginService {
         type: 'link' as 'link',
         icon: 'payments',
       },
-
       {
         route: 'support',
         name: 'Help & Support',

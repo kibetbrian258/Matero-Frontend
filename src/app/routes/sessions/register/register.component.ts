@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { finalize } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthService, RegistrationRequest } from '@core/authentication/auth.service';
-
+import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -32,6 +32,7 @@ import { AuthService, RegistrationRequest } from '@core/authentication/auth.serv
     TranslateModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatIconModule,
   ],
   standalone: true,
 })

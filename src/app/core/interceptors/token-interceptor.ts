@@ -2,33 +2,34 @@ import { HttpErrorResponse, HttpHandlerFn, HttpRequest } from '@angular/common/h
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '@core/authentication';
-import { catchError, tap, throwError } from 'rxjs';
-import { BASE_URL, hasHttpScheme } from './base-url-interceptor';
+import { catchError, throwError } from 'rxjs';
+import { BASE_URL } from './base-url-interceptor';
 
 export function tokenInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn) {
   const router = inject(Router);
   const baseUrl = inject(BASE_URL, { optional: true });
   const tokenService = inject(TokenService);
 
-  // For debugging
-  console.log('Request URL:', req.url);
-  console.log('Token valid:', tokenService.valid());
-  
+  // Skip token for login requests
+  if (req.url.includes('/api/auth/login')) {
+    return next(req);
+  }
+
   if (tokenService.valid()) {
     const token = tokenService.getBearerToken();
-    console.log('Adding token:', token);
-    
+    console.log('Using token:', token.substring(0, 30) + '...');
+    console.log('Token payload:', tokenService.getCustomerId());
+
     // Clone the request with the Authorization header
     const authReq = req.clone({
-      headers: req.headers.set('Authorization', token)
+      headers: req.headers.set('Authorization', token),
     });
-    
+
     return next(authReq).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error('HTTP request error:', error);
-        
         if (error.status === 401) {
-          console.log('401 error - clearing token and redirecting to login');
+          // Token is expired or invalid, redirect to login
+          console.log('401 error - redirecting to login');
           tokenService.clear();
           router.navigateByUrl('/auth/login');
         }
@@ -38,5 +39,6 @@ export function tokenInterceptor(req: HttpRequest<unknown>, next: HttpHandlerFn)
   }
 
   // No valid token, continue without Authorization header
+  console.warn('Request without valid token:', req.url);
   return next(req);
 }

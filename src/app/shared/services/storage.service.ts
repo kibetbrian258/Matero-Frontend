@@ -5,7 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class LocalStorageService {
   get(key: string) {
-    return JSON.parse(localStorage.getItem(key) || '{}') || {};
+    try {
+      return JSON.parse(localStorage.getItem(key) || '{}') || {};
+    } catch (e) {
+      console.error(`Error parsing stored data for key "${key}":`, e);
+      return {};
+    }
   }
 
   set(key: string, value: any): boolean {

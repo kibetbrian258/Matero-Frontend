@@ -1,0 +1,120 @@
+.profile-container {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 0 16px;
+}
+
+.profile-card {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  gap: 24px;
+}
+
+.profile-avatar {
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.profile-name {
+  margin: 0 0 8px 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.profile-email {
+  margin: 0 0 4px 0;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.profile-id {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.tab-content {
+  padding: 24px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.form-row mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 0;
+}
+
+.loading-container p {
+  margin-top: 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.coming-soon {
+  color: rgba(0, 0, 0, 0.6);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+.info-section {
+  background-color: #f5f5f5;
+  padding: 16px;
+  border-radius: 4px;
+  margin-top: 24px;
+}
+
+.info-section h3 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.spinner {
+  animation: spin 1.5s linear infinite;
+  margin-right: 8px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-avatar {
+    margin-bottom: 16px;
+  }
+}

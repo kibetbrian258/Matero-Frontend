@@ -16,7 +16,7 @@ export interface Token {
   token_type?: string;
   expires_in?: number;
   exp?: number;
-  refresh_token?: string;
-  customerId?: string;  // Added customerId property to align with Spring Backend
-  fullName?: string;    // Added fullName property
+  iat?: number;
+  customerId?: string;
+  fullName?: string; // Added fullName property
 }

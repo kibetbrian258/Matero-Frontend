@@ -1,0 +1,27 @@
+<div class="profile-image-container">
+    <div class="profile-image" [style.background-image]="'url(' + profileImage + ')'">
+      <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none;">
+      
+      <div class="profile-actions">
+        <button mat-mini-fab color="primary" (click)="fileInput.click()" matTooltip="Upload image">
+          <mat-icon>add_photo_alternate</mat-icon>
+        </button>
+        
+        <button mat-mini-fab color="accent" (click)="openWebcam()" matTooltip="Take photo">
+          <mat-icon>camera_alt</mat-icon>
+        </button>
+        
+        @if (profileImage && profileImage !== defaultImage) {
+          <button mat-mini-fab color="warn" (click)="removeImage()" matTooltip="Remove photo">
+            <mat-icon>delete</mat-icon>
+          </button>
+        }
+      </div>
+    </div>
+    
+    @if (isUploading) {
+      <div class="loading-overlay">
+        <mat-icon class="loading-icon">autorenew</mat-icon>
+      </div>
+    }
+  </div>

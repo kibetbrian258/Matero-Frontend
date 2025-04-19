@@ -4,7 +4,7 @@ import { Component, Input } from '@angular/core';
   selector: 'app-branding',
   template: `
     <a class="branding" href="/">
-      <img src="assets/images/banking-icon.png" class="branding-logo" alt="logo" />
+      <img src="../../assets/images/bank-icon.png" class="branding-logo" alt="logo" />
       @if (showName) {
         <span class="branding-name">SecureBank</span>
       }

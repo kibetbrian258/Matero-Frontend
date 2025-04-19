@@ -1,0 +1,51 @@
+<div class="webcam-dialog">
+    <h2 mat-dialog-title>Take Profile Picture</h2>
+    
+    <div mat-dialog-content>
+      <div class="webcam-container">
+        <video #video autoplay playsinline class="webcam-video"></video>
+        <canvas #canvas style="display: none;"></canvas>
+        
+        @if (capturedImage) {
+          <div class="preview-container">
+            <img [src]="capturedImage" alt="Preview" class="preview-image">
+          </div>
+        }
+        
+        @if (!capturedImage) {
+          <div class="camera-frame-container">
+            <div class="camera-frame"></div>
+          </div>
+        }
+        
+        @if (errorMessage) {
+          <div class="error-message">
+            <mat-icon>error</mat-icon>
+            <p>{{ errorMessage }}</p>
+          </div>
+        }
+      </div>
+    </div>
+    
+    <div mat-dialog-actions align="end">
+      <button mat-button (click)="close()">Cancel</button>
+      
+      @if (!capturedImage) {
+        <button 
+          mat-raised-button 
+          color="primary" 
+          [disabled]="!cameraReady" 
+          (click)="capture()">
+          <mat-icon>photo_camera</mat-icon> Capture
+        </button>
+      } @else {
+        <button mat-button (click)="retake()">
+          <mat-icon>refresh</mat-icon> Retake
+        </button>
+        
+        <button mat-raised-button color="primary" (click)="confirm()">
+          <mat-icon>check</mat-icon> Use Photo
+        </button>
+      }
+    </div>
+  </div>

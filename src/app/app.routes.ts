@@ -19,6 +19,7 @@ import { TermsConditionsComponent } from './Transaction-components/terms-conditi
 import { SecurityTipsComponent } from './Transaction-components/security-tips/security-tips.component';
 import { ProfileOverviewComponent } from './routes/profile/profile-overview/profile-overview.component';
 import { ProfileSettingsComponent } from './routes/profile/profile-settings/profile-settings.component';
+import { ProfileImageComponent } from '@theme/sidebar/profile-image/profile-image.component';
 
 export const routes: Routes = [
   {
@@ -40,6 +41,11 @@ export const routes: Routes = [
             path: 'overview',
             component: ProfileOverviewComponent,
             data: { title: 'Profile Overview', titleI18n: 'profile' },
+          },
+          {
+            path: 'image',
+            component: ProfileImageComponent,
+            data: { title: 'Profile Picture', titleI18n: 'profile_picture' },
           },
           {
             path: 'settings',
