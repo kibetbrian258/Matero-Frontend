@@ -3,7 +3,5 @@
     {{ title | translate | removeMenuPrefix }}
     <small>{{ subtitle }}</small>
   </h1>
-  @if (!hideBreadcrumb) {
-    <breadcrumb [nav]="nav" />
-  }
+  @if (!hideBreadcrumb) {}
 </div>

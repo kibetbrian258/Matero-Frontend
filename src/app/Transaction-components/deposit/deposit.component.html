@@ -1,115 +1,114 @@
 <div class="transaction-container">
-    <div class="transaction-card">
-      <div class="transaction-header">
-        <h2>Deposit Funds</h2>
-        <button class="back-btn" (click)="goToDashboard()">
-          <mat-icon>arrow_back</mat-icon> Back to Dashboard
-        </button>
-      </div>
-  
-      <div class="transaction-body">
-        <!-- Success Message -->
-        @if (success) {
-          <div class="success-message">
-            <mat-icon>check_circle</mat-icon>
-            <div class="message-content">
-              <h3>Deposit Successful!</h3>
-              <p>Your deposit has been processed successfully.</p>
-              <p>Redirecting to dashboard...</p>
-            </div>
+  <div class="transaction-card">
+    <div class="transaction-header">
+      <h2>Deposit Funds</h2>
+      <button class="back-btn" (click)="goToDashboard()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Dashboard
+      </button>
+    </div>
+
+    <div class="transaction-body">
+      <!-- Success Message -->
+      @if (success) {
+        <div class="success-message">
+          <mat-icon>check_circle</mat-icon>
+          <div class="message-content">
+            <h3>Deposit Successful!</h3>
+            <p>Your deposit has been processed successfully.</p>
+            <p>Redirecting to dashboard...</p>
           </div>
-        }
-  
-        <!-- Deposit Form -->
-        @if (!success) {
-          <form [formGroup]="depositForm" (ngSubmit)="onSubmit()">
-            <!-- Error Message -->
-            @if (error) {
-              <div class="alert alert-danger">{{ error }}</div>
+        </div>
+      }
+
+      <!-- Deposit Form -->
+      @if (!success) {
+        <form [formGroup]="depositForm" (ngSubmit)="onSubmit()">
+          <!-- Error Message -->
+          @if (error) {
+            <div class="alert alert-danger">{{ error }}</div>
+          }
+
+          <!-- Account Selection Field -->
+          <div class="form-group">
+            <label for="accountNumber" class="form-label">Select Account</label>
+            @if (loadingAccounts) {
+              <div class="loading-accounts">
+                <mat-spinner diameter="20"></mat-spinner>
+                <span>Loading accounts...</span>
+              </div>
             }
-  
-            <!-- Account Selection Field -->
-            <div class="form-group">
-              <label for="accountNumber" class="form-label">Select Account</label>
-              @if (loadingAccounts) {
-                <div class="loading-accounts">
-                  <mat-spinner diameter="20"></mat-spinner>
-                  <span>Loading accounts...</span>
-                </div>
-              }
-              @if (!loadingAccounts) {
-                <mat-form-field appearance="fill" class="w-100">
-                  <mat-label>Select Account</mat-label>
-                  <mat-select formControlName="accountNumber" id="accountNumber">
-                    @for (account of accounts; track account.accountNumber) {
-                      <mat-option [value]="account.accountNumber">
-                        {{ account.accountNumber }} - Balance: Ksh {{ account.balance.toFixed(2) }}
-                      </mat-option>
-                    }
-                  </mat-select>
-                  @if (submitted && f['accountNumber'].errors) {
-                    <mat-error *ngIf="f['accountNumber'].errors['required']">
-                      Account is required
-                    </mat-error>
-                  }
-                </mat-form-field>
-              }
-            </div>
-  
-            <!-- Amount Field -->
-            <div class="form-group">
+            @if (!loadingAccounts) {
               <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Amount (Ksh)</mat-label>
-                <input 
-                  type="number" 
-                  matInput
-                  formControlName="amount" 
-                  id="amount"
-                  placeholder="Enter amount"
-                  step="0.01"
-                  min="0.01"
-                />
-                @if (submitted && f['amount'].errors) {
-                  <mat-error *ngIf="f['amount'].errors['required']">
-                    Amount is required
-                  </mat-error>
-                  <mat-error *ngIf="f['amount'].errors['min']">
-                    Amount must be greater than zero
-                  </mat-error>
-                  <mat-error *ngIf="f['amount'].errors['pattern']">
-                    Amount must be a valid number with up to 2 decimal places
+                <mat-label>Select Account</mat-label>
+                <mat-select formControlName="accountNumber" id="accountNumber">
+                  @for (account of accounts; track account.accountNumber) {
+                    <mat-option [value]="account.accountNumber">
+                      {{ account.accountNumber }} - Balance: Ksh {{ account.balance.toFixed(2) }}
+                    </mat-option>
+                  }
+                </mat-select>
+                @if (submitted && f['accountNumber'].errors) {
+                  <mat-error *ngIf="f['accountNumber'].errors['required']">
+                    Account is required
                   </mat-error>
                 }
               </mat-form-field>
-            </div>
-  
-            <!-- Submit Button -->
-            <div class="form-actions">
-              <button
-                type="submit"
-                mat-raised-button
-                color="primary"
-                class="btn-block"
-                [disabled]="loading"
-              >
-                @if (loading) {
-                  <mat-spinner diameter="20" class="spinner-inline"></mat-spinner>
-                }
-                <span>Deposit Funds</span>
-              </button>
-            </div>
-          </form>
-  
-          <!-- Additional Info -->
-          <div class="info-panel">
-            <h4>Deposit Information</h4>
-            <ul>
-              <li>Deposits are processed immediately.</li>
-              <li>Funds will be available in your account right away.</li>
-              <li>There are no fees for deposits.</li>
-            </ul>
+            }
           </div>
-        }
-      </div>
+
+          <!-- Amount Field -->
+          <div class="form-group">
+            <mat-form-field appearance="fill" class="w-100">
+              <mat-label>Amount (Ksh)</mat-label>
+              <input
+                type="number"
+                matInput
+                formControlName="amount"
+                id="amount"
+                placeholder="Enter amount"
+                step="0.01"
+                min="0.01"
+              />
+              @if (submitted && f['amount'].errors) {
+                <mat-error *ngIf="f['amount'].errors['required']">Amount is required</mat-error>
+                <mat-error *ngIf="f['amount'].errors['min']">
+                  Amount must be greater than zero
+                </mat-error>
+                <mat-error *ngIf="f['amount'].errors['pattern']">
+                  Amount must be a valid number with up to 2 decimal places
+                </mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="form-actions">
+            <button
+              type="submit"
+              mat-raised-button
+              color="primary"
+              class="btn-block"
+              [disabled]="loading"
+            >
+              @if (loading) {
+                <mat-spinner diameter="20" class="spinner-inline"></mat-spinner>
+              }
+              <span>Deposit Funds</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Additional Info -->
+        <div class="info-panel">
+          <h4>Deposit Information</h4>
+          <ul>
+            <li>Deposits are processed immediately.</li>
+            <li>Funds will be available in your account right away.</li>
+            <li>There are no fees for deposits.</li>
+          </ul>
+        </div>
+      }
     </div>
   </div>
+</div>
