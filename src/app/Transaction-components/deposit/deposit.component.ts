@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountService } from '@core/authentication/account.service';
 import { TransactionService } from '@core/authentication/transaction.service';
@@ -10,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 export interface AccountResponse {
   id: number;
@@ -40,12 +47,15 @@ export interface AccountResponse {
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    TranslateModule,
   ],
   templateUrl: './deposit.component.html',
   styleUrl: './deposit.component.scss',
 })
 export class DepositComponent implements OnInit {
+  private readonly translate = inject(TranslateService);
+
   depositForm!: FormGroup;
   accounts: AccountResponse[] = [];
   loading = false;
@@ -87,7 +97,7 @@ export class DepositComponent implements OnInit {
         }
       },
       error: error => {
-        this.error = 'Could not load accounts. Please try again.';
+        this.error = this.translate.instant('deposit.load_accounts_error');
         this.loadingAccounts = false;
       },
     });
@@ -126,7 +136,9 @@ export class DepositComponent implements OnInit {
       },
       error: error => {
         this.error =
-          error.error.message || error.error.error || 'Deposit failed. Please try again.';
+          error.error.message ||
+          error.error.error ||
+          this.translate.instant('deposit.generic_error');
         this.loading = false;
       },
     });
@@ -134,5 +146,15 @@ export class DepositComponent implements OnInit {
 
   goToDashboard(): void {
     this.router.navigate(['/dashboard']);
+  }
+
+  // Format amount to use currency symbol from translation
+  formatAmount(amount: number): string {
+    try {
+      const currencySymbol = this.translate.instant('currency_symbol') || 'Ksh';
+      return `${currencySymbol} ${amount.toFixed(2)}`;
+    } catch (e) {
+      return `Ksh ${amount.toFixed(2)}`;
+    }
   }
 }

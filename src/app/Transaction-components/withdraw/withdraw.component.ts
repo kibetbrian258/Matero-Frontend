@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-withdraw',
@@ -30,11 +31,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    TranslateModule,
   ],
   templateUrl: './withdraw.component.html',
   styleUrl: './withdraw.component.scss',
 })
 export class WithdrawComponent implements OnInit {
+  private readonly translate = inject(TranslateService);
+
   withdrawForm!: FormGroup;
   accounts: AccountResponse[] = [];
   loading = false;
@@ -72,7 +76,7 @@ export class WithdrawComponent implements OnInit {
         }
       },
       error: error => {
-        this.error = 'Could not load accounts. Please try again.';
+        this.error = this.translate.instant('withdraw.load_accounts_error');
         this.loadingAccounts = false;
       },
     });
@@ -160,7 +164,9 @@ export class WithdrawComponent implements OnInit {
       },
       error: error => {
         this.error =
-          error.error.message || error.error.error || 'Withdrawal failed. Please try again.';
+          error.error.message ||
+          error.error.error ||
+          this.translate.instant('withdraw.generic_error');
         this.loading = false;
       },
     });
@@ -168,5 +174,15 @@ export class WithdrawComponent implements OnInit {
 
   goToDashboard(): void {
     this.router.navigate(['/dashboard']);
+  }
+
+  // Format amount to use currency symbol from translation
+  formatAmount(amount: number): string {
+    try {
+      const currencySymbol = this.translate.instant('currency_symbol') || 'Ksh';
+      return `${currencySymbol} ${amount.toFixed(2)}`;
+    } catch (e) {
+      return `Ksh ${amount.toFixed(2)}`;
+    }
   }
 }

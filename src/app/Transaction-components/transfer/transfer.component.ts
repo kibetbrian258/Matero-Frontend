@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+  FormsModule,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AccountResponse, AccountService } from '@core/authentication/account.service';
 import { TransactionService } from '@core/authentication/transaction.service';
@@ -10,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transfer',
@@ -23,12 +30,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    TranslateModule,
   ],
   templateUrl: './transfer.component.html',
   styleUrl: './transfer.component.scss',
 })
 export class TransferComponent implements OnInit {
+  private readonly translate = inject(TranslateService);
+
   transferForm!: FormGroup;
   accounts: AccountResponse[] = [];
   loading = false;
@@ -70,7 +80,7 @@ export class TransferComponent implements OnInit {
         }
       },
       error: error => {
-        this.error = 'Could not load accounts. Please try again.';
+        this.error = this.translate.instant('transfer.load_accounts_error');
         this.loadingAccounts = false;
       },
     });
@@ -179,7 +189,9 @@ export class TransferComponent implements OnInit {
       },
       error: error => {
         this.error =
-          error.error.message || error.error.error || 'Transfer failed. Please try again.';
+          error.error.message ||
+          error.error.error ||
+          this.translate.instant('transfer.generic_error');
         this.loading = false;
       },
     });
@@ -187,5 +199,15 @@ export class TransferComponent implements OnInit {
 
   goToDashboard(): void {
     this.router.navigate(['/dashboard']);
+  }
+
+  // Format amount to use currency symbol from translation
+  formatAmount(amount: number): string {
+    try {
+      const currencySymbol = this.translate.instant('currency_symbol') || 'Ksh';
+      return `${currencySymbol} ${amount.toFixed(2)}`;
+    } catch (e) {
+      return `Ksh ${amount.toFixed(2)}`;
+    }
   }
 }

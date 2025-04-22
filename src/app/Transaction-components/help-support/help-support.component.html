@@ -1,45 +1,45 @@
 <div class="help-support-container">
   <div class="page-title">
     <div class="title-content">
-      <h2>Help & Support</h2>
+      <h2>{{ 'help_support.title' | translate }}</h2>
     </div>
     <a href="/dashboard" class="back-btn">
       <mat-icon>arrow_back</mat-icon>
-      Back to Dashboard
+      {{ 'help_support.back_to_dashboard' | translate }}
     </a>
   </div>
 
-  <p class="subtitle">We're here to assist you with any questions or concerns</p>
+  <p class="subtitle">{{ 'help_support.subtitle' | translate }}</p>
 
   <!-- Support Request Card -->
   <div class="support-card">
     <div class="card-header">
-      <h3>How can we help you today?</h3>
+      <h3>{{ 'help_support.how_can_we_help' | translate }}</h3>
     </div>
     <div class="card-body">
       <form [formGroup]="supportForm" (ngSubmit)="submitSupportMessage()">
         <div class="form-group">
           <textarea
             formControlName="message"
-            placeholder="Describe your issue or question here..."
+            placeholder="{{ 'help_support.message_placeholder' | translate }}"
             class="form-control"
             rows="4"
           ></textarea>
           @if (supportForm.get('message')?.invalid && supportForm.get('message')?.touched) {
             <div class="validation-error">
-              Please provide a detailed description (at least 10 characters).
+              {{ 'help_support.message_validation_error' | translate }}
             </div>
           }
         </div>
         <button type="submit" class="btn btn-primary" [disabled]="supportForm.invalid">
           <mat-icon>send</mat-icon>
-          Send Message
+          {{ 'help_support.send_message' | translate }}
         </button>
       </form>
       @if (messageSent) {
         <div class="alert alert-success">
           <mat-icon>check_circle</mat-icon>
-          Your message has been sent! Our support team will respond within 24 hours.
+          {{ 'help_support.message_sent_success' | translate }}
         </div>
       }
     </div>
@@ -47,14 +47,14 @@
 
   <!-- Contact Information -->
   <div class="contact-info-section">
-    <h3>Contact Information:</h3>
+    <h3>{{ 'help_support.contact_information' | translate }}:</h3>
     <div class="contact-cards">
       <div class="contact-card phone">
         <div class="icon">
           <mat-icon>phone</mat-icon>
         </div>
         <div class="contact-details">
-          <span class="label">Phone Support:</span>
+          <span class="label">{{ 'help_support.phone_support' | translate }}:</span>
           <span class="value">+(254)-98-466-352</span>
         </div>
       </div>
@@ -64,7 +64,7 @@
           <mat-icon>email</mat-icon>
         </div>
         <div class="contact-details">
-          <span class="label">Email:</span>
+          <span class="label">{{ 'help_support.email' | translate }}:</span>
           <span class="value">banking&#64;info.org</span>
         </div>
       </div>
@@ -74,8 +74,8 @@
           <mat-icon>location_on</mat-icon>
         </div>
         <div class="contact-details">
-          <span class="label">Main Branch:</span>
-          <span class="value">123 Main Street, Nairobi</span>
+          <span class="label">{{ 'help_support.main_branch' | translate }}:</span>
+          <span class="value">{{ 'help_support.branch_address' | translate }}</span>
         </div>
       </div>
     </div>
@@ -83,30 +83,30 @@
 
   <!-- Operating Hours -->
   <div class="operating-hours">
-    <h3>Operating Hours</h3>
+    <h3>{{ 'help_support.operating_hours' | translate }}</h3>
     <div class="hours-grid">
       <div class="day">
-        <span class="day-name">Monday - Friday:</span>
-        <span class="hours">8:00 AM - 6:00 PM</span>
+        <span class="day-name">{{ 'help_support.weekdays' | translate }}:</span>
+        <span class="hours">{{ 'help_support.weekday_hours' | translate }}</span>
       </div>
       <div class="day">
-        <span class="day-name">Saturday:</span>
-        <span class="hours">9:00 AM - 3:00 PM</span>
+        <span class="day-name">{{ 'help_support.saturday' | translate }}:</span>
+        <span class="hours">{{ 'help_support.saturday_hours' | translate }}</span>
       </div>
       <div class="day">
-        <span class="day-name">Sunday & Holidays:</span>
-        <span class="hours">Closed</span>
+        <span class="day-name">{{ 'help_support.sunday_holidays' | translate }}:</span>
+        <span class="hours">{{ 'help_support.closed' | translate }}</span>
       </div>
     </div>
     <div class="note">
       <mat-icon>info</mat-icon>
-      24/7 phone support available for emergencies and lost/stolen cards.
+      {{ 'help_support.emergency_support_note' | translate }}
     </div>
   </div>
 
   <!-- FAQ Section -->
   <div class="faq-section">
-    <h3>Frequently Asked Questions</h3>
+    <h3>{{ 'help_support.faq_title' | translate }}</h3>
     <div class="faq-list">
       @for (faq of faqItems; track $index) {
         <div class="faq-item">
@@ -115,13 +115,13 @@
             (click)="toggleFaq($index)"
             [class.active]="expandedFaq === $index"
           >
-            {{ faq.question }}
+            {{ getQuestion(faq.questionKey) }}
             <span class="faq-toggle">
               <mat-icon>{{ expandedFaq === $index ? 'remove' : 'add' }}</mat-icon>
             </span>
           </div>
           <div class="faq-answer" [class.expanded]="expandedFaq === $index">
-            {{ faq.answer }}
+            {{ getAnswer(faq.answerKey) }}
           </div>
         </div>
       }
@@ -130,20 +130,20 @@
 
   <!-- Additional Resources -->
   <div class="resources-section">
-    <h3>Additional Resources</h3>
+    <h3>{{ 'help_support.additional_resources' | translate }}</h3>
     <div class="resources-grid">
       <a routerLink="/banking-guide" class="resource-card">
         <mat-icon>menu_book</mat-icon>
-        <span>Banking Guide</span>
+        <span>{{ 'help_support.banking_guide' | translate }}</span>
       </a>
       <a routerLink="/security-tips" class="resource-card">
         <mat-icon>security</mat-icon>
-        <span>Security Tips</span>
+        <span>{{ 'help_support.security_tips' | translate }}</span>
       </a>
-      <a routerLink="/terms" class="resource-card">
+      <!-- <a routerLink="/terms" class="resource-card">
         <mat-icon>description</mat-icon>
-        <span>Terms & Conditions</span>
-      </a>
+        <span>{{ 'help_support.terms_conditions' | translate }}</span>
+      </a> -->
     </div>
   </div>
 </div>

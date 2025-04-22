@@ -84,6 +84,8 @@ export class ProfileImageComponent implements OnInit {
           this.snackBar.open('Profile image updated successfully', 'Close', {
             duration: 3000,
           });
+          // Update the shared profile image state
+          this.profileService.refreshProfileImage();
         } else {
           this.profileImage = this.defaultImage;
           this.snackBar.open('Failed to update profile image', 'Close', {
@@ -131,13 +133,28 @@ export class ProfileImageComponent implements OnInit {
   }
 
   removeImage(): void {
-    // For now, just reset to the default image since there's no API endpoint to remove the image
-    this.profileImage = this.defaultImage;
+    // Show loading state while deleting
+    this.isUploading = true;
 
-    this.snackBar.open('Profile image removed', 'Close', {
-      duration: 3000,
+    // Call the API endpoint to remove the image
+    this.profileService.deleteProfileImage().subscribe({
+      next: response => {
+        this.profileImage = this.defaultImage;
+        this.snackBar.open('Profile image removed successfully', 'Close', {
+          duration: 3000,
+        });
+
+        // Update the shared profile image state
+        this.profileService.refreshProfileImage();
+        this.isUploading = false;
+      },
+      error: error => {
+        console.error('Error removing profile image:', error);
+        this.snackBar.open('Failed to remove profile image', 'Close', {
+          duration: 5000,
+        });
+        this.isUploading = false;
+      },
     });
-
-    // Call an API endpoint to remove the image
   }
 }

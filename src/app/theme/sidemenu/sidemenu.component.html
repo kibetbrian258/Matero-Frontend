@@ -104,10 +104,10 @@
   }
   <span class="menu-name">{{ item.name | translate | removeMenuPrefix }}</span>
   @if (item.label) {
-    <span class="menu-label bg-{{ item.label.color }}">{{ item.label.value }}</span>
+    <span class="menu-label bg-{{ item.label.color }}">{{ item.label.value | translate }}</span>
   }
   @if (item.badge) {
-    <span class="menu-badge bg-{{ item.badge.color }}">{{ item.badge.value }}</span>
+    <span class="menu-badge bg-{{ item.badge.color }}">{{ item.badge.value | translate }}</span>
   }
   @if (item.type !== 'link') {
     <mat-icon class="menu-caret">{{ item.type === 'sub' ? 'arrow_drop_down' : 'launch' }}</mat-icon>

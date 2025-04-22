@@ -1,70 +1,121 @@
 <div class="guide-container">
   <div class="page-header">
     <div class="title-content">
-      <h1>Banking Guide</h1>
-      <p class="subtitle">Everything you need to know about your banking experience</p>
+      <h1>{{ 'banking_guide.title' | translate }}</h1>
+      <p class="subtitle">{{ 'banking_guide.subtitle' | translate }}</p>
     </div>
     <div class="back-navigation">
       <a routerLink="/support" class="back-button">
         <mat-icon>arrow_back</mat-icon>
-        Back to Help & Support
+        {{ 'banking_guide.back_to_support' | translate }}
       </a>
     </div>
   </div>
 
   <div class="guide-content">
     <div class="section">
-      <h2>Getting Started</h2>
+      <h2>{{ 'banking_guide.getting_started.title' | translate }}</h2>
       <div class="card">
-        <h3>Navigating Your Dashboard</h3>
+        <h3>{{ 'banking_guide.getting_started.navigating_dashboard.title' | translate }}</h3>
         <p>
-          Your dashboard is the central hub for managing your finances. Here's what you'll find:
+          {{ 'banking_guide.getting_started.navigating_dashboard.intro' | translate }}
         </p>
         <ul>
           <li>
-            <strong>Account Overview:</strong>
-            View balances and recent transactions for all your accounts.
+            <strong>
+              {{
+                'banking_guide.getting_started.navigating_dashboard.account_overview.label'
+                  | translate
+              }}:
+            </strong>
+            {{
+              'banking_guide.getting_started.navigating_dashboard.account_overview.description'
+                | translate
+            }}
           </li>
           <li>
-            <strong>Quick Actions:</strong>
-            Easily access common tasks like deposits, transfers, and bill payments.
+            <strong>
+              {{
+                'banking_guide.getting_started.navigating_dashboard.quick_actions.label'
+                  | translate
+              }}:
+            </strong>
+            {{
+              'banking_guide.getting_started.navigating_dashboard.quick_actions.description'
+                | translate
+            }}
           </li>
           <li>
-            <strong>Financial Summary:</strong>
-            Get a snapshot of your spending and savings trends.
+            <strong>
+              {{
+                'banking_guide.getting_started.navigating_dashboard.financial_summary.label'
+                  | translate
+              }}:
+            </strong>
+            {{
+              'banking_guide.getting_started.navigating_dashboard.financial_summary.description'
+                | translate
+            }}
           </li>
           <li>
-            <strong>Notifications:</strong>
-            Stay updated with important alerts about your accounts.
+            <strong>
+              {{
+                'banking_guide.getting_started.navigating_dashboard.notifications.label'
+                  | translate
+              }}:
+            </strong>
+            {{
+              'banking_guide.getting_started.navigating_dashboard.notifications.description'
+                | translate
+            }}
           </li>
         </ul>
         <div class="tip-box">
           <mat-icon>lightbulb</mat-icon>
           <p>
-            Customize your dashboard by clicking the "Personalize" option in the top right corner to
-            show the information most relevant to you.
+            {{ 'banking_guide.getting_started.navigating_dashboard.tip' | translate }}
           </p>
         </div>
       </div>
     </div>
 
     <div class="section">
-      <h2>Account Management</h2>
+      <h2>{{ 'banking_guide.account_management.title' | translate }}</h2>
 
       <div class="card">
-        <h3>Understanding Your Account Types</h3>
+        <h3>{{ 'banking_guide.account_management.account_types.title' | translate }}</h3>
         <div class="account-types">
           <div class="account-type">
             <div class="account-icon savings">
               <mat-icon>savings</mat-icon>
             </div>
             <div class="account-details">
-              <h4>Savings Account</h4>
-              <p>Earn interest on your deposits while maintaining easy access to your funds.</p>
+              <h4>
+                {{ 'banking_guide.account_management.account_types.savings.title' | translate }}
+              </h4>
+              <p>
+                {{
+                  'banking_guide.account_management.account_types.savings.description' | translate
+                }}
+              </p>
               <ul>
-                <li>Interest rate: 2.5% p.a.</li>
-                <li>Minimum balance: Ksh 200</li>
-                <li>No monthly fee</li>
+                <li>
+                  {{
+                    'banking_guide.account_management.account_types.savings.interest_rate'
+                      | translate
+                  }}: 2.5% p.a.
+                </li>
+                <li>
+                  {{
+                    'banking_guide.account_management.account_types.savings.minimum_balance'
+                      | translate
+                  }}: Ksh 200
+                </li>
+                <li>
+                  {{
+                    'banking_guide.account_management.account_types.savings.monthly_fee' | translate
+                  }}
+                </li>
               </ul>
             </div>
           </div>
@@ -74,12 +125,33 @@
               <mat-icon>account_balance_wallet</mat-icon>
             </div>
             <div class="account-details">
-              <h4>Checking Account</h4>
-              <p>Your everyday spending account for regular transactions and bill payments.</p>
+              <h4>
+                {{ 'banking_guide.account_management.account_types.checking.title' | translate }}
+              </h4>
+              <p>
+                {{
+                  'banking_guide.account_management.account_types.checking.description' | translate
+                }}
+              </p>
               <ul>
-                <li>No interest</li>
-                <li>No minimum balance</li>
-                <li>Monthly fee: Ksh 5</li>
+                <li>
+                  {{
+                    'banking_guide.account_management.account_types.checking.no_interest'
+                      | translate
+                  }}
+                </li>
+                <li>
+                  {{
+                    'banking_guide.account_management.account_types.checking.no_minimum_balance'
+                      | translate
+                  }}
+                </li>
+                <li>
+                  {{
+                    'banking_guide.account_management.account_types.checking.monthly_fee'
+                      | translate
+                  }}: Ksh 5
+                </li>
               </ul>
             </div>
           </div>
@@ -87,166 +159,192 @@
       </div>
 
       <div class="card">
-        <h3>Managing Account Settings</h3>
-        <p>You can customize various settings for your accounts:</p>
+        <h3>{{ 'banking_guide.account_management.settings.title' | translate }}</h3>
+        <p>{{ 'banking_guide.account_management.settings.intro' | translate }}</p>
         <ul>
           <li>
-            <strong>Account Nicknames:</strong>
-            Rename your accounts for easier identification.
+            <strong>
+              {{ 'banking_guide.account_management.settings.nicknames.label' | translate }}:
+            </strong>
+            {{ 'banking_guide.account_management.settings.nicknames.description' | translate }}
           </li>
           <li>
-            <strong>Statement Preferences:</strong>
-            Choose between electronic or paper statements.
+            <strong>
+              {{ 'banking_guide.account_management.settings.statements.label' | translate }}:
+            </strong>
+            {{ 'banking_guide.account_management.settings.statements.description' | translate }}
           </li>
           <li>
-            <strong>Transaction Alerts:</strong>
-            Set up notifications for specific transaction types or amounts.
+            <strong>
+              {{ 'banking_guide.account_management.settings.alerts.label' | translate }}:
+            </strong>
+            {{ 'banking_guide.account_management.settings.alerts.description' | translate }}
           </li>
           <li>
-            <strong>Authorized Users:</strong>
-            Add or remove people who can access your account.
+            <strong>
+              {{ 'banking_guide.account_management.settings.users.label' | translate }}:
+            </strong>
+            {{ 'banking_guide.account_management.settings.users.description' | translate }}
           </li>
         </ul>
       </div>
     </div>
 
     <div class="section">
-      <h2>Transactions</h2>
+      <h2>{{ 'banking_guide.transactions.title' | translate }}</h2>
 
       <div class="card">
-        <h3>Making Deposits</h3>
-        <p>There are several ways to add funds to your account:</p>
+        <h3>{{ 'banking_guide.transactions.deposits.title' | translate }}</h3>
+        <p>{{ 'banking_guide.transactions.deposits.intro' | translate }}</p>
         <ol>
           <li>
-            <strong>Direct Deposit:</strong>
-            Set up automatic deposits from your employer or other income sources.
+            <strong>{{ 'banking_guide.transactions.deposits.direct.label' | translate }}:</strong>
+            {{ 'banking_guide.transactions.deposits.direct.description' | translate }}
           </li>
           <li>
-            <strong>Mobile Deposit:</strong>
-            Use the app to deposit checks by taking photos.
+            <strong>{{ 'banking_guide.transactions.deposits.mobile.label' | translate }}:</strong>
+            {{ 'banking_guide.transactions.deposits.mobile.description' | translate }}
           </li>
           <li>
-            <strong>Branch Deposit:</strong>
-            Visit any of our branches during operating hours.
+            <strong>{{ 'banking_guide.transactions.deposits.branch.label' | translate }}:</strong>
+            {{ 'banking_guide.transactions.deposits.branch.description' | translate }}
           </li>
           <li>
-            <strong>ATM Deposit:</strong>
-            Use our network of ATMs for cash or check deposits.
+            <strong>{{ 'banking_guide.transactions.deposits.atm.label' | translate }}:</strong>
+            {{ 'banking_guide.transactions.deposits.atm.description' | translate }}
           </li>
         </ol>
       </div>
 
       <div class="card">
-        <h3>Transferring Funds</h3>
-        <p>Move money between your accounts or send to others:</p>
+        <h3>{{ 'banking_guide.transactions.transfers.title' | translate }}</h3>
+        <p>{{ 'banking_guide.transactions.transfers.intro' | translate }}</p>
         <ul>
           <li>
-            <strong>Internal Transfers:</strong>
-            Move money between your own accounts instantly.
+            <strong>
+              {{ 'banking_guide.transactions.transfers.internal.label' | translate }}:
+            </strong>
+            {{ 'banking_guide.transactions.transfers.internal.description' | translate }}
           </li>
           <li>
-            <strong>External Transfers:</strong>
-            Send money to accounts at other banks (1-2 business days).
+            <strong>
+              {{ 'banking_guide.transactions.transfers.external.label' | translate }}:
+            </strong>
+            {{ 'banking_guide.transactions.transfers.external.description' | translate }}
           </li>
           <li>
-            <strong>Recurring Transfers:</strong>
-            Schedule automatic transfers on a regular basis.
+            <strong>
+              {{ 'banking_guide.transactions.transfers.recurring.label' | translate }}:
+            </strong>
+            {{ 'banking_guide.transactions.transfers.recurring.description' | translate }}
           </li>
           <li>
-            <strong>Wire Transfers:</strong>
-            Send larger amounts domestically or internationally for a fee.
+            <strong>{{ 'banking_guide.transactions.transfers.wire.label' | translate }}:</strong>
+            {{ 'banking_guide.transactions.transfers.wire.description' | translate }}
           </li>
         </ul>
         <div class="tip-box">
           <mat-icon>lightbulb</mat-icon>
-          <p>Set up recurring transfers to your savings account to automate your saving habits.</p>
+          <p>{{ 'banking_guide.transactions.transfers.tip' | translate }}</p>
         </div>
       </div>
 
       <div class="card">
-        <h3>Transaction History</h3>
-        <p>Keep track of your financial activity:</p>
+        <h3>{{ 'banking_guide.transactions.history.title' | translate }}</h3>
+        <p>{{ 'banking_guide.transactions.history.intro' | translate }}</p>
         <ul>
-          <li>View up to 24 months of transaction history online.</li>
-          <li>Filter transactions by date, amount, or type.</li>
-          <li>Search for specific transactions using keywords.</li>
-          <li>Download statements in PDF or CSV format.</li>
-          <li>Categorize transactions for better budget tracking.</li>
+          <li>{{ 'banking_guide.transactions.history.view_months' | translate }}</li>
+          <li>{{ 'banking_guide.transactions.history.filter' | translate }}</li>
+          <li>{{ 'banking_guide.transactions.history.search' | translate }}</li>
+          <li>{{ 'banking_guide.transactions.history.download' | translate }}</li>
+          <li>{{ 'banking_guide.transactions.history.categorize' | translate }}</li>
         </ul>
       </div>
     </div>
 
     <div class="section">
-      <h2>Digital Banking Features</h2>
+      <h2>{{ 'banking_guide.digital_banking.title' | translate }}</h2>
 
       <div class="card">
-        <h3>Mobile Banking</h3>
-        <p>Our mobile app provides convenient access to your accounts:</p>
+        <h3>{{ 'banking_guide.digital_banking.mobile.title' | translate }}</h3>
+        <p>{{ 'banking_guide.digital_banking.mobile.intro' | translate }}</p>
         <div class="feature-grid">
           <div class="feature">
             <mat-icon>sync</mat-icon>
-            <span>Real-time balance updates</span>
+            <span>
+              {{ 'banking_guide.digital_banking.mobile.features.balance_updates' | translate }}
+            </span>
           </div>
           <div class="feature">
             <mat-icon>notifications</mat-icon>
-            <span>Custom notifications</span>
+            <span>
+              {{ 'banking_guide.digital_banking.mobile.features.notifications' | translate }}
+            </span>
           </div>
           <div class="feature">
             <mat-icon>camera_alt</mat-icon>
-            <span>Mobile check deposit</span>
+            <span>
+              {{ 'banking_guide.digital_banking.mobile.features.check_deposit' | translate }}
+            </span>
           </div>
           <div class="feature">
             <mat-icon>location_on</mat-icon>
-            <span>ATM/branch locator</span>
+            <span>{{ 'banking_guide.digital_banking.mobile.features.locator' | translate }}</span>
           </div>
           <div class="feature">
             <mat-icon>fingerprint</mat-icon>
-            <span>Biometric login</span>
+            <span>{{ 'banking_guide.digital_banking.mobile.features.biometric' | translate }}</span>
           </div>
           <div class="feature">
             <mat-icon>security</mat-icon>
-            <span>Card controls</span>
+            <span>
+              {{ 'banking_guide.digital_banking.mobile.features.card_controls' | translate }}
+            </span>
           </div>
         </div>
       </div>
 
       <div class="card">
-        <h3>Online Banking</h3>
-        <p>Our secure website offers comprehensive account management:</p>
+        <h3>{{ 'banking_guide.digital_banking.online.title' | translate }}</h3>
+        <p>{{ 'banking_guide.digital_banking.online.intro' | translate }}</p>
         <ul>
-          <li>View all accounts and transactions in one place</li>
-          <li>Pay bills and manage payees</li>
-          <li>Transfer funds between accounts</li>
-          <li>Download account statements</li>
-          <li>Update personal information and preferences</li>
-          <li>Apply for additional banking products</li>
+          <li>{{ 'banking_guide.digital_banking.online.features.view_accounts' | translate }}</li>
+          <li>{{ 'banking_guide.digital_banking.online.features.pay_bills' | translate }}</li>
+          <li>{{ 'banking_guide.digital_banking.online.features.transfer' | translate }}</li>
+          <li>{{ 'banking_guide.digital_banking.online.features.download' | translate }}</li>
+          <li>{{ 'banking_guide.digital_banking.online.features.update_info' | translate }}</li>
+          <li>{{ 'banking_guide.digital_banking.online.features.apply' | translate }}</li>
         </ul>
       </div>
     </div>
 
     <div class="section">
-      <h2>Additional Resources</h2>
+      <h2>{{ 'banking_guide.additional_resources.title' | translate }}</h2>
 
       <div class="resources-grid">
         <div class="resource-card">
           <mat-icon>security</mat-icon>
-          <h3>Security Tips</h3>
-          <p>Learn how to protect your accounts and personal information.</p>
-          <a routerLink="/security-tips" class="resource-link">View Security Tips</a>
+          <h3>{{ 'banking_guide.additional_resources.security_tips.title' | translate }}</h3>
+          <p>{{ 'banking_guide.additional_resources.security_tips.description' | translate }}</p>
+          <a routerLink="/security-tips" class="resource-link">
+            {{ 'banking_guide.additional_resources.security_tips.link_text' | translate }}
+          </a>
         </div>
 
         <div class="resource-card">
           <mat-icon>description</mat-icon>
-          <h3>Terms & Conditions</h3>
-          <p>Review the complete terms of service for your accounts.</p>
-          <a routerLink="/terms" class="resource-link">View Terms & Conditions</a>
+          <h3>{{ 'banking_guide.additional_resources.terms.title' | translate }}</h3>
+          <p>{{ 'banking_guide.additional_resources.terms.description' | translate }}</p>
+          <a routerLink="/terms" class="resource-link">
+            {{ 'banking_guide.additional_resources.terms.link_text' | translate }}
+          </a>
         </div>
       </div>
     </div>
   </div>
 
   <div class="support-footer">
-    <p>Need further assistance? Contact our customer support team:</p>
+    <p>{{ 'banking_guide.support_footer.intro' | translate }}</p>
     <div class="contact-info">
       <div class="contact-method">
         <mat-icon>phone</mat-icon>

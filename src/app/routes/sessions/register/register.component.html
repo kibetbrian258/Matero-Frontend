@@ -56,14 +56,24 @@
           <mat-form-field appearance="outline" class="form-field">
             <mat-label>Date of Birth</mat-label>
             <mat-icon matPrefix>cake</mat-icon>
-            <input matInput [matDatepicker]="picker" formControlName="dateOfBirth" required />
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dateOfBirth"
+              required
+              [max]="maxDate"
+            />
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
             @if (
               registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched
             ) {
               <mat-error>
-                <span>Date of birth is required</span>
+                @if (registerForm.get('dateOfBirth')?.hasError('required')) {
+                  <span>Date of birth is required</span>
+                } @else if (registerForm.get('dateOfBirth')?.hasError('underage')) {
+                  <span>You must be at least 18 years old to register</span>
+                }
               </mat-error>
             }
           </mat-form-field>
@@ -102,7 +112,8 @@
 
           <div class="terms-checkbox">
             <mat-checkbox formControlName="termsAccepted" color="primary" required>
-              I have read and agree to the Terms and Conditions
+              I have read and agree to the
+              <a (click)="navigateToTerms($event)">Terms and Conditions</a>
             </mat-checkbox>
             @if (
               registerForm.get('termsAccepted')?.invalid &&

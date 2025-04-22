@@ -138,5 +138,1064 @@
   "register_title": "創建您的帳戶只需幾秒鐘",
   "read_and_agree": "我已閱讀並同意服務條款",
   "have_an_account": "已經有帳號了",
-  "restore_defaults": "還原配置"
+  "restore_defaults": "還原配置",
+
+  "search": "搜索",
+  "fullscreen": "全屏",
+  "notifications": "通知",
+  "notification_not_found": "未找到通知",
+  "no_notifications": "沒有通知顯示",
+  "mark_all_read": "標記所有為已讀",
+  "dashboard": {
+    "title": "數據大盤",
+    "quick_actions": "快捷操作",
+    "deposit": "存款",
+    "withdraw": "取款",
+    "transfer": "轉賬",
+    "search": "搜索",
+    "select_account": "選擇賬戶",
+    "account_summary": "賬戶摘要",
+    "loading_account_info": "正在加載賬戶信息...",
+    "load_account_error": "加載賬戶信息失敗。請稍後再試。",
+    "customer_id": "客戶ID",
+    "last_login": "上次登錄",
+    "account_no": "賬號",
+    "account_status": "賬戶狀態",
+    "current_bal": "當前餘額",
+    "mini_statement": "迷你對賬單",
+    "loading_transactions": "正在加載交易...",
+    "load_transactions_error": "加載交易失敗。請稍後再試。",
+    "no_transactions": "未找到最近交易。",
+    "transaction_id": "交易ID",
+    "type": "類型",
+    "amount": "金額",
+    "date_time": "日期/時間",
+    "balance": "餘額",
+    "view_all_transactions": "查看所有交易",
+
+    "new_account": "新賬戶",
+    "create_new_account": "創建新賬戶",
+    "account_type": "賬戶類型",
+    "account_features": "賬戶特點",
+    "savings_account": "儲蓄賬戶",
+    "checking_account": "支票賬戶",
+    "create_account": "創建賬戶",
+    "cancel": "取消",
+    "account_created_success": "您的新賬戶已成功創建。"
+  },
+  "transaction": {
+    "type": {
+      "deposit": "存款",
+      "withdrawal": "取款",
+      "transfer": "轉賬",
+      "transfer_received": "收到轉賬"
+    }
+  },
+  "date_format": "yyyy年MM月dd日 HH:mm",
+  "currency_symbol": "Ksh",
+  "deposit": {
+    "title": "存入資金",
+    "back_to_dashboard": "返回儀表板",
+    "success_title": "存款成功！",
+    "success_message": "您的存款已成功處理。",
+    "redirecting": "正在重定向到儀表板...",
+    "select_account": "選擇賬戶",
+    "loading_accounts": "正在加載賬戶...",
+    "balance": "餘額",
+    "account_required": "賬戶是必填項",
+    "amount_label": "金額 (Ksh)",
+    "enter_amount": "輸入金額",
+    "amount_required": "金額是必填項",
+    "amount_greater_than_zero": "金額必須大於零",
+    "amount_valid_number": "金額必須是有效數字，最多有2位小數",
+    "deposit_funds": "存入資金",
+    "info_title": "存款信息",
+    "info_immediate": "存款將立即處理。",
+    "info_available": "資金將立即可在您的賬戶中使用。",
+    "info_no_fees": "存款不收取任何費用。",
+    "load_accounts_error": "無法加載賬戶。請重試。",
+    "generic_error": "存款失敗。請重試。"
+  },
+  "withdraw": {
+    "title": "提取資金",
+    "back_to_dashboard": "返回儀表板",
+    "success_title": "提款成功！",
+    "success_message": "您的提款已成功處理。",
+    "redirecting": "正在重定向到儀表板...",
+    "select_account": "選擇賬戶",
+    "loading_accounts": "正在加載賬戶...",
+    "balance": "餘額",
+    "account_required": "賬戶是必填項",
+    "available_balance": "可用餘額",
+    "withdrawal_limit": "提款限額",
+    "max_withdrawal": "最大提款額",
+    "amount_label": "金額 (Ksh)",
+    "enter_amount": "輸入金額",
+    "amount_required": "金額是必填項",
+    "amount_greater_than_zero": "金額必須大於零",
+    "amount_exceeds_limit": "金額超過可用餘額或提款限額",
+    "amount_valid_number": "金額必須是有效數字，最多有2位小數",
+    "withdraw_funds": "提取資金",
+    "info_title": "提款信息",
+    "info_immediate": "提款將立即處理。",
+    "info_sufficient": "請確保您的賬戶中有足夠的資金。",
+    "info_limits": "可能適用每日提款限額。",
+    "load_accounts_error": "無法加載賬戶。請重試。",
+    "generic_error": "提款失敗。請重試。"
+  },
+  "transfer": {
+    "title": "轉賬資金",
+    "back_to_dashboard": "返回儀表板",
+    "success_title": "轉賬成功！",
+    "success_message": "您的資金已成功轉賬。",
+    "redirecting": "正在重定向到儀表板...",
+    "from_account": "從賬戶",
+    "loading_accounts": "正在加載賬戶...",
+    "select_source_account": "選擇源賬戶",
+    "balance": "餘額",
+    "source_account_required": "源賬戶是必填項",
+    "available_balance": "可用餘額",
+    "transfer_limit": "轉賬限額",
+    "max_transfer": "最大轉賬額",
+    "to_account": "到賬戶",
+    "enter_destination_account": "輸入目標賬戶號碼",
+    "destination_account_required": "目標賬戶是必填項",
+    "different_account_required": "目標賬戶必須與源賬戶不同",
+    "amount_label": "金額 (Ksh)",
+    "enter_amount": "輸入金額",
+    "amount_required": "金額是必填項",
+    "amount_greater_than_zero": "金額必須大於零",
+    "amount_exceeds_limit": "金額超過可用餘額或轉賬限額",
+    "amount_valid_number": "金額必須是有效數字，最多有2位小數",
+    "transfer_funds": "轉賬資金",
+    "info_title": "轉賬信息",
+    "info_immediate": "轉賬將立即處理。",
+    "info_sufficient": "請確保您的源賬戶中有足夠的資金。",
+    "info_other_banks": "轉賬到其他銀行可能需要1-3個工作日。",
+    "info_limits": "可能適用每日轉賬限額。",
+    "load_accounts_error": "無法加載賬戶。請重試。",
+    "generic_error": "轉賬失敗。請重試。"
+  },
+  "transaction_history": {
+    "title": "交易歷史",
+    "back_to_dashboard": "返回儀表板",
+    "loading_transactions": "正在加載交易...",
+    "account": "賬戶",
+    "balance": "餘額",
+    "status": "狀態",
+    "search_transactions": "搜索交易",
+    "account_number": "賬戶號碼",
+    "all_accounts": "所有賬戶",
+    "transaction_type": "交易類型",
+    "all_types": "所有類型",
+    "type_deposit": "存款",
+    "type_withdrawal": "取款",
+    "type_transfer": "轉賬",
+    "type_transfer_received": "收到轉賬",
+    "transaction_date": "交易日期",
+    "search_button": "搜索",
+    "reset_button": "重置",
+    "search_results": "搜索結果",
+    "recent_transactions": "最近交易",
+    "transactions_found": "交易記錄",
+    "searching_transactions": "正在搜索交易...",
+    "transaction_id": "交易ID",
+    "date_time": "日期/時間",
+    "type": "類型",
+    "amount": "金額",
+    "balance_after": "交易後餘額",
+    "to": "到",
+    "no_recent_transactions": "未找到最近交易。",
+    "no_matching_transactions": "沒有符合您搜索條件的交易。",
+    "page": "頁",
+    "of": "共",
+    "account_details_error": "無法加載賬戶詳情。請重試。",
+    "load_accounts_error": "無法加載賬戶。請重試。",
+    "load_transactions_error": "無法加載交易。請重試。",
+    "invalid_date_format": "日期格式無效。請選擇有效日期。",
+    "search_failed": "搜索失敗。請重試。",
+    "date_format": "yyyy年MM月dd日 HH:mm"
+  },
+  "detailed_information": "詳細信息",
+  "interest_rates": "利率",
+  "branch": "分行",
+  "monthly_fee": "月費",
+  "branch_code": "分行代碼",
+  "minimum_balance": "最低餘額",
+  "online_banking": "網上銀行",
+  "mobile_banking": "移動銀行",
+  "enabled": "已啟用",
+  "disabled": "已禁用",
+  "per_day": "每天",
+  "info_no_fees": "無月費",
+  "info_no_interest": "無利息",
+  "no_minimum_balance": "無最低餘額",
+
+  "help_support": {
+    "title": "幫助與支持",
+    "back_to_dashboard": "返回儀表板",
+    "subtitle": "我們隨時為您解答疑問或解決顧慮",
+    "how_can_we_help": "今天我們能為您做什麼？",
+    "message_placeholder": "在此描述您的問題或疑問...",
+    "message_validation_error": "請提供詳細說明（至少10個字符）。",
+    "send_message": "發送訊息",
+    "message_sent_success": "您的訊息已發送！我們的支持團隊將在24小時內回覆。",
+    "contact_information": "聯繫信息",
+    "phone_support": "電話支持",
+    "email": "電子郵件",
+    "main_branch": "主要分行",
+    "branch_address": "內羅畢，主街123號",
+    "operating_hours": "營業時間",
+    "weekdays": "週一至週五",
+    "weekday_hours": "上午8:00 - 下午6:00",
+    "saturday": "週六",
+    "saturday_hours": "上午9:00 - 下午3:00",
+    "sunday_holidays": "週日及節假日",
+    "closed": "休息",
+    "emergency_support_note": "緊急情況和丟失/被盜卡24/7電話支持。",
+    "faq_title": "常見問題",
+    "additional_resources": "其他資源",
+    "banking_guide": "銀行指南",
+    "security_tips": "安全提示",
+    "terms_conditions": "條款和條件",
+    "faq": {
+      "pin_change": {
+        "question": "如何更改我的PIN碼？",
+        "answer": "請聯繫我們的客戶支持團隊，他們將能夠為您的賬戶生成新的PIN碼"
+      },
+      "transfer_limits": {
+        "question": "每日轉賬限額是多少？",
+        "answer": "標準每日轉賬限額為10,000肯尼亞先令。但是，這可能會根據您的賬戶類型和狀態而有所不同。您可以在賬戶信息頁面的賬戶詳情選項卡下查看您的具體限額。如果您需要臨時增加限額，請聯繫客戶支持。"
+      },
+      "unauthorized_transactions": {
+        "question": "如果我發現未授權交易該怎麼辦？",
+        "answer": "如果您發現任何未授權交易，應立即：1）通過安全菜單鎖定您的賬戶；2）撥打我們的24/7支持熱線+(254)-98-466-352；3）在儀表板的安全部分填寫表格報告事件。我們將調查問題並在24小時內回覆。"
+      },
+      "lost_card": {
+        "question": "如何報告丟失或被盜卡？",
+        "answer": "要報告丟失或被盜卡，請立即撥打我們的緊急支持熱線+(254)-98-466-352。您也可以通過賬戶信息頁面臨時鎖定您的卡。報告後，新卡將在5-7個工作日內發行並送達您的註冊地址。"
+      },
+      "transfer_processing": {
+        "question": "轉賬處理需要多長時間？",
+        "answer": "我們銀行內部賬戶之間的轉賬立即處理。轉賬到其他銀行通常需要1-2個工作日，具體取決於接收銀行和交易時間。"
+      }
+    }
+  },
+
+  "banking_guide": {
+    "page_title": "銀行指南",
+    "title": "銀行指南",
+    "subtitle": "您需要了解的所有銀行體驗信息",
+    "back_to_support": "返回幫助與支持",
+
+    "getting_started": {
+      "title": "入門指南",
+      "navigating_dashboard": {
+        "title": "瀏覽您的儀表板",
+        "intro": "您的儀表板是管理財務的中心樞紐。以下是您將找到的內容：",
+        "account_overview": {
+          "label": "賬戶概覽",
+          "description": "查看所有賬戶的餘額和最近交易。"
+        },
+        "quick_actions": {
+          "label": "快速操作",
+          "description": "輕鬆訪問存款、轉賬和賬單支付等常見任務。"
+        },
+        "financial_summary": {
+          "label": "財務摘要",
+          "description": "獲取您的支出和儲蓄趨勢的快照。"
+        },
+        "notifications": {
+          "label": "通知",
+          "description": "獲取有關您賬戶的重要提醒。"
+        },
+        "tip": "通過點擊右上角的「個性化」選項，自定義您的儀表板，以顯示與您最相關的信息。"
+      }
+    },
+
+    "account_management": {
+      "title": "賬戶管理",
+      "account_types": {
+        "title": "了解您的賬戶類型",
+        "savings": {
+          "title": "儲蓄賬戶",
+          "description": "在保持資金易於獲取的同時，從存款中賺取利息。",
+          "interest_rate": "利率",
+          "minimum_balance": "最低餘額",
+          "monthly_fee": "無月費"
+        },
+        "checking": {
+          "title": "支票賬戶",
+          "description": "您用於日常交易和賬單支付的日常消費賬戶。",
+          "no_interest": "無利息",
+          "no_minimum_balance": "無最低餘額",
+          "monthly_fee": "月費"
+        }
+      },
+      "settings": {
+        "title": "管理賬戶設置",
+        "intro": "您可以自定義賬戶的各種設置：",
+        "nicknames": {
+          "label": "賬戶暱稱",
+          "description": "重命名您的賬戶，以便更容易識別。"
+        },
+        "statements": {
+          "label": "對賬單偏好",
+          "description": "選擇電子對賬單或紙質對賬單。"
+        },
+        "alerts": {
+          "label": "交易提醒",
+          "description": "為特定交易類型或金額設置通知。"
+        },
+        "users": {
+          "label": "授權用戶",
+          "description": "添加或移除可以訪問您賬戶的人員。"
+        }
+      }
+    },
+
+    "transactions": {
+      "title": "交易",
+      "deposits": {
+        "title": "存款",
+        "intro": "有幾種方式可以向您的賬戶添加資金：",
+        "direct": {
+          "label": "直接存款",
+          "description": "設置來自雇主或其他收入來源的自動存款。"
+        },
+        "mobile": {
+          "label": "移動存款",
+          "description": "使用應用程序通過拍照存入支票。"
+        },
+        "branch": {
+          "label": "分行存款",
+          "description": "在營業時間內訪問任何分行。"
+        },
+        "atm": {
+          "label": "ATM存款",
+          "description": "使用我們的ATM網絡進行現金或支票存款。"
+        }
+      },
+      "transfers": {
+        "title": "轉賬",
+        "intro": "在您的賬戶之間或向他人轉賬：",
+        "internal": {
+          "label": "內部轉賬",
+          "description": "在您自己的賬戶之間即時轉賬。"
+        },
+        "external": {
+          "label": "外部轉賬",
+          "description": "向其他銀行的賬戶發送資金（1-2個工作日）。"
+        },
+        "recurring": {
+          "label": "定期轉賬",
+          "description": "安排定期自動轉賬。"
+        },
+        "wire": {
+          "label": "電匯",
+          "description": "以一定費用國內或國際發送較大金額。"
+        },
+        "tip": "設置定期向您的儲蓄賬戶轉賬，以自動化您的儲蓄習慣。"
+      },
+      "history": {
+        "title": "交易歷史",
+        "intro": "跟踪您的財務活動：",
+        "view_months": "在線查看長達24個月的交易歷史。",
+        "filter": "按日期、金額或類型篩選交易。",
+        "search": "使用關鍵詞搜索特定交易。",
+        "download": "以PDF或CSV格式下載對賬單。",
+        "categorize": "對交易進行分類，以便更好地跟踪預算。"
+      }
+    },
+
+    "digital_banking": {
+      "title": "數字銀行功能",
+      "mobile": {
+        "title": "移動銀行",
+        "intro": "我們的移動應用提供便捷的賬戶訪問：",
+        "features": {
+          "balance_updates": "實時餘額更新",
+          "notifications": "自定義通知",
+          "check_deposit": "移動支票存款",
+          "locator": "ATM/分行定位器",
+          "biometric": "生物識別登錄",
+          "card_controls": "卡片控制"
+        }
+      },
+      "online": {
+        "title": "網上銀行",
+        "intro": "我們的安全網站提供全面的賬戶管理：",
+        "features": {
+          "view_accounts": "在一處查看所有賬戶和交易",
+          "pay_bills": "支付賬單和管理收款人",
+          "transfer": "在賬戶之間轉賬",
+          "download": "下載賬戶對賬單",
+          "update_info": "更新個人信息和偏好",
+          "apply": "申請其他銀行產品"
+        }
+      }
+    },
+
+    "additional_resources": {
+      "title": "其他資源",
+      "security_tips": {
+        "title": "安全提示",
+        "description": "了解如何保護您的賬戶和個人信息。",
+        "link_text": "查看安全提示"
+      },
+      "terms": {
+        "title": "條款和條件",
+        "description": "查看您賬戶的完整服務條款。",
+        "link_text": "查看條款和條件"
+      }
+    },
+
+    "support_footer": {
+      "intro": "需要進一步幫助？聯繫我們的客戶支持團隊："
+    }
+  },
+
+  "security_tips": {
+    "page_title": "安全提示",
+    "title": "安全提示",
+    "subtitle": "保護您的財務信息和賬戶",
+    "back_to_support": "返回幫助與支持",
+    "overview": "在安全銀行，我們非常重視您賬戶和個人信息的安全。雖然我們採用先進的安全措施來保護您的數據，但安全是一項共同責任。請遵循以下基本提示，幫助保護您的銀行信息和身份。",
+
+    "account_security": {
+      "title": "賬戶安全",
+      "password": {
+        "title": "強密碼和PIN碼實踐",
+        "strong": {
+          "title": "創建強憑證",
+          "description": "使用包含字母、數字和特殊字符的唯一PIN碼和密碼。避免使用生日或連續數字等容易猜測的信息。"
+        },
+        "updates": {
+          "title": "定期更新",
+          "description": "每3-6個月更換一次PIN碼和網上銀行密碼。"
+        },
+        "unique": {
+          "title": "唯一密碼",
+          "description": "為您的銀行賬戶使用與其他在線服務不同的密碼。"
+        },
+        "manager": {
+          "title": "密碼管理器",
+          "description": "考慮使用信譽良好的密碼管理器來安全地生成和存儲複雜密碼。"
+        },
+        "warning": {
+          "title": "切勿共享您的PIN碼或密碼",
+          "description": "銀行工作人員永遠不會要求您提供完整的PIN碼或密碼。對任何索要這些憑證的請求保持警惕。"
+        }
+      },
+      "2fa": {
+        "title": "雙因素認證 (2FA)",
+        "description": "雙因素認證通過在您登錄或執行敏感交易時要求第二步驗證來增加額外的安全層。",
+        "methods": {
+          "sms": {
+            "title": "短信驗證碼",
+            "description": "發送到您註冊的手機號碼的一次性代碼。"
+          },
+          "app": {
+            "title": "認證應用",
+            "description": "使用智能手機上的認證應用生成基於時間的代碼。"
+          },
+          "biometric": {
+            "title": "生物識別驗證",
+            "description": "使用指紋或面部識別增強安全性。"
+          }
+        },
+        "info": {
+          "title": "為所有賬戶啟用雙因素認證",
+          "description": "在您的網上銀行個人資料中前往「設置 > 安全」啟用和管理雙因素認證選項。"
+        }
+      }
+    },
+
+    "online_security": {
+      "title": "網上和移動銀行安全",
+      "device": {
+        "title": "安全設備實踐",
+        "os_updates": "保持計算機、智能手機和平板電腦操作系統的更新",
+        "antivirus": "安裝並維護信譽良好的防病毒和反惡意軟件",
+        "secure_connection": "使用安全、私密的互聯網連接進行銀行活動",
+        "screen_lock": "在所有設備上啟用自動屏幕鎖定",
+        "clear_cache": "定期清除瀏覽器緩存和Cookie",
+        "alert": {
+          "title": "避免在公共Wi-Fi上進行銀行操作",
+          "description": "切勿在公共或不安全的Wi-Fi網絡上進行銀行活動。請改用移動數據連接，或等到您有安全網絡訪問權限時再進行。"
+        }
+      },
+      "habits": {
+        "title": "安全網上銀行習慣",
+        "do": "應該做",
+        "dont": "不應該做",
+        "dos": {
+          "direct_url": "直接在瀏覽器中輸入銀行的URL或使用書簽",
+          "https": "查找地址欄中的\"https://\"和鎖定圖標",
+          "logout": "完成銀行會話後完全退出登錄",
+          "monitor": "定期監控您的賬戶是否有未授權活動",
+          "app": "在移動設備上使用官方移動銀行應用程序而不是瀏覽器"
+        },
+        "donts": {
+          "links": "點擊聲稱來自您銀行的電子郵件或消息中的鏈接",
+          "unattended": "在登錄網上銀行時讓您的設備無人看管",
+          "save_password": "在瀏覽器中保存您的銀行密碼",
+          "remember_me": "在共享或公共計算機上使用\"記住我\"選項",
+          "downloads": "在進行網上銀行操作時下載文件或點擊彈出窗口"
+        }
+      }
+    },
+
+    "fraud": {
+      "title": "欺詐意識與預防",
+      "scams": {
+        "title": "需要注意的常見詐騙",
+        "phishing": {
+          "title": "釣魚",
+          "description": "看似來自您銀行的欺詐性電子郵件、短信或電話，要求提供個人信息或登錄憑證。",
+          "red_flag": "紅旗警告：緊急請求個人信息或使用威脅性語言"
+        },
+        "smishing": {
+          "title": "短信釣魚",
+          "description": "聲稱來自您銀行的短信，通常包含可疑鏈接或請求敏感信息。",
+          "red_flag": "紅旗警告：關於\"可疑活動\"的消息，要求您點擊鏈接"
+        },
+        "vishing": {
+          "title": "語音釣魚",
+          "description": "欺詐者冒充銀行代表的電話，以提取個人或賬戶信息。",
+          "red_flag": "紅旗警告：施壓要求您立即行動或提供憑證的來電者"
+        },
+        "fake_apps": {
+          "title": "假冒銀行應用",
+          "description": "設計用來竊取您的登錄信息和銀行詳細信息的仿冒移動應用程序。",
+          "red_flag": "紅旗警告：不是從官方應用商店下載的應用或評價差的應用"
+        },
+        "remember_title": "請記住",
+        "remember_description": "安全銀行絕不會通過電子郵件、電話或短信請求您的PIN碼、完整密碼或安全碼。我們絕不會要求您轉賬到\"安全賬戶\"。"
+      },
+      "suspected": {
+        "title": "如果您懷疑欺詐",
+        "steps": {
+          "act": {
+            "title": "立即行動",
+            "description": "一旦懷疑欺詐活動，立即聯繫我們的安全熱線+(254)-98-466-352。"
+          },
+          "secure": {
+            "title": "保護您的賬戶",
+            "description": "通過移動應用或網上銀行鎖定您的卡和賬戶。"
+          },
+          "change": {
+            "title": "更改憑證",
+            "description": "從安全設備更新您的PIN碼和密碼。"
+          },
+          "document": {
+            "title": "記錄一切",
+            "description": "保留可疑信息、電話或交易的記錄，以便與我們的欺詐團隊分享。"
+          },
+          "monitor": {
+            "title": "監控您的賬戶",
+            "description": "定期檢查您的賬戶是否有任何未授權交易。"
+          }
+        }
+      }
+    },
+
+    "card_security": {
+      "title": "卡安全",
+      "physical": {
+        "title": "保護您的實體卡",
+        "guard": {
+          "title": "保管您的卡",
+          "description": "將您的卡放在安全位置，切勿使其無人看管。"
+        },
+        "shield": {
+          "title": "保護您的PIN碼",
+          "description": "在ATM或支付終端輸入PIN碼時遮擋鍵盤。"
+        },
+        "inspect": {
+          "title": "檢查ATM",
+          "description": "檢查ATM上是否有可能是盜刷設備的異常裝置或附件。"
+        },
+        "report": {
+          "title": "報告丟失的卡",
+          "description": "如果您的卡丟失或被盜，立即聯繫我們的24/7緊急熱線。"
+        },
+        "monitor": {
+          "title": "監控對賬單",
+          "description": "定期檢查您的卡對賬單並報告任何未授權交易。"
+        },
+        "controls": {
+          "title": "使用我們應用中的卡控制功能",
+          "lock": "鎖定/解鎖卡",
+          "location": "設置位置限制",
+          "limits": "調整交易限額",
+          "alerts": "交易提醒"
+        }
+      },
+      "online_shopping": {
+        "title": "安全網上購物",
+        "secure_websites": "僅在安全網站上購物（查找https://和鎖定圖標）",
+        "credit_card": "在可能的情況下，使用信用卡或虛擬卡號進行在線購買",
+        "records": "保留您的在線購買和確認記錄",
+        "authentication": "選擇在線支付的額外認證步驟",
+        "suspicious": "對看起來好得不真實的交易保持警惕",
+        "virtual_card": {
+          "title": "虛擬卡功能",
+          "description": "在移動應用中使用我們的虛擬卡功能進行在線購物。這些臨時卡號為您的實際賬戶提供額外的安全層。"
+        }
+      }
+    },
+
+    "footer": {
+      "title": "及時了解安全信息",
+      "description": "我們不斷更新安全措施以保護您的賬戶。定期訪問此頁面獲取最新的安全提示和更新。",
+      "report": {
+        "title": "報告可疑活動",
+        "hotline": {
+          "title": "24/7安全熱線"
+        },
+        "email": {
+          "title": "安全電子郵件"
+        }
+      }
+    }
+  },
+
+  "terms": {
+    "page_title": "條款和條件",
+    "title": "條款和條件",
+    "subtitle": "管理您使用安全銀行服務的協議",
+    "back_to_support": "返回幫助與支持",
+    "last_updated": "最後更新：2025年3月15日",
+
+    "intro": {
+      "paragraph1": "本條款和條件協議（\"協議\"）由您（\"客戶\"）與安全銀行（\"銀行\"、\"我們\"、\"我們的\"）訂立。通過使用我們的任何服務，包括我們的網站、移動應用程序、賬戶服務或其他銀行產品，您同意受這些條款的約束。",
+      "paragraph2": "在訪問或使用我們的服務之前，請仔細閱讀本協議。如果您不同意這些條款，請不要使用我們的服務。"
+    },
+
+    "contents": {
+      "title": "目錄",
+      "sections": {
+        "definitions": "1. 定義",
+        "accounts": "2. 賬戶",
+        "online_banking": "3. 網上和移動銀行",
+        "transactions": "4. 交易",
+        "fees": "5. 費用與收費",
+        "privacy": "6. 隱私與數據保護",
+        "security": "7. 安全責任",
+        "liability": "8. 責任與免責聲明",
+        "termination": "9. 服務終止",
+        "amendments": "10. 條款修改",
+        "governing_law": "11. 適用法律",
+        "contact": "12. 聯繫信息"
+      }
+    },
+
+    "sections": {
+      "definitions": {
+        "title": "1. 定義",
+        "intro": "在本協議中，除非上下文另有要求：",
+        "terms": {
+          "account": "\"賬戶\"指在安全銀行持有的任何賬戶，包括儲蓄賬戶、支票賬戶和銀行提供的任何其他類型的賬戶。",
+          "customer_id": "\"客戶ID\"指註冊時分配給您的唯一識別號碼。",
+          "pin": "\"PIN\"指用於驗證身份的個人識別號碼。",
+          "online_banking": "\"網上銀行\"指通過我們的網站訪問的銀行互聯網銀行服務。",
+          "mobile_banking": "\"移動銀行\"指通過我們的移動應用程序訪問的銀行銀行服務。",
+          "transaction": "\"交易\"指影響您賬戶餘額的任何活動，包括存款、取款和轉賬。",
+          "business_day": "\"工作日\"指週一至週五，不包括公共假日。"
+        }
+      },
+
+      "accounts": {
+        "title": "2. 賬戶",
+        "opening": {
+          "title": "2.1 開立賬戶",
+          "intro": "要在安全銀行開立賬戶，您必須：",
+          "requirements": [
+            "提供準確完整的個人信息",
+            "達到18歲的最低年齡要求",
+            "提供有效的身份證明文件",
+            "同意我們的賬戶條款和條件"
+          ],
+          "note": "銀行保留自行決定拒絕開立賬戶的權利。"
+        },
+        "maintenance": {
+          "title": "2.2 賬戶維護",
+          "intro": "作為賬戶持有人，您負責：",
+          "responsibilities": [
+            "維持您賬戶類型的最低餘額要求",
+            "在發生變更時及時更新您的個人信息",
+            "定期檢查賬戶對賬單的準確性",
+            "在對賬單發出後30天內通知銀行任何差異"
+          ]
+        },
+        "closure": {
+          "title": "2.3 賬戶關閉",
+          "intro": "任何一方均可通過書面通知關閉您的賬戶。銀行可在以下情況下關閉您的賬戶：",
+          "reasons": [
+            "如果您違反本協議的任何條款",
+            "如果您的賬戶連續90天保持零餘額",
+            "如果我們懷疑有欺詐活動",
+            "適用法律允許的任何其他原因"
+          ],
+          "note": "賬戶關閉後，在扣除任何未付費用或收費後，任何剩餘餘額將支付給您。"
+        }
+      },
+
+      "online_banking": {
+        "title": "3. 網上和移動銀行",
+        "registration": {
+          "title": "3.1 註冊",
+          "description": "要訪問我們的網上和移動銀行服務，您必須使用您的客戶ID註冊並設置安全憑證。通過註冊，您同意特定於數字銀行服務的附加條款。"
+        },
+        "security_credentials": {
+          "title": "3.2 安全憑證",
+          "intro": "您負責：",
+          "responsibilities": [
+            "保持您的客戶ID、PIN和密碼的保密性",
+            "不與任何第三方共享您的安全憑證",
+            "使用安全的設備和連接進行銀行活動",
+            "每次會話後登出",
+            "定期更改您的憑證，如果您懷疑安全漏洞也要更改"
+          ]
+        },
+        "access": {
+          "title": "3.3 訪問和可用性",
+          "description": "雖然我們努力確保我們的網上和移動銀行服務的持續可用性，但我們不保證不間斷的訪問。服務可能由於以下原因而不可用：",
+          "reasons": ["計劃維護", "系統升級", "技術問題", "我們無法控制的情況"],
+          "note": "銀行不對服務不可用造成的任何損失或不便負責。"
+        },
+        "device_compatibility": {
+          "title": "3.4 設備兼容性",
+          "description": "您負責確保您的設備滿足我們服務的最低技術要求。銀行不對設備不兼容引起的任何問題負責。"
+        }
+      },
+
+      "transactions": {
+        "title": "4. 交易",
+        "authorization": {
+          "title": "4.1 交易授權",
+          "description": "通過發起交易，您授權銀行代表您執行該交易。所有交易都需經過驗證和銀行的批准。"
+        },
+        "limits": {
+          "title": "4.2 交易限額",
+          "intro": "以下默認限額適用於交易：",
+          "default_limits": [
+            "每日取款限額：肯尼亞先令10,000",
+            "每日轉賬限額：肯尼亞先令10,000",
+            "每日移動銀行交易限額：肯尼亞先令10,000"
+          ],
+          "note": "這些限額可能因您的賬戶類型和狀態而異。銀行保留隨時修改這些限額的權利。"
+        },
+        "processing_times": {
+          "title": "4.3 交易處理時間",
+          "times": [
+            "安全銀行賬戶之間的內部轉賬：即時",
+            "向其他銀行的外部轉賬：1-2個工作日",
+            "國際轉賬：3-5個工作日"
+          ],
+          "note": "交易時間是估計值，可能會因各種因素而有所不同。銀行不對中介銀行或其他外部因素造成的延誤負責。"
+        },
+        "disputes": {
+          "title": "4.4 交易爭議",
+          "intro": "如果您認為發生了未授權交易或您的賬戶有錯誤：",
+          "steps": ["立即通知銀行", "提供有爭議交易的詳細信息", "提交銀行要求的任何支持文件"],
+          "resolution": "銀行將調查所有爭議並在30天內提供解決方案。如果您在未授權交易出現在您的對賬單上後60天內未報告，您可能沒有資格獲得賠償。"
+        }
+      },
+
+      "fees": {
+        "title": "5. 費用與收費",
+        "schedule": {
+          "title": "5.1 費用表",
+          "intro": "銀行根據我們當前的費用表對某些服務收費，可能包括：",
+          "fee_types": [
+            "月度賬戶維護費",
+            "交易費",
+            "ATM取款費",
+            "國際轉賬費",
+            "透支費",
+            "對賬單請求費"
+          ],
+          "note": "完整的費用表可在我們的分行和網站上獲取。"
+        },
+        "changes": {
+          "title": "5.2 費用變更",
+          "description": "銀行保留隨時修改費用的權利。我們將在實施任何費用變更前提供至少30天的通知。"
+        },
+        "payment": {
+          "title": "5.3 費用支付",
+          "description": "您授權銀行直接從您的賬戶中扣除任何適用的費用。如果您的賬戶資金不足以支付費用，您同意在要求時支付未付金額。"
+        }
+      },
+
+      "privacy": {
+        "title": "6. 隱私與數據保護",
+        "data_collection": {
+          "title": "6.1 數據收集",
+          "intro": "銀行收集您的個人信息用於提供銀行服務。這些信息可能包括：",
+          "types": [
+            "個人身份信息",
+            "聯繫方式",
+            "財務信息",
+            "交易歷史",
+            "使用數字服務時的設備和使用信息"
+          ]
+        },
+        "data_usage": {
+          "title": "6.2 數據使用",
+          "intro": "銀行使用您的個人數據於：",
+          "purposes": [
+            "處理交易並提供銀行服務",
+            "驗證您的身份並防止欺詐",
+            "遵守法律和監管要求",
+            "改進我們的產品和服務",
+            "就您的賬戶和我們的服務與您溝通"
+          ]
+        },
+        "data_sharing": {
+          "title": "6.3 數據共享",
+          "intro": "銀行可能與以下各方共享您的信息：",
+          "recipients": [
+            "協助提供銀行服務的第三方服務提供商",
+            "法律要求的監管機構和執法機構",
+            "信用參考局",
+            "用於交易處理的其他金融機構"
+          ],
+          "note": "我們不會將您的個人信息出售給第三方用於營銷目的。"
+        },
+        "data_security": {
+          "title": "6.4 數據安全",
+          "description": "銀行實施適當的技術和組織措施，保護您的個人數據免受未授權訪問、丟失或損壞。但是，通過互聯網傳輸或存儲系統的數據不能保證100%安全。"
+        },
+        "data_retention": {
+          "title": "6.5 數據保留",
+          "description": "銀行將在必要時間內保留您的個人數據，以實現收集數據的目的，或根據適用法律和法規的要求。"
+        }
+      },
+
+      "security": {
+        "title": "7. 安全責任",
+        "bank_responsibilities": {
+          "title": "7.1 銀行責任",
+          "intro": "銀行致力於通過以下方式維護您的賬戶和信息安全：",
+          "measures": [
+            "實施行業標準安全措施",
+            "監控可疑活動",
+            "提供安全的銀行交易渠道",
+            "定期更新我們的安全系統"
+          ]
+        },
+        "customer_responsibilities": {
+          "title": "7.2 客戶責任",
+          "intro": "您負責：",
+          "responsibilities": [
+            "保持您的安全憑證的保密性",
+            "使用安全的設備和連接進行銀行活動",
+            "定期檢查您的賬戶是否有未授權交易",
+            "立即通知銀行任何安全顧慮",
+            "遵循我們安全提示中提供的安全指南"
+          ]
+        },
+        "reporting_incidents": {
+          "title": "7.3 報告安全事件",
+          "intro": "如果您懷疑未經授權訪問您的賬戶或任何其他安全漏洞，您必須立即：",
+          "steps": [
+            "聯繫我們的24/7安全熱線+(254)-98-466-352",
+            "更改您的PIN和密碼",
+            "遵循銀行提供的任何額外安全指示"
+          ]
+        }
+      },
+
+      "liability": {
+        "title": "8. 責任與免責聲明",
+        "bank_liability": {
+          "title": "8.1 銀行責任",
+          "intro": "銀行將對以下情況負責：",
+          "liabilities": [
+            "未授權交易造成的直接損失，前提是您已遵守您的安全責任並在規定時間內報告了未授權活動",
+            "由銀行疏忽或故意不當行為造成的損失"
+          ]
+        },
+        "limitation": {
+          "title": "8.2 責任限制",
+          "intro": "銀行不對以下情況負責：",
+          "limitations": [
+            "間接、後果性或特殊損害",
+            "超出我們合理控制範圍的情況造成的損失",
+            "因您未能遵守安全要求而導致的損失",
+            "由於技術問題、第三方服務提供商或超出我們控制範圍的其他因素導致的交易執行延遲或失敗",
+            "由設備不兼容或互聯網連接問題引起的問題",
+            "超過爭議交易金額的任何金額"
+          ]
+        },
+        "disclaimers": {
+          "title": "8.3 免責聲明",
+          "intro": "銀行的服務是按\"現狀\"和\"可用性\"提供的。我們不對以下內容做出任何明示或暗示的保證或陳述：",
+          "items": [
+            "我們服務的持續可用性",
+            "我們系統的無錯誤運行",
+            "通過我們的服務提供的信息的準確性或完整性",
+            "我們的服務對您特定需求的適用性"
+          ]
+        }
+      },
+
+      "termination": {
+        "title": "9. 服務終止",
+        "by_customer": {
+          "title": "9.1 客戶終止",
+          "intro": "您可以隨時通過以下方式終止使用我們的服務：",
+          "steps": [
+            "提交書面請求關閉您的賬戶",
+            "歸還任何銀行發行的卡或其他訪問設備",
+            "結清對銀行的任何未結清義務"
+          ]
+        },
+        "by_bank": {
+          "title": "9.2 銀行終止",
+          "intro": "銀行可在以下情況下終止您對我們服務的訪問，無論是否通知：",
+          "reasons": [
+            "您違反本協議的任何條款",
+            "我們懷疑欺詐活動或濫用我們的服務",
+            "您提供虛假或誤導性信息",
+            "法律或監管機構要求",
+            "銀行確定的其他有效原因"
+          ]
+        },
+        "effect": {
+          "title": "9.3 終止效果",
+          "intro": "終止後：",
+          "effects": [
+            "您對已終止服務的訪問將立即停止",
+            "任何未完成的交易可能會完成或取消，由銀行自行決定",
+            "您仍對終止前產生的任何義務負責",
+            "賬戶關閉可能會收取適用費用"
+          ]
+        }
+      },
+
+      "amendments": {
+        "title": "10. 條款修改",
+        "changes": {
+          "title": "10.1 協議變更",
+          "intro": "銀行保留隨時修改本協議的權利。變更可能包括：",
+          "types": [
+            "添加或刪除條款",
+            "修改現有條款",
+            "更新以反映法律或法規的變更",
+            "服務功能或功能性的變更"
+          ]
+        },
+        "notice": {
+          "title": "10.2 變更通知",
+          "intro": "銀行將通過以下方式通知您本協議的重大變更：",
+          "methods": [
+            "電子郵件通知",
+            "網上銀行中的安全消息",
+            "我們網站上的更新",
+            "銀行確定的其他通信方法"
+          ],
+          "note": "除非法律另有要求，否則重大變更將在生效前至少30天通知。"
+        },
+        "acceptance": {
+          "title": "10.3 變更接受",
+          "description": "在任何變更的生效日期後繼續使用我們的服務，即表示您接受修改後的協議。如果您不同意這些變更，您必須在生效日期前終止使用我們的服務。"
+        }
+      },
+
+      "governing_law": {
+        "title": "11. 適用法律",
+        "applicable_law": {
+          "title": "11.1 適用法律",
+          "description": "本協議應受肯尼亞法律管轄並按其解釋，不考慮其法律衝突條款。"
+        },
+        "dispute_resolution": {
+          "title": "11.2 爭議解決",
+          "intro": "因本協議引起的或與之相關的任何爭議應按以下方式解決：",
+          "steps": {
+            "customer_service": "首先，聯繫我們的客戶服務解決問題",
+            "formal_complaint": "如果未解決，向銀行提交正式書面投訴",
+            "mediation": "如果仍未解決，爭議可能會提交給雙方同意的調解員",
+            "legal": "作為最後手段，任何一方可在肯尼亞法院尋求法律救濟"
+          }
+        },
+        "severability": {
+          "title": "11.3 可分割性",
+          "description": "如果本協議的任何條款被認為無效或不可執行，該條款應被刪除，其餘條款應在法律允許的最大範圍內執行。"
+        }
+      },
+
+      "contact": {
+        "title": "12. 聯繫信息",
+        "intro": "如有關於本協議或我們服務的問題或疑慮，請聯繫我們：",
+        "methods": {
+          "customer_service": {
+            "title": "客戶服務",
+            "phone": "+(254)-98-466-352",
+            "hours": "週一至週五上午8:00 - 下午6:00提供服務"
+          },
+          "email": {
+            "title": "電子郵件支持",
+            "address": "banking@info.org",
+            "response_time": "24小時內回覆"
+          },
+          "branch": {
+            "title": "主要分行",
+            "address": "內羅畢，主街123號",
+            "note": "在營業時間內訪問"
+          },
+          "security": {
+            "title": "安全熱線",
+            "phone": "+(254)-98-466-352",
+            "availability": "安全問題24/7全天候服務"
+          }
+        }
+      }
+    },
+
+    "footer": {
+      "acceptance": "通過使用安全銀行的任何服務，您確認您已閱讀、理解並同意受本協議約束。",
+      "copyright": "© 2025 安全銀行。保留所有權利。"
+    }
+  },
+  "profile_information": "個人資料信息",
+  "personal_information": "個人信息",
+  "full_name": "姓名",
+  "phone_number": "電話號碼",
+  "date_of_birth": "出生日期",
+  "system_information": "系統信息",
+  "customer_id": "客戶ID",
+  "registration_date": "註冊日期",
+  "last_login": "最後登錄",
+  "account_information": "賬戶信息",
+  "account_number": "賬號",
+
+  "balance": "餘額",
+  "status": "狀態",
+  "interest_rate": "利率",
+  "limits": "限額",
+  "withdrawal": "提款",
+  "services": "服務",
+  "no_accounts_found": "未找到賬戶",
+  "active-status": "活躍",
+
+  "update_personal_information": "更新您的個人信息",
+  "full_name_required": "姓名為必填項",
+  "full_name_min_length": "姓名必須至少包含2個字符",
+  "email_required": "電子郵箱為必填項",
+  "email_invalid": "請輸入有效的電子郵箱地址",
+  "phone_number_hint": "肯尼亞電話號碼格式（例如：712345678）",
+  "phone_number_invalid": "請輸入有效的肯尼亞電話號碼",
+  "address_min_length": "地址必須至少包含5個字符",
+  "non_editable_info": "系統信息（不可編輯）",
+  "reset": "重置",
+  "cancel": "取消",
+  "save_changes": "保存更改",
+  "phone_number_format_error": "電話號碼必須以7或1開頭，後跟8位數字（例如：712345678）",
+  "no_changes_detected": "未檢測到更改",
+  "profile_update_success": "個人資料更新成功",
+  "profile_update_error": "更新個人資料失敗。請重試。",
+  "profile_load_error": "加載個人資料信息失敗。請稍後再試。"
 }

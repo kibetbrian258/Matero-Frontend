@@ -1,10 +1,10 @@
 <div class="transaction-container">
   <div class="transaction-card">
     <div class="transaction-header">
-      <h2>Transfer Funds</h2>
+      <h2>{{ 'transfer.title' | translate }}</h2>
       <button class="back-btn" (click)="goToDashboard()">
         <mat-icon>arrow_back</mat-icon>
-        Back to Dashboard
+        {{ 'transfer.back_to_dashboard' | translate }}
       </button>
     </div>
 
@@ -14,9 +14,9 @@
         <div class="success-message">
           <mat-icon>check_circle</mat-icon>
           <div class="message-content">
-            <h3>Transfer Successful!</h3>
-            <p>Your funds have been transferred successfully.</p>
-            <p>Redirecting to dashboard...</p>
+            <h3>{{ 'transfer.success_title' | translate }}</h3>
+            <p>{{ 'transfer.success_message' | translate }}</p>
+            <p>{{ 'transfer.redirecting' | translate }}</p>
           </div>
         </div>
       }
@@ -31,26 +31,29 @@
 
           <!-- Source Account Selection Field -->
           <div class="form-group">
-            <label for="sourceAccountNumber" class="form-label">From Account</label>
+            <label for="sourceAccountNumber" class="form-label">
+              {{ 'transfer.from_account' | translate }}
+            </label>
             @if (loadingAccounts) {
               <div class="loading-accounts">
                 <mat-spinner diameter="20"></mat-spinner>
-                <span>Loading accounts...</span>
+                <span>{{ 'transfer.loading_accounts' | translate }}</span>
               </div>
             }
             @if (!loadingAccounts) {
               <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Select Source Account</mat-label>
+                <mat-label>{{ 'transfer.select_source_account' | translate }}</mat-label>
                 <mat-select formControlName="sourceAccountNumber" id="sourceAccountNumber">
                   @for (account of accounts; track account.accountNumber) {
                     <mat-option [value]="account.accountNumber">
-                      {{ account.accountNumber }} - Balance: Ksh {{ account.balance.toFixed(2) }}
+                      {{ account.accountNumber }} - {{ 'transfer.balance' | translate }}:
+                      {{ formatAmount(account.balance) }}
                     </mat-option>
                   }
                 </mat-select>
                 @if (submitted && f['sourceAccountNumber'].errors) {
                   <mat-error *ngIf="f['sourceAccountNumber'].errors['required']">
-                    Source account is required
+                    {{ 'transfer.source_account_required' | translate }}
                   </mat-error>
                 }
               </mat-form-field>
@@ -61,22 +64,22 @@
           @if (selectedSourceAccount) {
             <div class="account-details">
               <div class="detail-item">
-                <span class="label">Available Balance:</span>
-                <span class="value">Ksh {{ selectedSourceAccount.balance.toFixed(2) }}</span>
+                <span class="label">{{ 'transfer.available_balance' | translate }}:</span>
+                <span class="value">{{ formatAmount(selectedSourceAccount.balance) }}</span>
               </div>
               <div class="detail-item">
-                <span class="label">Transfer Limit:</span>
-                <span class="value">Ksh {{ selectedSourceAccount.transferLimit.toFixed(2) }}</span>
+                <span class="label">{{ 'transfer.transfer_limit' | translate }}:</span>
+                <span class="value">{{ formatAmount(selectedSourceAccount.transferLimit) }}</span>
               </div>
               <div class="detail-item">
-                <span class="label">Max Transfer:</span>
+                <span class="label">{{ 'transfer.max_transfer' | translate }}:</span>
                 <span class="value">
-                  Ksh
                   {{
-                    (selectedSourceAccount.transferLimit < selectedSourceAccount.balance
-                      ? selectedSourceAccount.transferLimit
-                      : selectedSourceAccount.balance
-                    ).toFixed(2)
+                    formatAmount(
+                      selectedSourceAccount.transferLimit < selectedSourceAccount.balance
+                        ? selectedSourceAccount.transferLimit
+                        : selectedSourceAccount.balance
+                    )
                   }}
                 </span>
               </div>
@@ -86,20 +89,20 @@
           <!-- Destination Account Field -->
           <div class="form-group">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>To Account</mat-label>
+              <mat-label>{{ 'transfer.to_account' | translate }}</mat-label>
               <input
                 type="text"
                 matInput
                 formControlName="destinationAccountNumber"
                 id="destinationAccountNumber"
-                placeholder="Enter destination account number"
+                placeholder="{{ 'transfer.enter_destination_account' | translate }}"
               />
               @if (submitted && f['destinationAccountNumber'].errors) {
                 <mat-error *ngIf="f['destinationAccountNumber'].errors['required']">
-                  Destination account is required
+                  {{ 'transfer.destination_account_required' | translate }}
                 </mat-error>
                 <mat-error *ngIf="f['destinationAccountNumber'].errors['sameAccount']">
-                  Destination account must be different from source account
+                  {{ 'transfer.different_account_required' | translate }}
                 </mat-error>
               }
             </mat-form-field>
@@ -108,13 +111,13 @@
           <!-- Amount Field -->
           <div class="form-group">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Amount (Ksh)</mat-label>
+              <mat-label>{{ 'transfer.amount_label' | translate }}</mat-label>
               <input
                 type="number"
                 matInput
                 formControlName="amount"
                 id="amount"
-                placeholder="Enter amount"
+                placeholder="{{ 'transfer.enter_amount' | translate }}"
                 step="0.01"
                 min="0.01"
                 [max]="
@@ -126,15 +129,17 @@
                 "
               />
               @if (submitted && f['amount'].errors) {
-                <mat-error *ngIf="f['amount'].errors['required']">Amount is required</mat-error>
+                <mat-error *ngIf="f['amount'].errors['required']">
+                  {{ 'transfer.amount_required' | translate }}
+                </mat-error>
                 <mat-error *ngIf="f['amount'].errors['min']">
-                  Amount must be greater than zero
+                  {{ 'transfer.amount_greater_than_zero' | translate }}
                 </mat-error>
                 <mat-error *ngIf="f['amount'].errors['max']">
-                  Amount exceeds available balance or transfer limit
+                  {{ 'transfer.amount_exceeds_limit' | translate }}
                 </mat-error>
                 <mat-error *ngIf="f['amount'].errors['pattern']">
-                  Amount must be a valid number with up to 2 decimal places
+                  {{ 'transfer.amount_valid_number' | translate }}
                 </mat-error>
               }
             </mat-form-field>
@@ -152,19 +157,19 @@
               @if (loading) {
                 <mat-spinner diameter="20" class="spinner-inline"></mat-spinner>
               }
-              <span>Transfer Funds</span>
+              <span>{{ 'transfer.transfer_funds' | translate }}</span>
             </button>
           </div>
         </form>
 
         <!-- Additional Info -->
         <div class="info-panel">
-          <h4>Transfer Information</h4>
+          <h4>{{ 'transfer.info_title' | translate }}</h4>
           <ul>
-            <li>Transfers are processed immediately.</li>
-            <li>Make sure you have sufficient funds in your source account.</li>
-            <li>Transfers to other banks may take 1-3 business days.</li>
-            <li>Daily transfer limits may apply.</li>
+            <li>{{ 'transfer.info_immediate' | translate }}</li>
+            <li>{{ 'transfer.info_sufficient' | translate }}</li>
+            <li>{{ 'transfer.info_other_banks' | translate }}</li>
+            <li>{{ 'transfer.info_limits' | translate }}</li>
           </ul>
         </div>
       }

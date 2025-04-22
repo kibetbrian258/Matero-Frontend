@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { AccountResponse, AccountService } from '@core/authentication/account.service';
 import { TransactionResponse, TransactionService } from '@core/authentication/transaction.service';
 import { CustomerProfileResponse, CustomerService } from '@core/authentication/customer.service';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -23,7 +24,13 @@ import { CustomerProfileResponse, CustomerService } from '@core/authentication/c
   styleUrl: './dashboard.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, PageHeaderComponent, RemoveMenuPrefixPipe, MatIconModule],
+  imports: [
+    CommonModule,
+    PageHeaderComponent,
+    RemoveMenuPrefixPipe,
+    MatIconModule,
+    TranslateModule,
+  ],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   private readonly router = inject(Router);
@@ -32,11 +39,12 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private readonly accountService = inject(AccountService);
   private readonly transactionService = inject(TransactionService);
   private readonly customerService = inject(CustomerService);
+  private readonly translate = inject(TranslateService);
 
   private subscriptions = new Subscription();
 
   // page title
-  pageTitle = 'Dashboard';
+  pageTitle = 'dashboard.title';
 
   // Dashboard data
   customerProfile: CustomerProfileResponse | null = null;
@@ -92,77 +100,86 @@ export class DashboardComponent implements OnInit, OnDestroy {
     if (menuLevel && menuLevel.length > 0) {
       this.pageTitle = menuLevel[menuLevel.length - 1];
     } else {
-      this.pageTitle = 'Dashboard';
+      this.pageTitle = 'dashboard.title';
     }
   }
 
   loadCustomerProfile(): void {
     this.isLoadingProfile = true;
     this.profileError = false;
-    
+
     this.subscriptions.add(
-      this.customerService.getProfile().pipe(
-        finalize(() => {
-          this.isLoadingProfile = false;
-          this.cdr.markForCheck();
+      this.customerService
+        .getProfile()
+        .pipe(
+          finalize(() => {
+            this.isLoadingProfile = false;
+            this.cdr.markForCheck();
+          })
+        )
+        .subscribe({
+          next: profile => {
+            this.customerProfile = profile;
+          },
+          error: error => {
+            console.error('Error fetching customer profile:', error);
+            this.profileError = true;
+          },
         })
-      ).subscribe({
-        next: (profile) => {
-          this.customerProfile = profile;
-        },
-        error: (error) => {
-          console.error('Error fetching customer profile:', error);
-          this.profileError = true;
-        }
-      })
     );
   }
 
   loadAccountData(): void {
     this.isLoadingAccounts = true;
     this.accountsError = false;
-    
+
     this.subscriptions.add(
-      this.accountService.getAccounts().pipe(
-        finalize(() => {
-          this.isLoadingAccounts = false;
-          this.cdr.markForCheck();
+      this.accountService
+        .getAccounts()
+        .pipe(
+          finalize(() => {
+            this.isLoadingAccounts = false;
+            this.cdr.markForCheck();
+          })
+        )
+        .subscribe({
+          next: accounts => {
+            this.accounts = accounts;
+            if (accounts.length > 0) {
+              this.currentAccount = accounts[0]; // Default to first account
+              this.loadRecentTransactions(this.currentAccount.accountNumber);
+            }
+          },
+          error: error => {
+            console.error('Error fetching accounts:', error);
+            this.accountsError = true;
+          },
         })
-      ).subscribe({
-        next: (accounts) => {
-          this.accounts = accounts;
-          if (accounts.length > 0) {
-            this.currentAccount = accounts[0]; // Default to first account
-            this.loadRecentTransactions(this.currentAccount.accountNumber);
-          }
-        },
-        error: (error) => {
-          console.error('Error fetching accounts:', error);
-          this.accountsError = true;
-        }
-      })
     );
   }
 
   loadRecentTransactions(accountNumber: string): void {
     this.isLoadingTransactions = true;
     this.transactionsError = false;
-    
+
     this.subscriptions.add(
-      this.transactionService.getRecentTransactions(accountNumber).pipe(
-        finalize(() => {
-          this.isLoadingTransactions = false;
-          this.cdr.markForCheck();
+      this.transactionService
+        .getRecentTransactions(accountNumber)
+        .pipe(
+          finalize(() => {
+            this.isLoadingTransactions = false;
+            this.cdr.markForCheck();
+          })
+        )
+        .subscribe({
+          next: transactions => {
+            this.recentTransactions = transactions;
+          },
+          error: error => {
+            console.error('Error fetching transactions:', error);
+            this.transactionsError = true;
+          },
         })
-      ).subscribe({
-        next: (transactions) => {
-          this.recentTransactions = transactions;
-        },
-        error: (error) => {
-          console.error('Error fetching transactions:', error);
-          this.transactionsError = true;
-        }
-      })
     );
   }
 
@@ -187,20 +204,48 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.router.navigate(['/transactions']);
   }
 
+  // Helper method to properly format transaction type keys for translation
+  getTransactionTypeKey(type: string): string {
+    // Normalize the type to lowercase and replace spaces with underscores
+    const normalizedType = type.toLowerCase().replace(/\s+/g, '_');
+    return `transaction.type.${normalizedType}`;
+  }
+
   // Format date to readable format
   formatDate(dateStr: string): string {
     try {
-      return formatDate(dateStr, 'dd/MM/yy:HHmmHrs', 'en-US');
+      // Get current language for date formatting
+      const currentLang = this.translate.currentLang;
+      let locale = 'en-US';
+
+      // Map language code to locale
+      if (currentLang === 'zh-CN' || currentLang === 'zh-TW') {
+        locale = currentLang;
+      } else if (currentLang === 'sw') {
+        locale = 'sw-KE'; // Swahili (Kenya)
+      }
+
+      return formatDate(
+        dateStr,
+        this.translate.instant('date_format') || 'dd/MM/yy h:mm a',
+        locale
+      );
     } catch (e) {
       return dateStr;
     }
   }
-  
+
   // Format amount to Kenyan Shillings
   formatAmount(amount: number): string {
-    return `Ksh ${amount.toFixed(2)}`;
+    try {
+      const currencySymbol = this.translate.instant('currency_symbol') || 'Ksh';
+      // Use the browser's Intl API for currency formatting
+      return `${currencySymbol} ${amount.toFixed(2)}`;
+    } catch (e) {
+      return `Ksh ${amount.toFixed(2)}`;
+    }
   }
-  
+
   // In your dashboard.component.ts file
   selectAccount(event: Event): void {
     const value = (event.target as HTMLSelectElement).value;

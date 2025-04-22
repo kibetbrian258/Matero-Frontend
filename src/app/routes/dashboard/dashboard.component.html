@@ -1,13 +1,13 @@
-<!-- <page-header [title]="pageTitle" /> -->
+<!-- <page-header [title]="pageTitle | translate" /> -->
 
 <div class="dashboard-container">
   <div class="page-header">
-    <h2>Dashboard</h2>
+    <h2>{{ 'dashboard.title' | translate }}</h2>
   </div>
   <div class="main-content">
     <!-- Quick Actions section -->
     <div class="section">
-      <h2 class="section-title">Quick Actions</h2>
+      <h2 class="section-title">{{ 'dashboard.quick_actions' | translate }}</h2>
       <div class="quick-actions">
         <button
           class="action-btn deposit"
@@ -15,7 +15,7 @@
           [disabled]="!currentAccount"
         >
           <mat-icon>add_circle</mat-icon>
-          Deposit
+          {{ 'dashboard.deposit' | translate }}
         </button>
         <button
           class="action-btn withdraw"
@@ -23,15 +23,15 @@
           [disabled]="!currentAccount"
         >
           <mat-icon>remove_circle</mat-icon>
-          Withdraw
+          {{ 'dashboard.withdraw' | translate }}
         </button>
         <button
           class="action-btn transfer"
           (click)="navigateToTransfer()"
-          [disabled]="!currentAccount || accounts.length < 2"
+          [disabled]="!currentAccount || accounts.length < 1"
         >
           <mat-icon>swap_horiz</mat-icon>
-          Transfer
+          {{ 'dashboard.transfer' | translate }}
         </button>
         <button
           class="action-btn search"
@@ -39,7 +39,7 @@
           [disabled]="!currentAccount"
         >
           <mat-icon>search</mat-icon>
-          Search
+          {{ 'dashboard.search' | translate }}
         </button>
       </div>
     </div>
@@ -47,7 +47,7 @@
     <!-- Account Selection (if multiple accounts) -->
     @if (accounts.length > 1) {
       <div class="section">
-        <h2 class="section-title">Select Account</h2>
+        <h2 class="section-title">{{ 'dashboard.select_account' | translate }}</h2>
         <div class="account-selector">
           <select (change)="selectAccount($event)">
             @for (account of accounts; track account.accountNumber) {
@@ -66,15 +66,15 @@
     <!-- Account Summary section -->
     <div class="section">
       <div class="account-summary">
-        <h2 class="section-title">Account Summary</h2>
+        <h2 class="section-title">{{ 'dashboard.account_summary' | translate }}</h2>
 
         @if (isLoadingProfile || isLoadingAccounts) {
-          <div class="loading-indicator">Loading account information...</div>
+          <div class="loading-indicator">{{ 'dashboard.loading_account_info' | translate }}</div>
         }
 
         @if (profileError || accountsError) {
           <div class="error-message">
-            Failed to load account information. Please try again later.
+            {{ 'dashboard.load_account_error' | translate }}
           </div>
         }
 
@@ -82,21 +82,21 @@
           <div class="summary-content">
             <div class="summary-row">
               <div class="summary-item">
-                <span class="item-label">Customer ID:</span>
+                <span class="item-label">{{ 'dashboard.customer_id' | translate }}:</span>
                 <span class="item-value">{{ customerProfile.customerId }}</span>
               </div>
               <div class="summary-item">
-                <span class="item-label">Last Login:</span>
+                <span class="item-label">{{ 'dashboard.last_login' | translate }}:</span>
                 <span class="item-value">{{ formatDate(customerProfile.lastLogin) }}</span>
               </div>
             </div>
             <div class="summary-row">
               <div class="summary-item">
-                <span class="item-label">Account No:</span>
+                <span class="item-label">{{ 'dashboard.account_no' | translate }}:</span>
                 <span class="item-value">{{ currentAccount.accountNumber }}</span>
               </div>
               <div class="summary-item">
-                <span class="item-label">Account Status:</span>
+                <span class="item-label">{{ 'dashboard.account_status' | translate }}:</span>
                 <span
                   class="item-value"
                   [ngClass]="{ 'status-active': currentAccount.status === 'Active' }"
@@ -107,7 +107,7 @@
             </div>
             <div class="summary-row balance-row">
               <div class="summary-item">
-                <span class="item-label">Current Bal:</span>
+                <span class="item-label">{{ 'dashboard.current_bal' | translate }}:</span>
                 <span class="item-value">{{ formatAmount(currentAccount.balance) }}</span>
               </div>
             </div>
@@ -118,35 +118,37 @@
 
     <!-- Mini-Statement section -->
     <div class="section">
-      <h2 class="section-title">Mini-Statement</h2>
+      <h2 class="section-title">{{ 'dashboard.mini_statement' | translate }}</h2>
 
       @if (isLoadingTransactions) {
-        <div class="loading-indicator">Loading transactions...</div>
+        <div class="loading-indicator">{{ 'dashboard.loading_transactions' | translate }}</div>
       }
 
       @if (transactionsError) {
-        <div class="error-message">Failed to load transactions. Please try again later.</div>
+        <div class="error-message">{{ 'dashboard.load_transactions_error' | translate }}</div>
       }
 
       @if (!isLoadingTransactions && !transactionsError && recentTransactions.length === 0) {
-        <div class="empty-state">No recent transactions found.</div>
+        <div class="empty-state">{{ 'dashboard.no_transactions' | translate }}</div>
       }
 
       @if (recentTransactions.length > 0) {
         <div class="statement-table">
           <div class="table-header">
-            <div class="table-cell">Transaction ID</div>
-            <div class="table-cell">Type</div>
-            <div class="table-cell">Amount</div>
-            <div class="table-cell">Date/Time</div>
-            <div class="table-cell">Balance</div>
+            <div class="table-cell">{{ 'dashboard.transaction_id' | translate }}</div>
+            <div class="table-cell">{{ 'dashboard.type' | translate }}</div>
+            <div class="table-cell">{{ 'dashboard.amount' | translate }}</div>
+            <div class="table-cell">{{ 'dashboard.date_time' | translate }}</div>
+            <div class="table-cell">{{ 'dashboard.balance' | translate }}</div>
           </div>
 
           <div class="table-body">
             @for (transaction of recentTransactions; track transaction.transactionId) {
               <div class="table-row">
                 <div class="table-cell">{{ transaction.transactionId }}</div>
-                <div class="table-cell">{{ transaction.type }}</div>
+                <div class="table-cell">
+                  {{ getTransactionTypeKey(transaction.type) | translate }}
+                </div>
                 <div class="table-cell">{{ formatAmount(transaction.amount) }}</div>
                 <div class="table-cell">{{ formatDate(transaction.transactionDateTime) }}</div>
                 <div class="table-cell">
@@ -159,7 +161,7 @@
 
         <div class="view-more">
           <button class="view-more-btn" (click)="viewAllTransactions()">
-            View All Transactions
+            {{ 'dashboard.view_all_transactions' | translate }}
           </button>
         </div>
       }

@@ -2,35 +2,104 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 24px 16px;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
-.profile-card {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  background-color: var(--background-card);
-  overflow: hidden;
+::ng-deep {
+  .profile-card {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    padding: 0 !important;
+    overflow: hidden !important;
 
-  mat-card-header {
-    padding: 24px 24px 0;
+    .mat-mdc-card-header {
+      background-color: #252525 !important;
+      border-bottom: 1px solid #333 !important;
+      padding: 20px 24px !important;
+      position: relative !important;
+      margin-bottom: 0 !important;
 
-    mat-card-title {
-      font-size: 1.5rem;
-      font-weight: 500;
-      margin-bottom: 8px;
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(90deg, #2196f3, transparent);
+      }
     }
 
-    mat-card-subtitle {
-      font-size: 1rem;
-      opacity: 0.8;
+    .mat-mdc-card-title {
+      color: #ffffff !important;
+      font-size: 24px !important;
+      font-weight: 500 !important;
+      margin: 0 !important;
+      position: relative !important;
+      padding-left: 16px !important;
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 24px;
+        background-color: #2196f3;
+        border-radius: 2px;
+      }
+    }
+
+    .mat-mdc-card-subtitle {
+      color: rgba(255, 255, 255, 0.6) !important;
+      font-size: 16px !important;
+      margin-top: 4px !important;
+      margin-left: 16px !important;
+    }
+
+    .mat-mdc-card-content {
+      padding: 24px !important;
+    }
+
+    .mat-mdc-card-actions {
+      background-color: rgba(0, 0, 0, 0.1) !important;
+      padding: 16px 24px !important;
+      display: flex !important;
+      justify-content: flex-end !important;
+      border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .mat-mdc-raised-button.mat-primary {
+      background-color: #2196f3 !important;
+      height: 48px !important;
+      font-size: 15px !important;
+      font-weight: 500 !important;
+      border-radius: 8px !important;
+      transition: all 0.3s ease !important;
+
+      &:hover {
+        background-color: #1976d2 !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15) !important;
+      }
+
+      .mat-icon {
+        margin-right: 8px !important;
+      }
+    }
+
+    .mat-divider {
+      border-top-color: rgba(255, 255, 255, 0.1) !important;
+      margin: 32px 0 !important;
     }
   }
 
-  mat-card-content {
-    padding: 24px;
-  }
-
-  mat-card-actions {
-    padding: 16px 24px 24px;
+  .mat-mdc-progress-spinner {
+    --mdc-circular-progress-active-indicator-color: #2196f3 !important;
   }
 }
 
@@ -38,7 +107,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 200px;
+  min-height: 300px;
 }
 
 .profile-info-container {
@@ -48,22 +117,42 @@
 }
 
 .profile-section {
-  margin-bottom: 16px;
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .section-title {
-  font-size: 1.1rem;
+  font-size: 18px;
   font-weight: 500;
-  margin-bottom: 16px;
-  color: var(--text-color-secondary);
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 8px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+  position: relative;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 60px;
+    height: 3px;
+    background-color: #2196f3;
+    border-radius: 2px;
+  }
 }
 
 .info-row {
   display: grid;
   grid-template-columns: 30% 70%;
   margin-bottom: 16px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -74,55 +163,136 @@
 
 .info-label {
   font-weight: 500;
-  color: var(--text-color-secondary);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
 }
 
 .info-value {
-  color: var(--text-color);
+  color: rgba(255, 255, 255, 0.9);
 
   &.active-status {
     color: #4caf50;
     font-weight: 500;
+    position: relative;
+    padding-left: 18px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 10px;
+      height: 10px;
+      background-color: #4caf50;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(76, 175, 80, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(76, 175, 80, 0);
   }
 }
 
 .account-info {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
-  background-color: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: rgba(255, 255, 255, 0.02);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.03);
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #2196f3;
+    border-radius: 10px 0 0 10px;
+  }
 }
 
 .empty-state {
   text-align: center;
-  padding: 32px 16px;
-  color: var(--text-color-secondary);
+  padding: 40px 16px;
+  color: rgba(255, 255, 255, 0.5);
   font-style: italic;
-}
-
-mat-divider {
-  margin: 24px 0;
+  background-color: rgba(255, 255, 255, 0.02);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .service-badge {
   display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
-  margin-right: 8px;
-  margin-bottom: 4px;
-  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-right: 10px;
+  margin-bottom: 6px;
+  font-size: 13px;
+  font-weight: 500;
 
   &.active {
-    background-color: rgba(76, 175, 80, 0.15);
+    background-color: rgba(76, 175, 80, 0.1);
     color: #4caf50;
-    border: 1px solid rgba(76, 175, 80, 0.3);
+    border: 1px solid rgba(76, 175, 80, 0.2);
+    position: relative;
+    padding-left: 24px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background-color: #4caf50;
+      border-radius: 50%;
+    }
   }
 
   &.inactive {
-    background-color: rgba(158, 158, 158, 0.15);
-    color: #9e9e9e;
-    border: 1px solid rgba(158, 158, 158, 0.3);
+    background-color: rgba(158, 158, 158, 0.1);
+    color: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(158, 158, 158, 0.2);
+    position: relative;
+    padding-left: 24px;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 8px;
+      height: 8px;
+      background-color: rgba(158, 158, 158, 0.5);
+      border-radius: 50%;
+    }
   }
 }
 
@@ -132,17 +302,23 @@ mat-divider {
     padding: 16px 8px;
   }
 
-  .profile-card {
-    mat-card-header {
-      padding: 16px 16px 0;
-    }
+  ::ng-deep {
+    .profile-card {
+      .mat-mdc-card-header {
+        padding: 16px 16px 0 !important;
+      }
 
-    mat-card-content {
-      padding: 16px;
-    }
+      .mat-mdc-card-content {
+        padding: 16px !important;
+      }
 
-    mat-card-actions {
-      padding: 8px 16px 16px;
+      .mat-mdc-card-actions {
+        padding: 12px 16px !important;
+      }
     }
+  }
+
+  .account-info {
+    padding: 16px;
   }
 }

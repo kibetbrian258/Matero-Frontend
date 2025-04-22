@@ -35,7 +35,7 @@ export interface Menu {
 })
 export class MenuService {
   private readonly menu$ = new BehaviorSubject<Menu[]>([]);
-  
+
   // Store current active menu item
   private readonly activeMenuItem$ = new BehaviorSubject<string>('');
 
@@ -48,12 +48,12 @@ export class MenuService {
   change() {
     return this.menu$.pipe(share());
   }
-  
+
   /** Get the current active menu item */
   getActiveMenuItem(): Observable<string> {
     return this.activeMenuItem$.asObservable();
   }
-  
+
   /** Set the current active menu item */
   setActiveMenuItem(menuName: string) {
     this.activeMenuItem$.next(menuName);
@@ -156,7 +156,10 @@ export class MenuService {
 
   /** Find menu item by route */
   findMenuItemByRoute(route: string): Menu | MenuChildrenItem | null {
-    const findItem = (items: Menu[] | MenuChildrenItem[], targetRoute: string): Menu | MenuChildrenItem | null => {
+    const findItem = (
+      items: Menu[] | MenuChildrenItem[],
+      targetRoute: string
+    ): Menu | MenuChildrenItem | null => {
       for (const item of items) {
         if (item.route === targetRoute) {
           return item;
@@ -170,7 +173,7 @@ export class MenuService {
       }
       return null;
     };
-    
+
     return findItem(this.menu$.value, route);
   }
 

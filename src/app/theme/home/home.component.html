@@ -1,0 +1,62 @@
+<div class="slideshow-container">
+  <div
+    class="slide"
+    *ngFor="let slide of slides; let i = index"
+    [ngClass]="{ active: currentSlide === i }"
+  >
+    <img [src]="slide.imageUrl" alt="Bank Background Image" />
+  </div>
+</div>
+
+<!-- Header bar -->
+<div class="header-bar">
+  <h1>Welcome to Secure Banking</h1>
+</div>
+
+<!-- Content overlay -->
+<div class="content-container">
+  <!-- Features section -->
+  <div class="features-section">
+    <div class="feature-card">
+      <div class="feature-icon">
+        <mat-icon>lock</mat-icon>
+      </div>
+      <h3>Bank-Grade Security</h3>
+      <p>Protected with advanced encryption and secure authentication</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <mat-icon>flash_on</mat-icon>
+      </div>
+      <h3>Fast Transfers</h3>
+      <p>Send money instantly to anyone, anywhere, anytime</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">
+        <mat-icon>bar_chart</mat-icon>
+      </div>
+      <h3>Smart Insights</h3>
+      <p>Get personalized financial insights and recommendations</p>
+    </div>
+  </div>
+
+  <!-- Action buttons -->
+  <div class="action-buttons">
+    <button type="button" class="btn btn-primary" (click)="navigateToRegister()">
+      Create Account
+    </button>
+
+    <button type="button" class="btn btn-outline" (click)="navigateToLogin()">
+      Login to Your Account
+    </button>
+  </div>
+
+  <!-- Trust badges -->
+  <div class="trust-badges">
+    <div class="badge">Encrypted</div>
+    <div class="badge">Insured</div>
+    <div class="badge">Fraud Protected</div>
+  </div>
+</div>

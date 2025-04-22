@@ -1,10 +1,10 @@
 <div class="transaction-container">
   <div class="transaction-card">
     <div class="transaction-header">
-      <h2>Deposit Funds</h2>
+      <h2>{{ 'deposit.title' | translate }}</h2>
       <button class="back-btn" (click)="goToDashboard()">
         <mat-icon>arrow_back</mat-icon>
-        Back to Dashboard
+        {{ 'deposit.back_to_dashboard' | translate }}
       </button>
     </div>
 
@@ -14,9 +14,9 @@
         <div class="success-message">
           <mat-icon>check_circle</mat-icon>
           <div class="message-content">
-            <h3>Deposit Successful!</h3>
-            <p>Your deposit has been processed successfully.</p>
-            <p>Redirecting to dashboard...</p>
+            <h3>{{ 'deposit.success_title' | translate }}</h3>
+            <p>{{ 'deposit.success_message' | translate }}</p>
+            <p>{{ 'deposit.redirecting' | translate }}</p>
           </div>
         </div>
       }
@@ -31,26 +31,29 @@
 
           <!-- Account Selection Field -->
           <div class="form-group">
-            <label for="accountNumber" class="form-label">Select Account</label>
+            <label for="accountNumber" class="form-label">
+              {{ 'deposit.select_account' | translate }}
+            </label>
             @if (loadingAccounts) {
               <div class="loading-accounts">
                 <mat-spinner diameter="20"></mat-spinner>
-                <span>Loading accounts...</span>
+                <span>{{ 'deposit.loading_accounts' | translate }}</span>
               </div>
             }
             @if (!loadingAccounts) {
               <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Select Account</mat-label>
+                <mat-label>{{ 'deposit.select_account' | translate }}</mat-label>
                 <mat-select formControlName="accountNumber" id="accountNumber">
                   @for (account of accounts; track account.accountNumber) {
                     <mat-option [value]="account.accountNumber">
-                      {{ account.accountNumber }} - Balance: Ksh {{ account.balance.toFixed(2) }}
+                      {{ account.accountNumber }} - {{ 'deposit.balance' | translate }}:
+                      {{ formatAmount(account.balance) }}
                     </mat-option>
                   }
                 </mat-select>
                 @if (submitted && f['accountNumber'].errors) {
                   <mat-error *ngIf="f['accountNumber'].errors['required']">
-                    Account is required
+                    {{ 'deposit.account_required' | translate }}
                   </mat-error>
                 }
               </mat-form-field>
@@ -60,23 +63,25 @@
           <!-- Amount Field -->
           <div class="form-group">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Amount (Ksh)</mat-label>
+              <mat-label>{{ 'deposit.amount_label' | translate }}</mat-label>
               <input
                 type="number"
                 matInput
                 formControlName="amount"
                 id="amount"
-                placeholder="Enter amount"
+                placeholder="{{ 'deposit.enter_amount' | translate }}"
                 step="0.01"
                 min="0.01"
               />
               @if (submitted && f['amount'].errors) {
-                <mat-error *ngIf="f['amount'].errors['required']">Amount is required</mat-error>
+                <mat-error *ngIf="f['amount'].errors['required']">
+                  {{ 'deposit.amount_required' | translate }}
+                </mat-error>
                 <mat-error *ngIf="f['amount'].errors['min']">
-                  Amount must be greater than zero
+                  {{ 'deposit.amount_greater_than_zero' | translate }}
                 </mat-error>
                 <mat-error *ngIf="f['amount'].errors['pattern']">
-                  Amount must be a valid number with up to 2 decimal places
+                  {{ 'deposit.amount_valid_number' | translate }}
                 </mat-error>
               }
             </mat-form-field>
@@ -94,18 +99,18 @@
               @if (loading) {
                 <mat-spinner diameter="20" class="spinner-inline"></mat-spinner>
               }
-              <span>Deposit Funds</span>
+              <span>{{ 'deposit.deposit_funds' | translate }}</span>
             </button>
           </div>
         </form>
 
         <!-- Additional Info -->
         <div class="info-panel">
-          <h4>Deposit Information</h4>
+          <h4>{{ 'deposit.info_title' | translate }}</h4>
           <ul>
-            <li>Deposits are processed immediately.</li>
-            <li>Funds will be available in your account right away.</li>
-            <li>There are no fees for deposits.</li>
+            <li>{{ 'deposit.info_immediate' | translate }}</li>
+            <li>{{ 'deposit.info_available' | translate }}</li>
+            <li>{{ 'deposit.info_no_fees' | translate }}</li>
           </ul>
         </div>
       }

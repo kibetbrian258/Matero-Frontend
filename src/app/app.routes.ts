@@ -20,8 +20,44 @@ import { SecurityTipsComponent } from './Transaction-components/security-tips/se
 import { ProfileOverviewComponent } from './routes/profile/profile-overview/profile-overview.component';
 import { ProfileSettingsComponent } from './routes/profile/profile-settings/profile-settings.component';
 import { ProfileImageComponent } from '@theme/sidebar/profile-image/profile-image.component';
+import { NotificationDetailComponent } from '@theme/widgets/notification-detail/notification-detail.component';
+import { TermsAccessGuard } from '@core/authentication/terms-access.guard';
+import { HomeComponent } from '@theme/home/home.component';
 
 export const routes: Routes = [
+  // This empty path redirect should be FIRST to ensure it takes precedence
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+  // Public routes
+  {
+    path: 'home',
+    component: HomeComponent,
+    data: { title: 'Home', titleI18n: 'Home' },
+  },
+  {
+    path: 'terms',
+    component: TermsConditionsComponent,
+    canActivate: [TermsAccessGuard],
+    data: { title: 'Terms & Conditions', titleI18n: 'Terms & Conditions' },
+  },
+  {
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        data: { title: 'Login', titleI18n: 'menu.Login' },
+      },
+      {
+        path: 'register',
+        component: RegisterComponent,
+        data: { title: 'Register', titleI18n: 'menu.Register' },
+      },
+    ],
+  },
+
+  // Protected routes - must come AFTER public routes
   {
     path: '',
     component: AdminLayoutComponent,
@@ -91,11 +127,6 @@ export const routes: Routes = [
         data: { title: 'Banking Guide', titleI18n: 'Banking Guide' },
       },
       {
-        path: 'terms',
-        component: TermsConditionsComponent,
-        data: { title: 'Terms & Conditions', titleI18n: 'Terms & Conditions' },
-      },
-      {
         path: 'security-tips',
         component: SecurityTipsComponent,
         data: { title: 'Security Tips', titleI18n: 'Security Tips' },
@@ -115,23 +146,14 @@ export const routes: Routes = [
         component: Error500Component,
         data: { title: 'Server Error', titleI18n: 'menu.Server Error' },
       },
-    ],
-  },
-  {
-    path: 'auth',
-    component: AuthLayoutComponent,
-    children: [
       {
-        path: 'login',
-        component: LoginComponent,
-        data: { title: 'Login', titleI18n: 'menu.Login' },
-      },
-      {
-        path: 'register',
-        component: RegisterComponent,
-        data: { title: 'Register', titleI18n: 'menu.Register' },
+        path: 'notifications/:id',
+        component: NotificationDetailComponent,
+        data: { title: 'Notification Detail', titleI18n: 'Notification Detail' },
       },
     ],
   },
-  { path: '**', redirectTo: 'dashboard' },
+
+  // Wildcard route must be last
+  { path: '**', redirectTo: 'home' },
 ];

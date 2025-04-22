@@ -138,5 +138,1063 @@
   "register_title": "创建您的帐户只需几秒钟",
   "read_and_agree": "我已阅读并同意服务条款",
   "have_an_account": "已经有帐号了",
-  "restore_defaults": "还原配置"
+  "restore_defaults": "还原配置",
+
+  "search": "搜索",
+  "fullscreen": "全屏",
+  "notifications": "通知",
+  "notification_not_found": "未找到通知",
+  "no_notifications": "没有通知显示",
+  "mark_all_read": "标记所有为已读",
+  "dashboard": {
+    "title": "数据大盘",
+    "quick_actions": "快捷操作",
+    "deposit": "存款",
+    "withdraw": "取款",
+    "transfer": "转账",
+    "search": "搜索",
+    "select_account": "选择账户",
+    "account_summary": "账户摘要",
+    "loading_account_info": "正在加载账户信息...",
+    "load_account_error": "加载账户信息失败。请稍后再试。",
+    "customer_id": "客户ID",
+    "last_login": "上次登录",
+    "account_no": "账号",
+    "account_status": "账户状态",
+    "current_bal": "当前余额",
+    "mini_statement": "迷你对账单",
+    "loading_transactions": "正在加载交易...",
+    "load_transactions_error": "加载交易失败。请稍后再试。",
+    "no_transactions": "未找到最近交易。",
+    "transaction_id": "交易ID",
+    "type": "类型",
+    "amount": "金额",
+    "date_time": "日期/时间",
+    "balance": "余额",
+    "view_all_transactions": "查看所有交易",
+
+    "new_account": "新账户",
+    "create_new_account": "创建新账户",
+    "account_type": "账户类型",
+    "account_features": "账户特点",
+    "savings_account": "储蓄账户",
+    "checking_account": "支票账户",
+    "create_account": "创建账户",
+    "cancel": "取消",
+    "account_created_success": "您的新账户已成功创建。"
+  },
+  "transaction": {
+    "type": {
+      "deposit": "存款",
+      "withdrawal": "取款",
+      "transfer": "转账",
+      "transfer_received": "收到转账"
+    }
+  },
+  "date_format": "yyyy年MM月dd日 HH:mm",
+  "currency_symbol": "Ksh",
+  "deposit": {
+    "title": "存入资金",
+    "back_to_dashboard": "返回仪表盘",
+    "success_title": "存款成功！",
+    "success_message": "您的存款已成功处理。",
+    "redirecting": "正在重定向到仪表盘...",
+    "select_account": "选择账户",
+    "loading_accounts": "正在加载账户...",
+    "balance": "余额",
+    "account_required": "账户是必填项",
+    "amount_label": "金额 (Ksh)",
+    "enter_amount": "输入金额",
+    "amount_required": "金额是必填项",
+    "amount_greater_than_zero": "金额必须大于零",
+    "amount_valid_number": "金额必须是有效数字，最多有2位小数",
+    "deposit_funds": "存入资金",
+    "info_title": "存款信息",
+    "info_immediate": "存款将立即处理。",
+    "info_available": "资金将立即可在您的账户中使用。",
+    "info_no_fees": "存款不收取任何费用。",
+    "load_accounts_error": "无法加载账户。请重试。",
+    "generic_error": "存款失败。请重试。"
+  },
+  "withdraw": {
+    "title": "提取资金",
+    "back_to_dashboard": "返回仪表盘",
+    "success_title": "提款成功！",
+    "success_message": "您的提款已成功处理。",
+    "redirecting": "正在重定向到仪表盘...",
+    "select_account": "选择账户",
+    "loading_accounts": "正在加载账户...",
+    "balance": "余额",
+    "account_required": "账户是必填项",
+    "available_balance": "可用余额",
+    "withdrawal_limit": "提款限额",
+    "max_withdrawal": "最大提款额",
+    "amount_label": "金额 (Ksh)",
+    "enter_amount": "输入金额",
+    "amount_required": "金额是必填项",
+    "amount_greater_than_zero": "金额必须大于零",
+    "amount_exceeds_limit": "金额超过可用余额或提款限额",
+    "amount_valid_number": "金额必须是有效数字，最多有2位小数",
+    "withdraw_funds": "提取资金",
+    "info_title": "提款信息",
+    "info_immediate": "提款将立即处理。",
+    "info_sufficient": "请确保您的账户中有足够的资金。",
+    "info_limits": "可能适用每日提款限额。",
+    "load_accounts_error": "无法加载账户。请重试。",
+    "generic_error": "提款失败。请重试。"
+  },
+  "transfer": {
+    "title": "转账资金",
+    "back_to_dashboard": "返回仪表盘",
+    "success_title": "转账成功！",
+    "success_message": "您的资金已成功转账。",
+    "redirecting": "正在重定向到仪表盘...",
+    "from_account": "从账户",
+    "loading_accounts": "正在加载账户...",
+    "select_source_account": "选择源账户",
+    "balance": "余额",
+    "source_account_required": "源账户是必填项",
+    "available_balance": "可用余额",
+    "transfer_limit": "转账限额",
+    "max_transfer": "最大转账额",
+    "to_account": "到账户",
+    "enter_destination_account": "输入目标账户号码",
+    "destination_account_required": "目标账户是必填项",
+    "different_account_required": "目标账户必须与源账户不同",
+    "amount_label": "金额 (Ksh)",
+    "enter_amount": "输入金额",
+    "amount_required": "金额是必填项",
+    "amount_greater_than_zero": "金额必须大于零",
+    "amount_exceeds_limit": "金额超过可用余额或转账限额",
+    "amount_valid_number": "金额必须是有效数字，最多有2位小数",
+    "transfer_funds": "转账资金",
+    "info_title": "转账信息",
+    "info_immediate": "转账将立即处理。",
+    "info_sufficient": "请确保您的源账户中有足够的资金。",
+    "info_other_banks": "转账到其他银行可能需要1-3个工作日。",
+    "info_limits": "可能适用每日转账限额。",
+    "load_accounts_error": "无法加载账户。请重试。",
+    "generic_error": "转账失败。请重试。"
+  },
+  "transaction_history": {
+    "title": "交易历史",
+    "back_to_dashboard": "返回仪表盘",
+    "loading_transactions": "正在加载交易...",
+    "account": "账户",
+    "balance": "余额",
+    "status": "状态",
+    "search_transactions": "搜索交易",
+    "account_number": "账户号码",
+    "all_accounts": "所有账户",
+    "transaction_type": "交易类型",
+    "all_types": "所有类型",
+    "type_deposit": "存款",
+    "type_withdrawal": "取款",
+    "type_transfer": "转账",
+    "type_transfer_received": "收到转账",
+    "transaction_date": "交易日期",
+    "search_button": "搜索",
+    "reset_button": "重置",
+    "search_results": "搜索结果",
+    "recent_transactions": "最近交易",
+    "transactions_found": "交易记录",
+    "searching_transactions": "正在搜索交易...",
+    "transaction_id": "交易ID",
+    "date_time": "日期/时间",
+    "type": "类型",
+    "amount": "金额",
+    "balance_after": "交易后余额",
+    "to": "到",
+    "no_recent_transactions": "未找到最近交易。",
+    "no_matching_transactions": "没有符合您搜索条件的交易。",
+    "page": "页",
+    "of": "共",
+    "account_details_error": "无法加载账户详情。请重试。",
+    "load_accounts_error": "无法加载账户。请重试。",
+    "load_transactions_error": "无法加载交易。请重试。",
+    "invalid_date_format": "日期格式无效。请选择有效日期。",
+    "search_failed": "搜索失败。请重试。",
+    "date_format": "yyyy年MM月dd日 HH:mm"
+  },
+  "detailed_information": "详细信息",
+  "interest_rates": "利率",
+  "branch": "分行",
+  "branch_code": "分行代码",
+  "minimum_balance": "最低余额",
+  "online_banking": "网上银行",
+  "mobile_banking": "移动银行",
+  "enabled": "已启用",
+  "disabled": "已禁用",
+  "per_day": "每天",
+  "info_no_fees": "无月费",
+  "info_no_interest": "无利息",
+  "monthly_fee": "月费",
+  "no_minimum_balance": "无最低余额",
+
+  "help_support": {
+    "title": "帮助与支持",
+    "back_to_dashboard": "返回仪表盘",
+    "subtitle": "我们随时为您解答疑问或解决顾虑",
+    "how_can_we_help": "今天我们能为您做什么？",
+    "message_placeholder": "在此描述您的问题或疑问...",
+    "message_validation_error": "请提供详细说明（至少10个字符）。",
+    "send_message": "发送消息",
+    "message_sent_success": "您的消息已发送！我们的支持团队将在24小时内回复。",
+    "contact_information": "联系信息",
+    "phone_support": "电话支持",
+    "email": "电子邮件",
+    "main_branch": "主要分行",
+    "branch_address": "内罗毕，主街123号",
+    "operating_hours": "营业时间",
+    "weekdays": "周一至周五",
+    "weekday_hours": "上午8:00 - 下午6:00",
+    "saturday": "周六",
+    "saturday_hours": "上午9:00 - 下午3:00",
+    "sunday_holidays": "周日及节假日",
+    "closed": "休息",
+    "emergency_support_note": "紧急情况和丢失/被盗卡24/7电话支持。",
+    "faq_title": "常见问题",
+    "additional_resources": "其他资源",
+    "banking_guide": "银行指南",
+    "security_tips": "安全提示",
+    "terms_conditions": "条款和条件",
+    "faq": {
+      "pin_change": {
+        "question": "如何更改我的PIN码？",
+        "answer": "请联系我们的客户支持团队，他们将能够为您的账户生成新的PIN码"
+      },
+      "transfer_limits": {
+        "question": "每日转账限额是多少？",
+        "answer": "标准每日转账限额为10,000肯尼亚先令。但是，这可能会根据您的账户类型和状态而有所不同。您可以在账户信息页面的账户详情选项卡下查看您的具体限额。如果您需要临时增加限额，请联系客户支持。"
+      },
+      "unauthorized_transactions": {
+        "question": "如果我发现未授权交易该怎么办？",
+        "answer": "如果您发现任何未授权交易，应立即：1）通过安全菜单锁定您的账户；2）拨打我们的24/7支持热线+(254)-98-466-352；3）在仪表板的安全部分填写表格报告事件。我们将调查问题并在24小时内回复。"
+      },
+      "lost_card": {
+        "question": "如何报告丢失或被盗卡？",
+        "answer": "要报告丢失或被盗卡，请立即拨打我们的紧急支持热线+(254)-98-466-352。您也可以通过账户信息页面临时锁定您的卡。报告后，新卡将在5-7个工作日内发行并送达您的注册地址。"
+      },
+      "transfer_processing": {
+        "question": "转账处理需要多长时间？",
+        "answer": "我们银行内部账户之间的转账立即处理。转账到其他银行通常需要1-2个工作日，具体取决于接收银行和交易时间。"
+      }
+    }
+  },
+
+  "banking_guide": {
+    "page_title": "银行指南",
+    "title": "银行指南",
+    "subtitle": "您需要了解的所有银行体验信息",
+    "back_to_support": "返回帮助与支持",
+
+    "getting_started": {
+      "title": "入门指南",
+      "navigating_dashboard": {
+        "title": "浏览您的仪表盘",
+        "intro": "您的仪表盘是管理财务的中心枢纽。以下是您将找到的内容：",
+        "account_overview": {
+          "label": "账户概览",
+          "description": "查看所有账户的余额和最近交易。"
+        },
+        "quick_actions": {
+          "label": "快速操作",
+          "description": "轻松访问存款、转账和账单支付等常见任务。"
+        },
+        "financial_summary": {
+          "label": "财务摘要",
+          "description": "获取您的支出和储蓄趋势的快照。"
+        },
+        "notifications": {
+          "label": "通知",
+          "description": "获取有关您账户的重要提醒。"
+        },
+        "tip": "通过点击右上角的\"个性化\"选项，自定义您的仪表盘，以显示与您最相关的信息。"
+      }
+    },
+
+    "account_management": {
+      "title": "账户管理",
+      "account_types": {
+        "title": "了解您的账户类型",
+        "savings": {
+          "title": "储蓄账户",
+          "description": "在保持资金易于获取的同时，从存款中赚取利息。",
+          "interest_rate": "利率",
+          "minimum_balance": "最低余额",
+          "monthly_fee": "无月费"
+        },
+        "checking": {
+          "title": "支票账户",
+          "description": "您用于日常交易和账单支付的日常消费账户。",
+          "no_interest": "无利息",
+          "no_minimum_balance": "无最低余额",
+          "monthly_fee": "月费"
+        }
+      },
+      "settings": {
+        "title": "管理账户设置",
+        "intro": "您可以自定义账户的各种设置：",
+        "nicknames": {
+          "label": "账户昵称",
+          "description": "重命名您的账户，以便更容易识别。"
+        },
+        "statements": {
+          "label": "对账单偏好",
+          "description": "选择电子对账单或纸质对账单。"
+        },
+        "alerts": {
+          "label": "交易提醒",
+          "description": "为特定交易类型或金额设置通知。"
+        },
+        "users": {
+          "label": "授权用户",
+          "description": "添加或移除可以访问您账户的人员。"
+        }
+      }
+    },
+
+    "transactions": {
+      "title": "交易",
+      "deposits": {
+        "title": "存款",
+        "intro": "有几种方式可以向您的账户添加资金：",
+        "direct": {
+          "label": "直接存款",
+          "description": "设置来自雇主或其他收入来源的自动存款。"
+        },
+        "mobile": {
+          "label": "移动存款",
+          "description": "使用应用程序通过拍照存入支票。"
+        },
+        "branch": {
+          "label": "分行存款",
+          "description": "在营业时间内访问任何分行。"
+        },
+        "atm": {
+          "label": "ATM存款",
+          "description": "使用我们的ATM网络进行现金或支票存款。"
+        }
+      },
+      "transfers": {
+        "title": "转账",
+        "intro": "在您的账户之间或向他人转账：",
+        "internal": {
+          "label": "内部转账",
+          "description": "在您自己的账户之间即时转账。"
+        },
+        "external": {
+          "label": "外部转账",
+          "description": "向其他银行的账户发送资金（1-2个工作日）。"
+        },
+        "recurring": {
+          "label": "定期转账",
+          "description": "安排定期自动转账。"
+        },
+        "wire": {
+          "label": "电汇",
+          "description": "以一定费用国内或国际发送较大金额。"
+        },
+        "tip": "设置定期向您的储蓄账户转账，以自动化您的储蓄习惯。"
+      },
+      "history": {
+        "title": "交易历史",
+        "intro": "跟踪您的财务活动：",
+        "view_months": "在线查看长达24个月的交易历史。",
+        "filter": "按日期、金额或类型筛选交易。",
+        "search": "使用关键词搜索特定交易。",
+        "download": "以PDF或CSV格式下载对账单。",
+        "categorize": "对交易进行分类，以便更好地跟踪预算。"
+      }
+    },
+
+    "digital_banking": {
+      "title": "数字银行功能",
+      "mobile": {
+        "title": "移动银行",
+        "intro": "我们的移动应用提供便捷的账户访问：",
+        "features": {
+          "balance_updates": "实时余额更新",
+          "notifications": "自定义通知",
+          "check_deposit": "移动支票存款",
+          "locator": "ATM/分行定位器",
+          "biometric": "生物识别登录",
+          "card_controls": "卡片控制"
+        }
+      },
+      "online": {
+        "title": "网上银行",
+        "intro": "我们的安全网站提供全面的账户管理：",
+        "features": {
+          "view_accounts": "在一处查看所有账户和交易",
+          "pay_bills": "支付账单和管理收款人",
+          "transfer": "在账户之间转账",
+          "download": "下载账户对账单",
+          "update_info": "更新个人信息和偏好",
+          "apply": "申请其他银行产品"
+        }
+      }
+    },
+
+    "additional_resources": {
+      "title": "其他资源",
+      "security_tips": {
+        "title": "安全提示",
+        "description": "了解如何保护您的账户和个人信息。",
+        "link_text": "查看安全提示"
+      },
+      "terms": {
+        "title": "条款和条件",
+        "description": "查看您账户的完整服务条款。",
+        "link_text": "查看条款和条件"
+      }
+    },
+
+    "support_footer": {
+      "intro": "需要进一步帮助？联系我们的客户支持团队："
+    }
+  },
+
+  "security_tips": {
+    "page_title": "安全提示",
+    "title": "安全提示",
+    "subtitle": "保护您的财务信息和账户",
+    "back_to_support": "返回帮助与支持",
+    "overview": "在安全银行，我们非常重视您账户和个人信息的安全。虽然我们采用先进的安全措施来保护您的数据，但安全是一项共同责任。请遵循以下基本提示，帮助保护您的银行信息和身份。",
+
+    "account_security": {
+      "title": "账户安全",
+      "password": {
+        "title": "强密码和PIN码实践",
+        "strong": {
+          "title": "创建强凭证",
+          "description": "使用包含字母、数字和特殊字符的唯一PIN码和密码。避免使用生日或连续数字等容易猜测的信息。"
+        },
+        "updates": {
+          "title": "定期更新",
+          "description": "每3-6个月更换一次PIN码和网上银行密码。"
+        },
+        "unique": {
+          "title": "唯一密码",
+          "description": "为您的银行账户使用与其他在线服务不同的密码。"
+        },
+        "manager": {
+          "title": "密码管理器",
+          "description": "考虑使用信誉良好的密码管理器来安全地生成和存储复杂密码。"
+        },
+        "warning": {
+          "title": "切勿共享您的PIN码或密码",
+          "description": "银行工作人员永远不会要求您提供完整的PIN码或密码。对任何索要这些凭证的请求保持警惕。"
+        }
+      },
+      "2fa": {
+        "title": "双因素认证 (2FA)",
+        "description": "双因素认证通过在您登录或执行敏感交易时要求第二步验证来增加额外的安全层。",
+        "methods": {
+          "sms": {
+            "title": "短信验证码",
+            "description": "发送到您注册的手机号码的一次性代码。"
+          },
+          "app": {
+            "title": "认证应用",
+            "description": "使用智能手机上的认证应用生成基于时间的代码。"
+          },
+          "biometric": {
+            "title": "生物识别验证",
+            "description": "使用指纹或面部识别增强安全性。"
+          }
+        },
+        "info": {
+          "title": "为所有账户启用双因素认证",
+          "description": "在您的网上银行个人资料中前往\"设置 > 安全\"启用和管理双因素认证选项。"
+        }
+      }
+    },
+
+    "online_security": {
+      "title": "网上和移动银行安全",
+      "device": {
+        "title": "安全设备实践",
+        "os_updates": "保持计算机、智能手机和平板电脑操作系统的更新",
+        "antivirus": "安装并维护信誉良好的防病毒和反恶意软件",
+        "secure_connection": "使用安全、私密的互联网连接进行银行活动",
+        "screen_lock": "在所有设备上启用自动屏幕锁定",
+        "clear_cache": "定期清除浏览器缓存和Cookie",
+        "alert": {
+          "title": "避免在公共Wi-Fi上进行银行操作",
+          "description": "切勿在公共或不安全的Wi-Fi网络上进行银行活动。请改用移动数据连接，或等到您有安全网络访问权限时再进行。"
+        }
+      },
+      "habits": {
+        "title": "安全网上银行习惯",
+        "do": "应该做",
+        "dont": "不应该做",
+        "dos": {
+          "direct_url": "直接在浏览器中输入银行的URL或使用书签",
+          "https": "查找地址栏中的\"https://\"和锁定图标",
+          "logout": "完成银行会话后完全退出登录",
+          "monitor": "定期监控您的账户是否有未授权活动",
+          "app": "在移动设备上使用官方移动银行应用程序而不是浏览器"
+        },
+        "donts": {
+          "links": "点击声称来自您银行的电子邮件或消息中的链接",
+          "unattended": "在登录网上银行时让您的设备无人看管",
+          "save_password": "在浏览器中保存您的银行密码",
+          "remember_me": "在共享或公共计算机上使用\"记住我\"选项",
+          "downloads": "在进行网上银行操作时下载文件或点击弹出窗口"
+        }
+      }
+    },
+
+    "fraud": {
+      "title": "欺诈意识与预防",
+      "scams": {
+        "title": "需要注意的常见诈骗",
+        "phishing": {
+          "title": "钓鱼",
+          "description": "看似来自您银行的欺诈性电子邮件、短信或电话，要求提供个人信息或登录凭证。",
+          "red_flag": "红旗警告：紧急请求个人信息或使用威胁性语言"
+        },
+        "smishing": {
+          "title": "短信钓鱼",
+          "description": "声称来自您银行的短信，通常包含可疑链接或请求敏感信息。",
+          "red_flag": "红旗警告：关于\"可疑活动\"的消息，要求您点击链接"
+        },
+        "vishing": {
+          "title": "语音钓鱼",
+          "description": "欺诈者冒充银行代表的电话，以提取个人或账户信息。",
+          "red_flag": "红旗警告：施压要求您立即行动或提供凭证的来电者"
+        },
+        "fake_apps": {
+          "title": "假冒银行应用",
+          "description": "设计用来窃取您的登录信息和银行详细信息的仿冒移动应用程序。",
+          "red_flag": "红旗警告：不是从官方应用商店下载的应用或评价差的应用"
+        },
+        "remember_title": "请记住",
+        "remember_description": "安全银行绝不会通过电子邮件、电话或短信请求您的PIN码、完整密码或安全码。我们绝不会要求您转账到\"安全账户\"。"
+      },
+      "suspected": {
+        "title": "如果您怀疑欺诈",
+        "steps": {
+          "act": {
+            "title": "立即行动",
+            "description": "一旦怀疑欺诈活动，立即联系我们的安全热线+(254)-98-466-352。"
+          },
+          "secure": {
+            "title": "保护您的账户",
+            "description": "通过移动应用或网上银行锁定您的卡和账户。"
+          },
+          "change": {
+            "title": "更改凭证",
+            "description": "从安全设备更新您的PIN码和密码。"
+          },
+          "document": {
+            "title": "记录一切",
+            "description": "保留可疑信息、电话或交易的记录，以便与我们的欺诈团队分享。"
+          },
+          "monitor": {
+            "title": "监控您的账户",
+            "description": "定期检查您的账户是否有任何未授权交易。"
+          }
+        }
+      }
+    },
+
+    "card_security": {
+      "title": "卡安全",
+      "physical": {
+        "title": "保护您的实体卡",
+        "guard": {
+          "title": "保管您的卡",
+          "description": "将您的卡放在安全位置，切勿使其无人看管。"
+        },
+        "shield": {
+          "title": "保护您的PIN码",
+          "description": "在ATM或支付终端输入PIN码时遮挡键盘。"
+        },
+        "inspect": {
+          "title": "检查ATM",
+          "description": "检查ATM上是否有可能是盗刷设备的异常装置或附件。"
+        },
+        "report": {
+          "title": "报告丢失的卡",
+          "description": "如果您的卡丢失或被盗，立即联系我们的24/7紧急热线。"
+        },
+        "monitor": {
+          "title": "监控对账单",
+          "description": "定期检查您的卡对账单并报告任何未授权交易。"
+        },
+        "controls": {
+          "title": "使用我们应用中的卡控制功能",
+          "lock": "锁定/解锁卡",
+          "location": "设置位置限制",
+          "limits": "调整交易限额",
+          "alerts": "交易提醒"
+        }
+      },
+      "online_shopping": {
+        "title": "安全网上购物",
+        "secure_websites": "仅在安全网站上购物（查找https://和锁定图标）",
+        "credit_card": "在可能的情况下，使用信用卡或虚拟卡号进行在线购买",
+        "records": "保留您的在线购买和确认记录",
+        "authentication": "选择在线支付的额外认证步骤",
+        "suspicious": "对看起来好得不真实的交易保持警惕",
+        "virtual_card": {
+          "title": "虚拟卡功能",
+          "description": "在移动应用中使用我们的虚拟卡功能进行在线购物。这些临时卡号为您的实际账户提供额外的安全层。"
+        }
+      }
+    },
+
+    "footer": {
+      "title": "及时了解安全信息",
+      "description": "我们不断更新安全措施以保护您的账户。定期访问此页面获取最新的安全提示和更新。",
+      "report": {
+        "title": "报告可疑活动",
+        "hotline": {
+          "title": "24/7安全热线"
+        },
+        "email": {
+          "title": "安全电子邮件"
+        }
+      }
+    }
+  },
+
+  "terms": {
+    "page_title": "条款和条件",
+    "title": "条款和条件",
+    "subtitle": "管理您使用安全银行服务的协议",
+    "back_to_support": "返回帮助与支持",
+    "last_updated": "最后更新：2025年3月15日",
+
+    "intro": {
+      "paragraph1": "本条款和条件协议（\"协议\"）由您（\"客户\"）与安全银行（\"银行\"、\"我们\"、\"我们的\"）订立。通过使用我们的任何服务，包括我们的网站、移动应用程序、账户服务或其他银行产品，您同意受这些条款的约束。",
+      "paragraph2": "在访问或使用我们的服务之前，请仔细阅读本协议。如果您不同意这些条款，请不要使用我们的服务。"
+    },
+
+    "contents": {
+      "title": "目录",
+      "sections": {
+        "definitions": "1. 定义",
+        "accounts": "2. 账户",
+        "online_banking": "3. 网上和移动银行",
+        "transactions": "4. 交易",
+        "fees": "5. 费用与收费",
+        "privacy": "6. 隐私与数据保护",
+        "security": "7. 安全责任",
+        "liability": "8. 责任与免责声明",
+        "termination": "9. 服务终止",
+        "amendments": "10. 条款修改",
+        "governing_law": "11. 适用法律",
+        "contact": "12. 联系信息"
+      }
+    },
+
+    "sections": {
+      "definitions": {
+        "title": "1. 定义",
+        "intro": "在本协议中，除非上下文另有要求：",
+        "terms": {
+          "account": "\"账户\"指在安全银行持有的任何账户，包括储蓄账户、支票账户和银行提供的任何其他类型的账户。",
+          "customer_id": "\"客户ID\"指注册时分配给您的唯一识别号码。",
+          "pin": "\"PIN\"指用于验证身份的个人识别号码。",
+          "online_banking": "\"网上银行\"指通过我们的网站访问的银行互联网银行服务。",
+          "mobile_banking": "\"移动银行\"指通过我们的移动应用程序访问的银行银行服务。",
+          "transaction": "\"交易\"指影响您账户余额的任何活动，包括存款、取款和转账。",
+          "business_day": "\"工作日\"指周一至周五，不包括公共假日。"
+        }
+      },
+
+      "accounts": {
+        "title": "2. 账户",
+        "opening": {
+          "title": "2.1 开立账户",
+          "intro": "要在安全银行开立账户，您必须：",
+          "requirements": [
+            "提供准确完整的个人信息",
+            "达到18岁的最低年龄要求",
+            "提供有效的身份证明文件",
+            "同意我们的账户条款和条件"
+          ],
+          "note": "银行保留自行决定拒绝开立账户的权利。"
+        },
+        "maintenance": {
+          "title": "2.2 账户维护",
+          "intro": "作为账户持有人，您负责：",
+          "responsibilities": [
+            "维持您账户类型的最低余额要求",
+            "在发生变更时及时更新您的个人信息",
+            "定期检查账户对账单的准确性",
+            "在对账单发出后30天内通知银行任何差异"
+          ]
+        },
+        "closure": {
+          "title": "2.3 账户关闭",
+          "intro": "任何一方均可通过书面通知关闭您的账户。银行可在以下情况下关闭您的账户：",
+          "reasons": [
+            "如果您违反本协议的任何条款",
+            "如果您的账户连续90天保持零余额",
+            "如果我们怀疑有欺诈活动",
+            "适用法律允许的任何其他原因"
+          ],
+          "note": "账户关闭后，在扣除任何未付费用或收费后，任何剩余余额将支付给您。"
+        }
+      },
+
+      "online_banking": {
+        "title": "3. 网上和移动银行",
+        "registration": {
+          "title": "3.1 注册",
+          "description": "要访问我们的网上和移动银行服务，您必须使用您的客户ID注册并设置安全凭证。通过注册，您同意特定于数字银行服务的附加条款。"
+        },
+        "security_credentials": {
+          "title": "3.2 安全凭证",
+          "intro": "您负责：",
+          "responsibilities": [
+            "保持您的客户ID、PIN和密码的保密性",
+            "不与任何第三方共享您的安全凭证",
+            "使用安全的设备和连接进行银行活动",
+            "每次会话后登出",
+            "定期更改您的凭证，如果您怀疑安全漏洞也要更改"
+          ]
+        },
+        "access": {
+          "title": "3.3 访问和可用性",
+          "description": "虽然我们努力确保我们的网上和移动银行服务的持续可用性，但我们不保证不间断的访问。服务可能由于以下原因而不可用：",
+          "reasons": ["计划维护", "系统升级", "技术问题", "我们无法控制的情况"],
+          "note": "银行不对服务不可用造成的任何损失或不便负责。"
+        },
+        "device_compatibility": {
+          "title": "3.4 设备兼容性",
+          "description": "您负责确保您的设备满足我们服务的最低技术要求。银行不对设备不兼容引起的任何问题负责。"
+        }
+      },
+
+      "transactions": {
+        "title": "4. 交易",
+        "authorization": {
+          "title": "4.1 交易授权",
+          "description": "通过发起交易，您授权银行代表您执行该交易。所有交易都需经过验证和银行的批准。"
+        },
+        "limits": {
+          "title": "4.2 交易限额",
+          "intro": "以下默认限额适用于交易：",
+          "default_limits": [
+            "每日取款限额：肯尼亚先令10,000",
+            "每日转账限额：肯尼亚先令10,000",
+            "每日移动银行交易限额：肯尼亚先令10,000"
+          ],
+          "note": "这些限额可能因您的账户类型和状态而异。银行保留随时修改这些限额的权利。"
+        },
+        "processing_times": {
+          "title": "4.3 交易处理时间",
+          "times": [
+            "安全银行账户之间的内部转账：即时",
+            "向其他银行的外部转账：1-2个工作日",
+            "国际转账：3-5个工作日"
+          ],
+          "note": "交易时间是估计值，可能会因各种因素而有所不同。银行不对中介银行或其他外部因素造成的延误负责。"
+        },
+        "disputes": {
+          "title": "4.4 交易争议",
+          "intro": "如果您认为发生了未授权交易或您的账户有错误：",
+          "steps": ["立即通知银行", "提供有争议交易的详细信息", "提交银行要求的任何支持文件"],
+          "resolution": "银行将调查所有争议并在30天内提供解决方案。如果您在未授权交易出现在您的对账单上后60天内未报告，您可能没有资格获得赔偿。"
+        }
+      },
+
+      "fees": {
+        "title": "5. 费用与收费",
+        "schedule": {
+          "title": "5.1 费用表",
+          "intro": "银行根据我们当前的费用表对某些服务收费，可能包括：",
+          "fee_types": [
+            "月度账户维护费",
+            "交易费",
+            "ATM取款费",
+            "国际转账费",
+            "透支费",
+            "对账单请求费"
+          ],
+          "note": "完整的费用表可在我们的分行和网站上获取。"
+        },
+        "changes": {
+          "title": "5.2 费用变更",
+          "description": "银行保留随时修改费用的权利。我们将在实施任何费用变更前提供至少30天的通知。"
+        },
+        "payment": {
+          "title": "5.3 费用支付",
+          "description": "您授权银行直接从您的账户中扣除任何适用的费用。如果您的账户资金不足以支付费用，您同意在要求时支付未付金额。"
+        }
+      },
+
+      "privacy": {
+        "title": "6. 隐私与数据保护",
+        "data_collection": {
+          "title": "6.1 数据收集",
+          "intro": "银行收集您的个人信息用于提供银行服务。这些信息可能包括：",
+          "types": [
+            "个人身份信息",
+            "联系方式",
+            "财务信息",
+            "交易历史",
+            "使用数字服务时的设备和使用信息"
+          ]
+        },
+        "data_usage": {
+          "title": "6.2 数据使用",
+          "intro": "银行使用您的个人数据于：",
+          "purposes": [
+            "处理交易并提供银行服务",
+            "验证您的身份并防止欺诈",
+            "遵守法律和监管要求",
+            "改进我们的产品和服务",
+            "就您的账户和我们的服务与您沟通"
+          ]
+        },
+        "data_sharing": {
+          "title": "6.3 数据共享",
+          "intro": "银行可能与以下各方共享您的信息：",
+          "recipients": [
+            "协助提供银行服务的第三方服务提供商",
+            "法律要求的监管机构和执法机构",
+            "信用参考局",
+            "用于交易处理的其他金融机构"
+          ],
+          "note": "我们不会将您的个人信息出售给第三方用于营销目的。"
+        },
+        "data_security": {
+          "title": "6.4 数据安全",
+          "description": "银行实施适当的技术和组织措施，保护您的个人数据免受未授权访问、丢失或损坏。但是，通过互联网传输或存储系统的数据不能保证100%安全。"
+        },
+        "data_retention": {
+          "title": "6.5 数据保留",
+          "description": "银行将在必要时间内保留您的个人数据，以实现收集数据的目的，或根据适用法律和法规的要求。"
+        }
+      },
+
+      "security": {
+        "title": "7. 安全责任",
+        "bank_responsibilities": {
+          "title": "7.1 银行责任",
+          "intro": "银行致力于通过以下方式维护您的账户和信息安全：",
+          "measures": [
+            "实施行业标准安全措施",
+            "监控可疑活动",
+            "提供安全的银行交易渠道",
+            "定期更新我们的安全系统"
+          ]
+        },
+        "customer_responsibilities": {
+          "title": "7.2 客户责任",
+          "intro": "您负责：",
+          "responsibilities": [
+            "保持您的安全凭证的保密性",
+            "使用安全的设备和连接进行银行活动",
+            "定期检查您的账户是否有未授权交易",
+            "立即通知银行任何安全顾虑",
+            "遵循我们安全提示中提供的安全指南"
+          ]
+        },
+        "reporting_incidents": {
+          "title": "7.3 报告安全事件",
+          "intro": "如果您怀疑未经授权访问您的账户或任何其他安全漏洞，您必须立即：",
+          "steps": [
+            "联系我们的24/7安全热线+(254)-98-466-352",
+            "更改您的PIN和密码",
+            "遵循银行提供的任何额外安全指示"
+          ]
+        }
+      },
+
+      "liability": {
+        "title": "8. 责任与免责声明",
+        "bank_liability": {
+          "title": "8.1 银行责任",
+          "intro": "银行将对以下情况负责：",
+          "liabilities": [
+            "未授权交易造成的直接损失，前提是您已遵守您的安全责任并在规定时间内报告了未授权活动",
+            "由银行疏忽或故意不当行为造成的损失"
+          ]
+        },
+        "limitation": {
+          "title": "8.2 责任限制",
+          "intro": "银行不对以下情况负责：",
+          "limitations": [
+            "间接、后果性或特殊损害",
+            "超出我们合理控制范围的情况造成的损失",
+            "因您未能遵守安全要求而导致的损失",
+            "由于技术问题、第三方服务提供商或超出我们控制范围的其他因素导致的交易执行延迟或失败",
+            "由设备不兼容或互联网连接问题引起的问题",
+            "超过争议交易金额的任何金额"
+          ]
+        },
+        "disclaimers": {
+          "title": "8.3 免责声明",
+          "intro": "银行的服务是按\"现状\"和\"可用性\"提供的。我们不对以下内容做出任何明示或暗示的保证或陈述：",
+          "items": [
+            "我们服务的持续可用性",
+            "我们系统的无错误运行",
+            "通过我们的服务提供的信息的准确性或完整性",
+            "我们的服务对您特定需求的适用性"
+          ]
+        }
+      },
+
+      "termination": {
+        "title": "9. 服务终止",
+        "by_customer": {
+          "title": "9.1 客户终止",
+          "intro": "您可以随时通过以下方式终止使用我们的服务：",
+          "steps": [
+            "提交书面请求关闭您的账户",
+            "归还任何银行发行的卡或其他访问设备",
+            "结清对银行的任何未结清义务"
+          ]
+        },
+        "by_bank": {
+          "title": "9.2 银行终止",
+          "intro": "银行可在以下情况下终止您对我们服务的访问，无论是否通知：",
+          "reasons": [
+            "您违反本协议的任何条款",
+            "我们怀疑欺诈活动或滥用我们的服务",
+            "您提供虚假或误导性信息",
+            "法律或监管机构要求",
+            "银行确定的其他有效原因"
+          ]
+        },
+        "effect": {
+          "title": "9.3 终止效果",
+          "intro": "终止后：",
+          "effects": [
+            "您对已终止服务的访问将立即停止",
+            "任何未完成的交易可能会完成或取消，由银行自行决定",
+            "您仍对终止前产生的任何义务负责",
+            "账户关闭可能会收取适用费用"
+          ]
+        }
+      },
+
+      "amendments": {
+        "title": "10. 条款修改",
+        "changes": {
+          "title": "10.1 协议变更",
+          "intro": "银行保留随时修改本协议的权利。变更可能包括：",
+          "types": [
+            "添加或删除条款",
+            "修改现有条款",
+            "更新以反映法律或法规的变更",
+            "服务功能或功能性的变更"
+          ]
+        },
+        "notice": {
+          "title": "10.2 变更通知",
+          "intro": "银行将通过以下方式通知您本协议的重大变更：",
+          "methods": [
+            "电子邮件通知",
+            "网上银行中的安全消息",
+            "我们网站上的更新",
+            "银行确定的其他通信方法"
+          ],
+          "note": "除非法律另有要求，否则重大变更将在生效前至少30天通知。"
+        },
+        "acceptance": {
+          "title": "10.3 变更接受",
+          "description": "在任何变更的生效日期后继续使用我们的服务，即表示您接受修改后的协议。如果您不同意这些变更，您必须在生效日期前终止使用我们的服务。"
+        }
+      },
+
+      "governing_law": {
+        "title": "11. 适用法律",
+        "applicable_law": {
+          "title": "11.1 适用法律",
+          "description": "本协议应受肯尼亚法律管辖并按其解释，不考虑其法律冲突条款。"
+        },
+        "dispute_resolution": {
+          "title": "11.2 争议解决",
+          "intro": "因本协议引起的或与之相关的任何争议应按以下方式解决：",
+          "steps": {
+            "customer_service": "首先，联系我们的客户服务解决问题",
+            "formal_complaint": "如果未解决，向银行提交正式书面投诉",
+            "mediation": "如果仍未解决，争议可能会提交给双方同意的调解员",
+            "legal": "作为最后手段，任何一方可在肯尼亚法院寻求法律救济"
+          }
+        },
+        "severability": {
+          "title": "11.3 可分割性",
+          "description": "如果本协议的任何条款被认为无效或不可执行，该条款应被删除，其余条款应在法律允许的最大范围内执行。"
+        }
+      },
+
+      "contact": {
+        "title": "12. 联系信息",
+        "intro": "如有关于本协议或我们服务的问题或疑虑，请联系我们：",
+        "methods": {
+          "customer_service": {
+            "title": "客户服务",
+            "phone": "+(254)-98-466-352",
+            "hours": "周一至周五上午8:00 - 下午6:00提供服务"
+          },
+          "email": {
+            "title": "电子邮件支持",
+            "address": "banking@info.org",
+            "response_time": "24小时内回复"
+          },
+          "branch": {
+            "title": "主要分行",
+            "address": "内罗毕，主街123号",
+            "note": "在营业时间内访问"
+          },
+          "security": {
+            "title": "安全热线",
+            "phone": "+(254)-98-466-352",
+            "availability": "安全问题24/7全天候服务"
+          }
+        }
+      }
+    },
+
+    "footer": {
+      "acceptance": "通过使用安全银行的任何服务，您确认您已阅读、理解并同意受本协议约束。",
+      "copyright": "© 2025 安全银行。保留所有权利。"
+    }
+  },
+  "profile_information": "个人资料信息",
+  "personal_information": "个人信息",
+  "full_name": "姓名",
+  "phone_number": "电话号码",
+  "date_of_birth": "出生日期",
+  "system_information": "系统信息",
+  "customer_id": "客户ID",
+  "registration_date": "注册日期",
+  "last_login": "最后登录",
+  "account_information": "账户信息",
+  "account_number": "账号",
+  "balance": "余额",
+  "status": "状态",
+  "interest_rate": "利率",
+  "limits": "限额",
+  "withdrawal": "提款",
+  "services": "服务",
+  "no_accounts_found": "未找到账户",
+  "active-status": "活跃",
+
+  "update_personal_information": "更新您的个人信息",
+  "full_name_required": "姓名为必填项",
+  "full_name_min_length": "姓名必须至少包含2个字符",
+  "email_required": "电子邮箱为必填项",
+  "email_invalid": "请输入有效的电子邮箱地址",
+  "phone_number_hint": "肯尼亚电话号码格式（例如：712345678）",
+  "phone_number_invalid": "请输入有效的肯尼亚电话号码",
+  "address_min_length": "地址必须至少包含5个字符",
+  "non_editable_info": "系统信息（不可编辑）",
+  "reset": "重置",
+  "cancel": "取消",
+  "save_changes": "保存更改",
+  "phone_number_format_error": "电话号码必须以7或1开头，后跟8位数字（例如：712345678）",
+  "no_changes_detected": "未检测到更改",
+  "profile_update_success": "个人资料更新成功",
+  "profile_update_error": "更新个人资料失败。请重试。",
+  "profile_load_error": "加载个人资料信息失败。请稍后再试。"
 }

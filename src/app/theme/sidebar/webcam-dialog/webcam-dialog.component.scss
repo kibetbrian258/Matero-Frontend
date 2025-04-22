@@ -1,16 +1,25 @@
+/* Enhanced Webcam Component Styles */
+
 .webcam-dialog {
   font-family: 'Roboto', sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #1e1e1e;
+  color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
 }
 
 .webcam-container {
   position: relative;
   width: 100%;
   max-width: 450px;
-  height: 300px;
+  height: 340px;
   margin: 0 auto;
   background-color: #000;
   overflow: hidden;
   border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .webcam-video {
@@ -29,4 +38,155 @@
   align-items: center;
   justify-content: center;
   pointer-events: none;
+}
+
+.camera-frame {
+  width: 80%;
+  height: 80%;
+  border: 2px solid rgba(0, 149, 255, 0.7);
+  border-radius: 8px;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  }
+}
+
+.preview-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-image {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(211, 47, 47, 0.9);
+  color: white;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.error-message mat-icon {
+  margin-right: 8px;
+}
+
+.error-message p {
+  margin: 0;
+}
+
+/* Dialog title and actions styling */
+h2[mat-dialog-title] {
+  color: #fff;
+  font-size: 1.5rem;
+  padding: 16px 20px;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[mat-dialog-content] {
+  padding: 24px 16px;
+}
+
+[mat-dialog-actions] {
+  padding: 16px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Button styling */
+button[mat-button],
+button[mat-raised-button] {
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  font-weight: 500;
+  min-width: 90px;
+}
+
+button[mat-raised-button][color='primary'] {
+  background-color: #0095ff;
+}
+
+button[mat-raised-button][color='primary']:hover {
+  background-color: #0077cc;
+  box-shadow: 0 3px 12px rgba(0, 119, 204, 0.4);
+}
+
+button[mat-button]:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+button[mat-raised-button][disabled] {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Icon styling */
+mat-icon {
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+/* User assistance styling */
+.camera-instruction {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 8px 0;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+/* Added animation for capture button */
+@keyframes ready-to-capture {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+button.ready-to-capture {
+  animation: ready-to-capture 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .webcam-container {
+    height: 280px;
+  }
+
+  h2[mat-dialog-title] {
+    font-size: 1.3rem;
+  }
 }

@@ -1,10 +1,10 @@
 <div class="transaction-container">
   <div class="transaction-card">
     <div class="transaction-header">
-      <h2>Transaction History</h2>
+      <h2>{{ 'transaction_history.title' | translate }}</h2>
       <button class="back-btn" (click)="goToDashboard()">
         <mat-icon>arrow_back</mat-icon>
-        Back to Dashboard
+        {{ 'transaction_history.back_to_dashboard' | translate }}
       </button>
     </div>
 
@@ -13,7 +13,7 @@
       @if (loading) {
         <div class="loading-container">
           <mat-spinner diameter="40"></mat-spinner>
-          <p>Loading transactions...</p>
+          <p>{{ 'transaction_history.loading_transactions' | translate }}</p>
         </div>
       }
 
@@ -28,15 +28,15 @@
         @if (account) {
           <div class="account-summary">
             <div class="summary-item">
-              <span class="label">Account:</span>
+              <span class="label">{{ 'transaction_history.account' | translate }}:</span>
               <span class="value">{{ account.accountNumber }}</span>
             </div>
             <div class="summary-item">
-              <span class="label">Balance:</span>
+              <span class="label">{{ 'transaction_history.balance' | translate }}:</span>
               <span class="value">{{ formatCurrency(account.balance) }}</span>
             </div>
             <div class="summary-item">
-              <span class="label">Status:</span>
+              <span class="label">{{ 'transaction_history.status' | translate }}:</span>
               <span class="value status-badge" [ngClass]="account.status.toLowerCase()">
                 {{ account.status }}
               </span>
@@ -46,14 +46,16 @@
 
         <!-- Simplified Search Form -->
         <div class="search-section">
-          <h3>Search Transactions</h3>
+          <h3>{{ 'transaction_history.search_transactions' | translate }}</h3>
           <div class="search-form">
             <form [formGroup]="searchForm" (ngSubmit)="onSearch()">
               <div class="search-row">
                 <mat-form-field appearance="fill">
-                  <mat-label>Account Number</mat-label>
+                  <mat-label>{{ 'transaction_history.account_number' | translate }}</mat-label>
                   <mat-select formControlName="accountNumber" id="accountNumber">
-                    <mat-option value="">All Accounts</mat-option>
+                    <mat-option value="">
+                      {{ 'transaction_history.all_accounts' | translate }}
+                    </mat-option>
                     @for (acc of accounts; track acc.accountNumber) {
                       <mat-option [value]="acc.accountNumber">
                         {{ acc.accountNumber }}
@@ -63,18 +65,28 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                  <mat-label>Transaction Type</mat-label>
+                  <mat-label>{{ 'transaction_history.transaction_type' | translate }}</mat-label>
                   <mat-select formControlName="type" id="type">
-                    <mat-option value="">All Types</mat-option>
-                    <mat-option value="Deposit">Deposit</mat-option>
-                    <mat-option value="Withdrawal">Withdrawal</mat-option>
-                    <mat-option value="Transfer">Transfer</mat-option>
-                    <mat-option value="Transfer Received">Transfer Received</mat-option>
+                    <mat-option value="">
+                      {{ 'transaction_history.all_types' | translate }}
+                    </mat-option>
+                    <mat-option value="Deposit">
+                      {{ 'transaction_history.type_deposit' | translate }}
+                    </mat-option>
+                    <mat-option value="Withdrawal">
+                      {{ 'transaction_history.type_withdrawal' | translate }}
+                    </mat-option>
+                    <mat-option value="Transfer">
+                      {{ 'transaction_history.type_transfer' | translate }}
+                    </mat-option>
+                    <mat-option value="Transfer Received">
+                      {{ 'transaction_history.type_transfer_received' | translate }}
+                    </mat-option>
                   </mat-select>
                 </mat-form-field>
 
                 <mat-form-field appearance="fill">
-                  <mat-label>Transaction Date</mat-label>
+                  <mat-label>{{ 'transaction_history.transaction_date' | translate }}</mat-label>
                   <input matInput [matDatepicker]="picker" formControlName="date" id="date" />
                   <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
@@ -86,7 +98,7 @@
                   @if (searching) {
                     <mat-spinner diameter="20" class="spinner-inline"></mat-spinner>
                   }
-                  Search
+                  {{ 'transaction_history.search_button' | translate }}
                 </button>
                 <button
                   type="button"
@@ -95,7 +107,7 @@
                   (click)="resetSearch()"
                   [disabled]="searching"
                 >
-                  Reset
+                  {{ 'transaction_history.reset_button' | translate }}
                 </button>
               </div>
             </form>
@@ -105,9 +117,15 @@
         <!-- Transaction Results -->
         <div class="transactions-section">
           <h3>
-            {{ hasSearchValues() ? 'Search Results' : 'Recent Transactions' }}
+            {{
+              hasSearchValues()
+                ? ('transaction_history.search_results' | translate)
+                : ('transaction_history.recent_transactions' | translate)
+            }}
             @if (hasSearchValues() && totalItems > 0) {
-              <span class="result-count">({{ totalItems }} transactions found)</span>
+              <span class="result-count">
+                ({{ totalItems }} {{ 'transaction_history.transactions_found' | translate }})
+              </span>
             }
           </h3>
 
@@ -115,7 +133,7 @@
           @if (searching) {
             <div class="loading-container">
               <mat-spinner diameter="40"></mat-spinner>
-              <p>Searching transactions...</p>
+              <p>{{ 'transaction_history.searching_transactions' | translate }}</p>
             </div>
           }
 
@@ -126,14 +144,14 @@
                 <table>
                   <thead>
                     <tr>
-                      <th>Transaction ID</th>
-                      <th>Date/Time</th>
-                      <th>Type</th>
-                      <th>Amount</th>
-                      <th>Balance After</th>
-                      <th>Status</th>
+                      <th>{{ 'transaction_history.transaction_id' | translate }}</th>
+                      <th>{{ 'transaction_history.date_time' | translate }}</th>
+                      <th>{{ 'transaction_history.type' | translate }}</th>
+                      <th>{{ 'transaction_history.amount' | translate }}</th>
+                      <th>{{ 'transaction_history.balance_after' | translate }}</th>
+                      <th>{{ 'transaction_history.status' | translate }}</th>
                       @if (hasSearchValues()) {
-                        <th>Account</th>
+                        <th>{{ 'transaction_history.account' | translate }}</th>
                       }
                     </tr>
                   </thead>
@@ -143,10 +161,14 @@
                         <td>{{ transaction.transactionId }}</td>
                         <td>{{ transaction.formattedDateTime }}</td>
                         <td>
-                          {{ transaction.type }}
+                          {{
+                            'transaction_history.type_' +
+                              transaction.type.toLowerCase().replace(' ', '_') | translate
+                          }}
                           @if (transaction.destinationAccountNumber) {
                             <span class="destination-account">
-                              To: {{ transaction.destinationAccountNumber }}
+                              {{ 'transaction_history.to' | translate }}:
+                              {{ transaction.destinationAccountNumber }}
                             </span>
                           }
                         </td>
@@ -174,8 +196,8 @@
                   <p>
                     {{
                       !hasSearchValues()
-                        ? 'No recent transactions found.'
-                        : 'No transactions match your search criteria.'
+                        ? ('transaction_history.no_recent_transactions' | translate)
+                        : ('transaction_history.no_matching_transactions' | translate)
                     }}
                   </p>
                 </div>
@@ -193,7 +215,10 @@
                     <mat-icon>chevron_left</mat-icon>
                   </button>
 
-                  <span class="page-info">Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+                  <span class="page-info">
+                    {{ 'transaction_history.page' | translate }} {{ currentPage + 1 }}
+                    {{ 'transaction_history.of' | translate }} {{ totalPages }}
+                  </span>
 
                   <button
                     mat-icon-button

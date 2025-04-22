@@ -10,7 +10,7 @@ import {
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
 import { MenuService } from '@core';
@@ -57,6 +57,7 @@ export class SidemenuComponent {
 
   private readonly menu = inject(MenuService);
   private readonly router = inject(Router);
+  private readonly translateService = inject(TranslateService);
 
   menu$ = this.menu.getAll();
 
@@ -68,5 +69,14 @@ export class SidemenuComponent {
     if (menuItem.type === 'link') {
       this.menu.setActiveMenuItem(menuItem.name);
     }
+  }
+
+  /**
+   * Get translated value for a menu item label or badge
+   * @param value The label or badge value to translate
+   * @returns Translated string
+   */
+  getTranslatedValue(value: string): string {
+    return this.translateService.instant(value);
   }
 }

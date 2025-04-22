@@ -1,10 +1,10 @@
 <div class="transaction-container">
   <div class="transaction-card">
     <div class="transaction-header">
-      <h2>Withdraw Funds</h2>
+      <h2>{{ 'withdraw.title' | translate }}</h2>
       <button class="back-btn" (click)="goToDashboard()">
         <mat-icon>arrow_back</mat-icon>
-        Back to Dashboard
+        {{ 'withdraw.back_to_dashboard' | translate }}
       </button>
     </div>
 
@@ -14,9 +14,9 @@
         <div class="success-message">
           <mat-icon>check_circle</mat-icon>
           <div class="message-content">
-            <h3>Withdrawal Successful!</h3>
-            <p>Your withdrawal has been processed successfully.</p>
-            <p>Redirecting to dashboard...</p>
+            <h3>{{ 'withdraw.success_title' | translate }}</h3>
+            <p>{{ 'withdraw.success_message' | translate }}</p>
+            <p>{{ 'withdraw.redirecting' | translate }}</p>
           </div>
         </div>
       }
@@ -31,26 +31,29 @@
 
           <!-- Account Selection Field -->
           <div class="form-group">
-            <label for="accountNumber" class="form-label">Select Account</label>
+            <label for="accountNumber" class="form-label">
+              {{ 'withdraw.select_account' | translate }}
+            </label>
             @if (loadingAccounts) {
               <div class="loading-accounts">
                 <mat-spinner diameter="20"></mat-spinner>
-                <span>Loading accounts...</span>
+                <span>{{ 'withdraw.loading_accounts' | translate }}</span>
               </div>
             }
             @if (!loadingAccounts) {
               <mat-form-field appearance="fill" class="w-100">
-                <mat-label>Select Account</mat-label>
+                <mat-label>{{ 'withdraw.select_account' | translate }}</mat-label>
                 <mat-select formControlName="accountNumber" id="accountNumber">
                   @for (account of accounts; track account.accountNumber) {
                     <mat-option [value]="account.accountNumber">
-                      {{ account.accountNumber }} - Balance: Ksh {{ account.balance.toFixed(2) }}
+                      {{ account.accountNumber }} - {{ 'withdraw.balance' | translate }}:
+                      {{ formatAmount(account.balance) }}
                     </mat-option>
                   }
                 </mat-select>
                 @if (submitted && f['accountNumber'].errors) {
                   <mat-error *ngIf="f['accountNumber'].errors['required']">
-                    Account is required
+                    {{ 'withdraw.account_required' | translate }}
                   </mat-error>
                 }
               </mat-form-field>
@@ -61,22 +64,22 @@
           @if (selectedAccount) {
             <div class="account-details">
               <div class="detail-item">
-                <span class="label">Available Balance:</span>
-                <span class="value">Ksh {{ selectedAccount.balance.toFixed(2) }}</span>
+                <span class="label">{{ 'withdraw.available_balance' | translate }}:</span>
+                <span class="value">{{ formatAmount(selectedAccount.balance) }}</span>
               </div>
               <div class="detail-item">
-                <span class="label">Withdrawal Limit:</span>
-                <span class="value">Ksh {{ selectedAccount.withdrawalLimit.toFixed(2) }}</span>
+                <span class="label">{{ 'withdraw.withdrawal_limit' | translate }}:</span>
+                <span class="value">{{ formatAmount(selectedAccount.withdrawalLimit) }}</span>
               </div>
               <div class="detail-item">
-                <span class="label">Max Withdrawal:</span>
+                <span class="label">{{ 'withdraw.max_withdrawal' | translate }}:</span>
                 <span class="value">
-                  Ksh
                   {{
-                    (selectedAccount.withdrawalLimit < selectedAccount.balance
-                      ? selectedAccount.withdrawalLimit
-                      : selectedAccount.balance
-                    ).toFixed(2)
+                    formatAmount(
+                      selectedAccount.withdrawalLimit < selectedAccount.balance
+                        ? selectedAccount.withdrawalLimit
+                        : selectedAccount.balance
+                    )
                   }}
                 </span>
               </div>
@@ -86,13 +89,13 @@
           <!-- Amount Field -->
           <div class="form-group">
             <mat-form-field appearance="fill" class="w-100">
-              <mat-label>Amount (Ksh)</mat-label>
+              <mat-label>{{ 'withdraw.amount_label' | translate }}</mat-label>
               <input
                 type="number"
                 matInput
                 formControlName="amount"
                 id="amount"
-                placeholder="Enter amount"
+                placeholder="{{ 'withdraw.enter_amount' | translate }}"
                 step="0.01"
                 min="0.01"
                 [max]="
@@ -104,15 +107,17 @@
                 "
               />
               @if (submitted && f['amount'].errors) {
-                <mat-error *ngIf="f['amount'].errors['required']">Amount is required</mat-error>
+                <mat-error *ngIf="f['amount'].errors['required']">
+                  {{ 'withdraw.amount_required' | translate }}
+                </mat-error>
                 <mat-error *ngIf="f['amount'].errors['min']">
-                  Amount must be greater than zero
+                  {{ 'withdraw.amount_greater_than_zero' | translate }}
                 </mat-error>
                 <mat-error *ngIf="f['amount'].errors['max']">
-                  Amount exceeds available balance or withdrawal limit
+                  {{ 'withdraw.amount_exceeds_limit' | translate }}
                 </mat-error>
                 <mat-error *ngIf="f['amount'].errors['pattern']">
-                  Amount must be a valid number with up to 2 decimal places
+                  {{ 'withdraw.amount_valid_number' | translate }}
                 </mat-error>
               }
             </mat-form-field>
@@ -130,18 +135,18 @@
               @if (loading) {
                 <mat-spinner diameter="20" class="spinner-inline"></mat-spinner>
               }
-              <span>Withdraw Funds</span>
+              <span>{{ 'withdraw.withdraw_funds' | translate }}</span>
             </button>
           </div>
         </form>
 
         <!-- Additional Info -->
         <div class="info-panel">
-          <h4>Withdrawal Information</h4>
+          <h4>{{ 'withdraw.info_title' | translate }}</h4>
           <ul>
-            <li>Withdrawals are processed immediately.</li>
-            <li>Make sure you have sufficient funds in your account.</li>
-            <li>Daily withdrawal limits may apply.</li>
+            <li>{{ 'withdraw.info_immediate' | translate }}</li>
+            <li>{{ 'withdraw.info_sufficient' | translate }}</li>
+            <li>{{ 'withdraw.info_limits' | translate }}</li>
           </ul>
         </div>
       }

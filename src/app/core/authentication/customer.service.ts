@@ -14,14 +14,6 @@ export interface CustomerProfileResponse {
   lastLogin: string;
 }
 
-export interface UpdateProfileRequest {
-  fullName?: string;
-  email?: string;
-  phoneNumber?: string;
-  address?: string;
-  dateOfBirth?: string;
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -31,15 +23,15 @@ export class CustomerService {
 
   /**
    * Get the authenticated customer's profile
+   *
+   * Note: For profile management including updates, please use ProfileService
    */
   getProfile(): Observable<CustomerProfileResponse> {
     return this.http.get<CustomerProfileResponse>(`${this.baseUrl}/profile`);
   }
 
-  /**
-   * Update the authenticated customer's profile
-   */
-  updateProfile(request: UpdateProfileRequest): Observable<CustomerProfileResponse> {
-    return this.http.put<CustomerProfileResponse>(`${this.baseUrl}/profile`, request);
-  }
+  // Other customer-specific operations can be added here
+  // - getCustomerAccounts()
+  // - getCustomerTransactions()
+  // - getCustomerStatements()
 }

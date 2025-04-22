@@ -1,5 +1,5 @@
 import { formatDate, CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AccountResponse, AccountService } from '@core/authentication/account.service';
@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-transaction-history',
@@ -33,11 +34,14 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    TranslateModule,
   ],
   templateUrl: './transaction-history.component.html',
   styleUrl: './transaction-history.component.scss',
 })
 export class TransactionHistoryComponent implements OnInit {
+  private readonly translate = inject(TranslateService);
+
   accountNumber: string | null = null;
   account: AccountResponse | null = null;
   transactions: TransactionResponse[] = [];
@@ -93,7 +97,9 @@ export class TransactionHistoryComponent implements OnInit {
       },
       error: error => {
         console.error('Account details error:', error);
-        this.error = error.error?.message || 'Could not load account details. Please try again.';
+        this.error =
+          error.error?.message ||
+          this.translate.instant('transaction_history.account_details_error');
         this.loading = false;
       },
     });
@@ -116,7 +122,8 @@ export class TransactionHistoryComponent implements OnInit {
       },
       error: error => {
         console.error('Load accounts error:', error);
-        this.error = error.error?.message || 'Could not load accounts. Please try again.';
+        this.error =
+          error.error?.message || this.translate.instant('transaction_history.load_accounts_error');
         this.loading = false;
       },
     });
@@ -139,7 +146,9 @@ export class TransactionHistoryComponent implements OnInit {
       },
       error: error => {
         console.error('Load transactions error:', error);
-        this.error = error.error?.message || 'Could not load transactions. Please try again.';
+        this.error =
+          error.error?.message ||
+          this.translate.instant('transaction_history.load_transactions_error');
         this.loading = false;
       },
     });
@@ -172,7 +181,7 @@ export class TransactionHistoryComponent implements OnInit {
         console.log('Date range:', { startDate, endDate });
       } catch (error) {
         console.error('Error formatting date:', error);
-        this.error = 'Invalid date format. Please select a valid date.';
+        this.error = this.translate.instant('transaction_history.invalid_date_format');
         this.searching = false;
         return;
       }
@@ -211,7 +220,8 @@ export class TransactionHistoryComponent implements OnInit {
         },
         error: error => {
           console.error('Search error:', error);
-          this.error = error.error?.message || 'Search failed. Please try again.';
+          this.error =
+            error.error?.message || this.translate.instant('transaction_history.search_failed');
           this.searching = false;
         },
       });
@@ -275,21 +285,41 @@ export class TransactionHistoryComponent implements OnInit {
 
   // Helper to format currency
   formatCurrency(amount: number): string {
-    return (
-      'Ksh ' +
-      amount.toLocaleString('en-US', {
+    try {
+      const currencySymbol = this.translate.instant('currency_symbol') || 'Ksh';
+      return `${currencySymbol} ${amount.toLocaleString('en-US', {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
-      })
-    );
+      })}`;
+    } catch (e) {
+      return `Ksh ${amount.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      })}`;
+    }
   }
 
   // Helper to format date
   formatDateTime(dateTime: string | Date): string {
     if (!dateTime) return '';
 
-    const date = typeof dateTime === 'string' ? new Date(dateTime) : dateTime;
-    return formatDate(date, 'dd/MM/yy HH:mm', 'en-US');
+    try {
+      const date = typeof dateTime === 'string' ? new Date(dateTime) : dateTime;
+      const currentLang = this.translate.currentLang;
+      const dateFormat =
+        this.translate.instant('transaction_history.date_format') || 'dd/MM/yy HH:mm';
+
+      let locale = 'en-US';
+      // Map language code to locale
+      if (currentLang === 'zh-CN' || currentLang === 'zh-TW') {
+        locale = currentLang;
+      }
+
+      return formatDate(date, dateFormat, locale);
+    } catch (e) {
+      const date = typeof dateTime === 'string' ? new Date(dateTime) : dateTime;
+      return formatDate(date, 'dd/MM/yy HH:mm', 'en-US');
+    }
   }
 
   // Navigate back to dashboard

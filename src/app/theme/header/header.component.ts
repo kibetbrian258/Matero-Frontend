@@ -9,6 +9,7 @@ import { GithubButtonComponent } from '../widgets/github.component';
 import { NotificationComponent } from '../widgets/notification.component';
 import { TranslateComponent } from '../widgets/translate.component';
 import { UserComponent } from '../widgets/user.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -27,6 +28,7 @@ import { UserComponent } from '../widgets/user.component';
     NotificationComponent,
     TranslateComponent,
     UserComponent,
+    TranslateModule,
   ],
 })
 export class HeaderComponent {

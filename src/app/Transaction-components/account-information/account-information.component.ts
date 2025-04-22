@@ -11,13 +11,14 @@ import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthService, CustomerProfile } from '@core';
 import { AccountResponse, AccountService } from '@core/authentication/account.service';
+import { TranslateService, TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-account-information',
   templateUrl: './account-information.component.html',
   styleUrls: ['./account-information.component.scss'],
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule, TranslatePipe],
 })
 export class AccountInformationComponent implements OnInit {
   profile: CustomerProfile | null = null;
@@ -37,7 +38,8 @@ export class AccountInformationComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private accountService: AccountService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class AccountInformationComponent implements OnInit {
         this.checkLoading();
       },
       error: error => {
-        this.error = 'Could not load profile data';
+        this.error = this.translateService.instant('dashboard.load_account_error');
         this.profileLoading = false;
         this.checkLoading();
       },
@@ -81,7 +83,7 @@ export class AccountInformationComponent implements OnInit {
         this.checkLoading();
       },
       error: error => {
-        this.error = 'Could not load account data';
+        this.error = this.translateService.instant('dashboard.load_account_error');
         this.accountsLoading = false;
         this.checkLoading();
       },
@@ -123,14 +125,18 @@ export class AccountInformationComponent implements OnInit {
         // Select the newly created account
         this.selectedAccount = newAccount;
         this.showNewAccountForm = false;
-        this.success = 'New account created successfully';
+
+        // Use the correct account creation success message
+        this.success = this.translateService.instant('dashboard.account_created_success');
         this.loading = false;
 
         // Clear the success message after 3 seconds
         setTimeout(() => (this.success = ''), 3000);
       },
       error: error => {
-        this.error = error.error?.message || 'Error creating account. Please try again.';
+        // Use a generic error message for account creation
+        this.error =
+          error.error?.message || this.translateService.instant('dashboard.generic_error');
         this.loading = false;
 
         // Clear the error message after 5 seconds
@@ -141,28 +147,61 @@ export class AccountInformationComponent implements OnInit {
 
   getAccountTypeName(account: AccountResponse): string {
     if (account.interestRate > 0 && account.minimumBalance > 0) {
-      return 'Savings Account';
+      return this.translateService.instant('dashboard.savings_account');
     } else {
-      return 'Checking Account';
+      return this.translateService.instant('dashboard.checking_account');
     }
   }
 
   formatCurrency(amount: number): string {
+    const currencySymbol = this.translateService.instant('currency_symbol');
     return (
-      'Ksh ' +
-      amount.toLocaleString('en-US', {
+      currencySymbol +
+      ' ' +
+      amount.toLocaleString(this.translateService.currentLang, {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       })
     );
   }
 
-  formatDate(date: string | Date | undefined): string {
-    if (!date) return 'N/A';
-    return new Date(date).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
-    });
+  // Format date to readable format based on current language
+  formatDate(dateStr: string | Date | undefined): string {
+    if (!dateStr) return 'N/A';
+
+    try {
+      const date = new Date(dateStr);
+      const currentLang = this.translateService.currentLang;
+
+      // Handle different date formats based on language
+      if (currentLang === 'zh-CN' || currentLang === 'zh-TW') {
+        // Use Chinese date format
+        return date.toLocaleString(currentLang, {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: false,
+        });
+      } else {
+        // Use English/default date format
+        const formattedDate = date.toLocaleDateString('en-GB', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+        });
+
+        const formattedTime = date.toLocaleTimeString('en-US', {
+          hour: 'numeric',
+          minute: '2-digit',
+          hour12: true,
+        });
+
+        return `${formattedDate} ${formattedTime}`;
+      }
+    } catch (e) {
+      return String(dateStr);
+    }
   }
 }
