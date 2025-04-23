@@ -56,7 +56,7 @@ const interceptors = [
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    { provide: BASE_URL, useValue: environment.baseUrl },
+    { provide: BASE_URL, useValue: environment.apiUrl },
     provideAppInitializer(() => inject(TranslateLangService).load()),
     provideAppInitializer(() => inject(StartupService).load()),
     provideAnimationsAsync(),

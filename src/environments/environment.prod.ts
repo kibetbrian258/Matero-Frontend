@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: '',
+  apiUrl: 'https://secure-bank-ws58.onrender.com',
   useHash: false,
 };
